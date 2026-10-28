@@ -2,22 +2,24 @@
 <html lang="ru" data-mode="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ТхЛ — Кроссворд</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ТхЛ — Кроссворд по словарю</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app">
-<aside class="side">
+<div class="app" id="app">
+
+<aside class="side" id="side">
   <div class="brand"><div class="logo">ТхЛ</div><span data-i18n="appTitle"></span></div>
   <label class="field"><span data-i18n="book"></span><select id="bookSel"></select></label>
   <nav class="nav">
+    <button class="tab" data-tab="home" data-i18n="tabHome"></button>
+    <button class="tab" data-tab="dict" data-i18n="tabDict"></button>
     <button class="tab" data-tab="teacher" data-i18n="tabTeacher"></button>
     <button class="tab" data-tab="play" data-i18n="tabPlay"></button>
-    <button class="tab" data-tab="dict" data-i18n="tabDict"></button>
     <button class="tab" data-tab="board" data-i18n="tabBoard"></button>
   </nav>
-  <div class="foot">
+  <div class="sfoot">
     <div class="seg" id="themeSeg" style="--n:3">
       <i class="thumb"></i>
       <button data-th="light" title="Light"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg></button>
@@ -31,70 +33,132 @@
     </div>
   </div>
 </aside>
+<div class="scrim" id="scrim"></div>
 
-<main class="main">
-<section id="teacher" class="panel" hidden>
-  <header class="ph"><h2 data-i18n="tabTeacher"></h2><p data-i18n="genHint"></p></header>
-  <div class="quick"><button id="selAll" data-i18n="selAll"></button><button id="selNone" data-i18n="selNone"></button></div>
-  <div id="tree" class="tree"></div>
-  <div class="card params">
-    <label class="field"><span data-i18n="wordCount"></span><input type="number" id="wordCount" value="12" min="5" max="25"></label>
-    <label class="field"><span data-i18n="clueMode"></span><select id="clueMode"><option value="tr" data-i18n="cmTr"></option><option value="pos" data-i18n="cmPos"></option><option value="first" data-i18n="cmFirst"></option></select></label>
-    <span id="available" class="mut"></span>
-    <button id="genBtn" class="primary" data-i18n="generate"></button>
-  </div>
-  <div id="result" class="card result" hidden>
-    <div>
-      <p class="lbl" data-i18n="linkLabel"></p>
-      <div class="row"><input id="linkBox" readonly><button id="copyBtn" data-i18n="copy"></button><button id="openBtn" data-i18n="openGame"></button></div>
-      <p class="mut" data-i18n="qrHint"></p>
-    </div>
-    <div id="qr"></div>
-  </div>
-</section>
+<div class="shell">
+  <header class="topbar">
+    <button class="icon" id="menuBtn"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <span class="crumb" id="crumb"></span>
+  </header>
 
-<section id="play" class="panel" hidden>
-  <header class="ph"><h2 data-i18n="tabPlay"></h2></header>
-  <p id="noPuzzle" class="card" data-i18n="noPuzzle"></p>
-  <div id="startBox" class="card" hidden>
-    <p class="mut" data-i18n="playHint"></p>
-    <div class="row"><input id="playerName" maxlength="30" data-i18n-ph="yourName"><button id="startBtn" class="primary" data-i18n="start"></button></div>
-    <p id="nameErr" class="err"></p>
-  </div>
-  <div id="gameArea" hidden>
-    <div class="bar">
-      <span class="timer" id="timer">00:00</span><span id="who"></span><span class="sp"></span>
-      <button id="hintBtn" data-i18n="hint"></button>
-      <button id="checkBtn" data-i18n="check"></button>
-      <button id="revealBtn" data-i18n="reveal"></button>
-    </div>
-    <p id="status" class="msg"></p>
-    <div class="game">
-      <div class="gridwrap"><div id="grid" class="grid"></div></div>
-      <div class="clues">
-        <h3 data-i18n="across"></h3><ol id="acrossList"></ol>
-        <h3 data-i18n="down"></h3><ol id="downList"></ol>
+  <main class="main">
+
+    <section id="home" class="panel">
+      <div class="hero">
+        <div>
+          <p class="eyebrow" id="heroBook"></p>
+          <h1 data-i18n="heroTitle"></h1>
+          <p class="lead" data-i18n="heroText"></p>
+          <div class="row">
+            <button class="primary" data-go="dict" data-i18n="heroBtn"></button>
+            <button class="ghost" data-go="teacher" data-i18n="heroBtn2"></button>
+          </div>
+        </div>
+        <dl class="stats">
+          <div><dt id="statWords"></dt><dd data-i18n="statWords"></dd></div>
+          <div><dt id="statModules"></dt><dd data-i18n="statModules"></dd></div>
+          <div><dt id="statSections"></dt><dd data-i18n="statSections"></dd></div>
+        </dl>
       </div>
-    </div>
-  </div>
-</section>
+      <div class="tiles">
+        <button class="tile" data-go="dict">
+          <span class="ti"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 5v16"/></svg></span>
+          <h3 data-i18n="cardDict"></h3><p data-i18n="cardDictText"></p>
+        </button>
+        <button class="tile" data-go="teacher">
+          <span class="ti"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg></span>
+          <h3 data-i18n="cardGen"></h3><p data-i18n="cardGenText"></p>
+        </button>
+        <button class="tile" data-go="play">
+          <span class="ti"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l5.5-3.5z"/></svg></span>
+          <h3 data-i18n="cardPlay"></h3><p data-i18n="cardPlayText"></p>
+        </button>
+        <button class="tile" data-go="board">
+          <span class="ti"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/></svg></span>
+          <h3 data-i18n="cardBoard"></h3><p data-i18n="cardBoardText"></p>
+        </button>
+      </div>
+      <footer class="pagefoot"><span data-i18n="footer"></span><span id="footBook"></span></footer>
+    </section>
 
-<section id="dict" class="panel" hidden>
-  <header class="ph"><h2 data-i18n="tabDict"></h2><p id="dictCount"></p></header>
-  <div class="tools"><input id="search" data-i18n-ph="searchPh"><div id="chips" class="chips"></div></div>
-  <div id="dictBody"></div>
-</section>
+    <section id="teacher" class="panel" hidden>
+      <header class="ph"><h2 data-i18n="tabTeacher"></h2><p data-i18n="genHint"></p></header>
+      <div class="quick"><button id="selAll" data-i18n="selAll"></button><button id="selNone" data-i18n="selNone"></button></div>
+      <div id="tree" class="tree"></div>
+      <div class="card params">
+        <label class="field"><span data-i18n="wordCount"></span><input type="number" id="wordCount" value="12" min="5" max="25"></label>
+        <label class="field"><span data-i18n="clueMode"></span>
+          <select id="clueMode">
+            <option value="tr" data-i18n="cmTr"></option>
+            <option value="pos" data-i18n="cmPos"></option>
+            <option value="first" data-i18n="cmFirst"></option>
+          </select>
+        </label>
+        <span id="available" class="mut"></span>
+        <button id="genBtn" class="primary" data-i18n="generate"></button>
+      </div>
+      <div id="result" class="card result" hidden>
+        <div>
+          <p class="lbl" data-i18n="linkLabel"></p>
+          <div class="row"><input id="linkBox" readonly><button id="copyBtn" data-i18n="copy"></button></div>
+          <div class="row" style="margin-top:10px"><button id="openBtn" class="primary" data-i18n="openGame"></button><button id="qrFull" data-i18n="qrFull"></button></div>
+          <p class="mut" data-i18n="qrHint"></p>
+        </div>
+        <div class="qrbox"><div id="qr"></div></div>
+      </div>
+    </section>
 
-<section id="board" class="panel" hidden>
-  <header class="ph"><h2 data-i18n="tabBoard"></h2><p data-i18n="boardNote"></p></header>
-  <div class="card tbl"><table>
-    <thead><tr><th>#</th><th data-i18n="colName"></th><th data-i18n="colTime"></th><th data-i18n="colPuzzle"></th><th data-i18n="colDate"></th></tr></thead>
-    <tbody id="boardBody"></tbody>
-  </table></div>
-  <p><button id="clearBtn" data-i18n="clearBoard"></button></p>
-</section>
-</main>
+    <section id="play" class="panel" hidden>
+      <header class="ph"><h2 data-i18n="tabPlay"></h2></header>
+      <p id="noPuzzle" class="card" data-i18n="noPuzzle"></p>
+      <div id="startBox" class="card" hidden>
+        <p class="mut" data-i18n="playHint"></p>
+        <div class="row"><input id="playerName" maxlength="30" data-i18n-ph="yourName"><button id="startBtn" class="primary" data-i18n="start"></button></div>
+        <p id="nameErr" class="err"></p>
+      </div>
+      <div id="gameArea" hidden>
+        <div class="bar">
+          <span class="timer" id="timer">00:00</span><span id="who"></span><span class="sp"></span>
+          <button id="hintBtn" data-i18n="hint"></button>
+          <button id="checkBtn" data-i18n="check"></button>
+          <button id="revealBtn" data-i18n="reveal"></button>
+        </div>
+        <p id="status" class="msg"></p>
+        <div class="game" id="game">
+          <div class="gridwrap"><div id="grid" class="grid"></div></div>
+          <div class="clues">
+            <h3 data-i18n="across"></h3><ol id="acrossList"></ol>
+            <h3 data-i18n="down"></h3><ol id="downList"></ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dict" class="panel" hidden>
+      <header class="ph"><h2 data-i18n="tabDict"></h2><p id="dictCount"></p></header>
+      <div class="tools"><input id="search" data-i18n-ph="searchPh"><div id="chips" class="chips"></div></div>
+      <div id="dictBody"></div>
+    </section>
+
+    <section id="board" class="panel" hidden>
+      <header class="ph"><h2 data-i18n="tabBoard"></h2><p data-i18n="boardNote"></p></header>
+      <div class="card tbl"><table>
+        <thead><tr><th>#</th><th data-i18n="colName"></th><th data-i18n="colTime"></th><th data-i18n="colPuzzle"></th><th data-i18n="colDate"></th></tr></thead>
+        <tbody id="boardBody"></tbody>
+      </table></div>
+      <p><button id="clearBtn" data-i18n="clearBoard"></button></p>
+    </section>
+
+  </main>
 </div>
+</div>
+
+<div class="overlay" id="qrOverlay" hidden>
+  <div id="qrBig"></div>
+  <p class="ovtext" id="qrLink"></p>
+  <button id="qrClose" data-i18n="closeQr"></button>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="app.js"></script>
 </body>
