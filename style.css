@@ -46,7 +46,7 @@ input[type=checkbox]{width:16px;height:16px;padding:0;accent-color:var(--ac);fle
 .cell input{width:100%;height:100%;border:0;border-radius:3px;background:transparent;text-align:center;font-size:calc(var(--cell)*.5);font-weight:700;text-transform:uppercase;padding:5px 0 0}
 .cell input:focus{outline:none}.cell.hl{background:var(--hl)}.cell.act{background:var(--cur);border-color:var(--ink)}.cell.ok{background:var(--ok)}.cell.bad{background:var(--bad)}
 .num{position:absolute;top:1px;left:3px;font-size:10px;font-weight:700;color:var(--mut);pointer-events:none}
-.clues{flex:1;min-width:260px;background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:6px 20px 16px}
+.clues{flex:1;min-width:200px;background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:6px 20px 16px}
 .clues h3{margin:14px 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--ac)}.clues ol{padding-left:26px;margin:0}
 .clues li{cursor:pointer;padding:4px 8px;border-radius:6px}.clues li:hover{background:var(--bg)}.clues li.cur{background:var(--hl);font-weight:600}
 .tools{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:2}#search{width:260px}
