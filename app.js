@@ -566,7 +566,7 @@ async function init() {
   catch (e) { alert('Не удалось загрузить data/books.json'); return; }
   $('bookSel').innerHTML = BOOKS.map(b => `<option value="${esc(b.id)}">${esc(b.title)}</option>`).join('');
   try { await loadBook(localStorage.getItem('book')); }
-  catch (e) { alert('Не удалось загрузить словарь: ' + BOOKS[0].file); return; }
+  catch (e) { console.error(e); alert('Не удалось загрузить словарь ' + BOOKS[0].file + '\n\n' + e.message); return; }
   showTab('teacher');
   route();
 }
