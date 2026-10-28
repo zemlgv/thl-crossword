@@ -538,6 +538,21 @@ $('chips').addEventListener('click', e => {
 });
 $('search').addEventListener('input', renderDict);
 
+function renderBoard() {
+  const list = JSON.parse(localStorage.getItem('tkl_results') || '[]').sort((a, b) => a.sec - b.sec);
+  $('boardBody').innerHTML = list.length
+    ? list.map((r, i) => `<tr><td>${['🥇', '🥈', '🥉'][i] || i + 1}</td><td>${esc(r.name)}</td><td>${fmt(r.sec)}</td><td>${esc(r.puzzle)}</td><td>${esc(r.date)}</td></tr>`).join('')
+    : `<tr><td colspan="5">${esc(T('boardEmpty'))}</td></tr>`;
+}
+
+$('clearBtn').onclick = () => {
+  if (confirm(T('confirmClear'))) {
+    localStorage.removeItem('tkl_results');
+    renderBoard();
+  }
+};
+
+
 document.querySelectorAll('.tab').forEach(b => b.onclick = () => showTab(b.dataset.tab));
 document.querySelectorAll('[data-th]').forEach(b => b.onclick = () => { theme = b.dataset.th; localStorage.setItem('theme', theme); setMode(); });
 document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => { lang = b.dataset.lang; localStorage.setItem('lang', lang); applyLang(); });
