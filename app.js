@@ -1,9 +1,66 @@
 const I18N = {
-ru: {appTitle:'Кроссворд по словарю',book:'Учебник',tabTeacher:'Генератор',tabPlay:'Кроссворд',tabDict:'Словарь',tabBoard:'Лидеры',genHint:'Отметьте модули и разделы, из слов которых собрать кроссворд.',module:'Модуль',wordCount:'Слов в кроссворде (5–25)',available:'Подходящих слов',generate:'Создать кроссворд',linkLabel:'Ссылка для учеников',copy:'Копировать',copied:'Скопировано',openGame:'Открыть',qrHint:'Откройте ссылку или наведите камеру телефона на QR-код.',selAll:'Выбрать всё',selNone:'Снять всё',clueMode:'Подсказки',cmTr:'Перевод',cmPos:'Перевод и часть речи',cmFirst:'Перевод и первая буква',playHint:'Введите имя и нажмите «Начать». Таймер запустится сразу.',yourName:'Ваше имя',start:'Начать',enterName:'Введите имя',check:'Проверить',reveal:'Показать ответы',hint:'Открыть букву (+15 с)',across:'По горизонтали',down:'По вертикали',solved:'Решено за',savedNote:'Результат записан.',revealedNote:'Ответы показаны, результат не записан.',wrongCount:'Ошибок',emptyCount:'Пустых клеток',noPuzzle:'Кроссворд не выбран. Создайте его в генераторе или откройте ссылку учителя.',tooFew:'Мало подходящих слов: нужно минимум 5 слов из латинских букв.',searchPh:'Слово или перевод',all:'Все',dictEmpty:'Ничего не найдено',words:'слов',boardNote:'Результаты хранятся в браузере этого устройства.',colName:'Имя',colTime:'Время',colPuzzle:'Кроссворд',colDate:'Дата',boardEmpty:'Результатов пока нет',clearBoard:'Очистить таблицу',confirmClear:'Удалить все результаты на этом устройстве?'},
-en: {appTitle:'Vocabulary Crossword',book:'Textbook',tabTeacher:'Generator',tabPlay:'Crossword',tabDict:'Dictionary',tabBoard:'Leaderboard',genHint:'Tick the modules and sections to build the crossword from.',module:'Module',wordCount:'Words in crossword (5–25)',available:'Suitable words',generate:'Create crossword',linkLabel:'Link for students',copy:'Copy',copied:'Copied',openGame:'Open',qrHint:'Open the link or point a phone camera at the QR code.',selAll:'Select all',selNone:'Clear all',clueMode:'Clues',cmTr:'Translation',cmPos:'Translation + part of speech',cmFirst:'Translation + first letter',playHint:'Enter your name and press Start. The timer begins at once.',yourName:'Your name',start:'Start',enterName:'Enter your name',check:'Check',reveal:'Show answers',hint:'Reveal letter (+15 s)',across:'Across',down:'Down',solved:'Solved in',savedNote:'Result saved.',revealedNote:'Answers shown, result not saved.',wrongCount:'Errors',emptyCount:'Empty cells',noPuzzle:'No crossword selected. Create one in the generator or open the teacher’s link.',tooFew:'Not enough words: at least 5 Latin-letter words are needed.',searchPh:'Word or translation',all:'All',dictEmpty:'Nothing found',words:'words',boardNote:'Results are stored in this device’s browser.',colName:'Name',colTime:'Time',colPuzzle:'Crossword',colDate:'Date',boardEmpty:'No results yet',clearBoard:'Clear leaderboard',confirmClear:'Delete all results on this device?'}
+ru: {
+  appTitle:'Кроссворд по словарю', book:'Учебник', menu:'Меню', listen:'Озвучить',
+  tabHome:'Главная', tabTeacher:'Генератор', tabPlay:'Кроссворд', tabDict:'Словарь', tabBoard:'Лидеры',
+  heroTitle:'Учим слова из учебника через словарь и кроссворды',
+  heroText:'Словарь учебника с озвучкой и кроссворды, которые учитель собирает за минуту из любых модулей и разделов.',
+  heroBtn:'Открыть словарь', heroBtn2:'Создать кроссворд',
+  statWords:'слов', statModules:'модулей', statSections:'разделов',
+  cardDict:'Словарь', cardDictText:'Слова по модулям и разделам, озвучка',
+  cardGen:'Генератор', cardGenText:'Соберите кроссворд из выбранных разделов',
+  cardPlay:'Решать', cardPlayText:'Откройте кроссворд по ссылке или QR-коду учителя',
+  cardBoard:'Лидеры', cardBoardText:'Лучшие результаты на этом устройстве',
+  footer:'ТхЛ · школьный проект',
+  genHint:'Отметьте модули и разделы, из слов которых собрать кроссворд.',
+  module:'Модуль', wordCount:'Слов в кроссворде (5–25)', available:'Подходящих слов',
+  generate:'Создать кроссворд', linkLabel:'Ссылка для учеников', copy:'Копировать', copied:'Скопировано',
+  openGame:'Открыть кроссворд', qrFull:'QR на весь экран', qrHint:'Ученики открывают ссылку или сканируют QR-код телефоном.',
+  closeQr:'Закрыть', selAll:'Выбрать всё', selNone:'Снять всё',
+  clueMode:'Подсказки', cmTr:'Перевод', cmPos:'Перевод и часть речи', cmFirst:'Перевод и первая буква',
+  playHint:'Введите имя и нажмите «Начать». Таймер запустится сразу.', yourName:'Ваше имя', start:'Начать',
+  enterName:'Введите имя', check:'Проверить', reveal:'Показать ответы', hint:'Открыть букву (+15 с)',
+  across:'По горизонтали', down:'По вертикали', solved:'Решено за', savedNote:'Результат записан.',
+  revealedNote:'Ответы показаны, результат не записан.', wrongCount:'Ошибок', emptyCount:'Пустых клеток',
+  noPuzzle:'Кроссворд не выбран. Создайте его в генераторе или откройте ссылку учителя.',
+  tooFew:'Мало подходящих слов: нужно минимум 5 слов из латинских букв.',
+  searchPh:'Слово или перевод', all:'Все', dictEmpty:'Ничего не найдено', words:'слов',
+  boardNote:'Результаты хранятся в браузере этого устройства.', colName:'Имя', colTime:'Время',
+  colPuzzle:'Кроссворд', colDate:'Дата', boardEmpty:'Результатов пока нет', clearBoard:'Очистить таблицу',
+  confirmClear:'Удалить все результаты на этом устройстве?'
+},
+en: {
+  appTitle:'Vocabulary Crossword', book:'Textbook', menu:'Menu', listen:'Listen',
+  tabHome:'Home', tabTeacher:'Generator', tabPlay:'Crossword', tabDict:'Dictionary', tabBoard:'Leaderboard',
+  heroTitle:'Learn textbook words through the dictionary and crosswords',
+  heroText:'The textbook dictionary with audio, and crosswords a teacher builds in a minute from any modules and sections.',
+  heroBtn:'Open dictionary', heroBtn2:'Create crossword',
+  statWords:'words', statModules:'modules', statSections:'sections',
+  cardDict:'Dictionary', cardDictText:'Words by module and section, with audio',
+  cardGen:'Generator', cardGenText:'Build a crossword from selected sections',
+  cardPlay:'Solve', cardPlayText:'Open a crossword from the teacher’s link or QR code',
+  cardBoard:'Leaderboard', cardBoardText:'Best results on this device',
+  footer:'TkL · school project',
+  genHint:'Tick the modules and sections to build the crossword from.',
+  module:'Module', wordCount:'Words in crossword (5–25)', available:'Suitable words',
+  generate:'Create crossword', linkLabel:'Link for students', copy:'Copy', copied:'Copied',
+  openGame:'Open crossword', qrFull:'QR full screen', qrHint:'Students open the link or scan the QR code with a phone.',
+  closeQr:'Close', selAll:'Select all', selNone:'Clear all',
+  clueMode:'Clues', cmTr:'Translation', cmPos:'Translation + part of speech', cmFirst:'Translation + first letter',
+  playHint:'Enter your name and press Start. The timer begins at once.', yourName:'Your name', start:'Start',
+  enterName:'Enter your name', check:'Check', reveal:'Show answers', hint:'Reveal letter (+15 s)',
+  across:'Across', down:'Down', solved:'Solved in', savedNote:'Result saved.',
+  revealedNote:'Answers shown, result not saved.', wrongCount:'Errors', emptyCount:'Empty cells',
+  noPuzzle:'No crossword selected. Create one in the generator or open the teacher’s link.',
+  tooFew:'Not enough words: at least 5 Latin-letter words are needed.',
+  searchPh:'Word or translation', all:'All', dictEmpty:'Nothing found', words:'words',
+  boardNote:'Results are stored in this device’s browser.', colName:'Name', colTime:'Time',
+  colPuzzle:'Crossword', colDate:'Date', boardEmpty:'No results yet', clearBoard:'Clear leaderboard',
+  confirmClear:'Delete all results on this device?'
+}
 };
-let theme = localStorage.getItem('theme') || 'light';
+
 let lang = localStorage.getItem('lang') || 'ru';
+let theme = localStorage.getItem('theme') || 'light';
 const T = k => (I18N[lang][k] ?? I18N.ru[k] ?? k);
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -14,15 +71,19 @@ const clue = t => String(t).replace(/\(.*?\)/g, '').split(/[,;]/)[0].trim();
 const moduleOf = s => { const m = String(s).match(/^(\d+)/); return m ? m[1] : String(s).replace(/\s*\d+$/, '').trim(); };
 const sortNat = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+const isMobile = () => matchMedia('(max-width: 860px)').matches;
+const modLabel = m => /^\d+$/.test(m) ? `${T('module')} ${m}` : m;
 
-let WORDS = [];
+const BOOKS = [];
+let BOOK = null, WORDS = [];
 const BYID = new Map();
-let pz = null;
-let active = { k: null, dir: 'a' };
-let cellMap = new Map();
-let started = false, finished = false, revealed = false;
-let player = '';
-let elapsed = 0, startTime = 0, timerId = null;
+let dictMod = '';
+let pz = null, active = { k: null, dir: 'a' }, cellMap = new Map();
+let finished = false, player = '', elapsed = 0, startTime = 0, timerId = null;
+let cur = 'home', au = null;
+
+const ICON_SPK = '<svg class="i-spk" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
+const ICON_LOAD = '<svg class="i-load" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg>';
 
 function rng(seed) {
   let a = seed >>> 0;
@@ -120,12 +181,7 @@ function buildFromPayload(p) {
   return layout(words, p.s);
 }
 
-
-const BOOKS = [];
-let BOOK = null, dictMod = '';
-const SPK = '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
-const setSeg = (s, i) => s.style.setProperty('--i', i);
-const modLabel = m => /^\d+$/.test(m) ? `${T('module')} ${m}` : m;
+function setSeg(s, i) { s.style.setProperty('--i', i); }
 
 function setMode() {
   const m = theme === 'system' ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme;
@@ -133,19 +189,45 @@ function setMode() {
   setSeg($('themeSeg'), ['light', 'dark', 'system'].indexOf(theme));
 }
 
+const TAB_KEY = { home: 'tabHome', dict: 'tabDict', teacher: 'tabTeacher', play: 'tabPlay', board: 'tabBoard' };
+
+function showCrumb() { $('crumb').textContent = T(TAB_KEY[cur]); }
+
 function applyLang() {
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = T(el.dataset.i18n));
   document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = T(el.dataset.i18nPh));
   setSeg($('langSeg'), lang === 'ru' ? 0 : 1);
-  if (WORDS.length) { buildTree(); buildDict(); renderBoard(); if (pz) renderClues(); }
+  showCrumb();
+  if (WORDS.length) {
+    buildTree();
+    buildDict();
+    renderBoard();
+    renderHome();
+    if (pz) renderClues();
+  }
 }
 
+function renderHome() {
+  $('statWords').textContent = WORDS.length;
+  $('statModules').textContent = new Set(WORDS.map(w => w.module)).size;
+  $('statSections').textContent = new Set(WORDS.map(w => w.section)).size;
+  $('heroBook').textContent = BOOK.title;
+  $('footBook').textContent = BOOK.title;
+}
+
+function closeDrawer() { $('app').classList.remove('open'); }
+
 function showTab(n) {
+  cur = n;
   document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== n);
   document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b.dataset.tab === n));
+  showCrumb();
   if (n === 'board') renderBoard();
-  scrollTo(0, 0);
+  if (n === 'teacher') buildTree();
+  if (n === 'play') fitGrid();
+  closeDrawer();
+  scrollTo({ top: 0 });
 }
 
 const selSecs = () => [...document.querySelectorAll('input[data-sec]:checked')].map(c => c.dataset.sec);
@@ -170,7 +252,8 @@ function buildTree() {
   $('tree').innerHTML = [...mods.keys()].sort(sortNat).map(m =>
     `<div class="mod"><label class="mh"><input type="checkbox" data-mod="${esc(m)}"><span>${esc(modLabel(m))}</span></label>` +
     [...mods.get(m)].sort((a, b) => sortNat(a[0], b[0])).map(([s, n]) =>
-      `<label class="sec"><input type="checkbox" data-sec="${esc(s)}"${on.has(s) ? ' checked' : ''}><span>${esc(s)}</span><em>${n}</em></label>`).join('') + '</div>').join('');
+      `<label class="sec"><input type="checkbox" data-sec="${esc(s)}"${on.has(s) ? ' checked' : ''}><span>${esc(s)}</span><em>${n}</em></label>`
+    ).join('') + '</div>').join('');
   updateAvailable();
 }
 
@@ -191,6 +274,11 @@ const setAll = v => { document.querySelectorAll('input[data-sec]').forEach(c => 
 $('selAll').onclick = () => setAll(true);
 $('selNone').onclick = () => setAll(false);
 
+function makeQR(el, text, size) {
+  el.innerHTML = '';
+  try { new QRCode(el, { text, width: size, height: size }); } catch (e) { }
+}
+
 $('genBtn').onclick = () => {
   const pool = candidates(selSecs());
   const want = Math.min(25, Math.max(5, parseInt($('wordCount').value, 10) || 12));
@@ -203,9 +291,9 @@ $('genBtn').onclick = () => {
   const link = location.href.split('#')[0] + '#game=' + code;
   $('linkBox').value = link;
   $('result').hidden = false;
-  $('qr').innerHTML = '';
-  try { new QRCode($('qr'), { text: link, width: 168, height: 168 }); } catch (e) { }
+  makeQR($('qr'), link, 240);
   $('openBtn').onclick = () => { location.hash = 'game=' + code; };
+  $('qrFull').onclick = () => openQR(link);
 };
 
 $('copyBtn').onclick = () => {
@@ -213,6 +301,26 @@ $('copyBtn').onclick = () => {
   $('copyBtn').textContent = T('copied');
   setTimeout(() => $('copyBtn').textContent = T('copy'), 1500);
 };
+
+function openQR(link) {
+  const size = Math.max(200, Math.min(640, Math.min(innerWidth, innerHeight) - 160));
+  makeQR($('qrBig'), link, size);
+  $('qrLink').textContent = link;
+  $('qrOverlay').hidden = false;
+}
+const closeQR = () => { $('qrOverlay').hidden = true; };
+$('qrClose').onclick = closeQR;
+$('qrOverlay').addEventListener('click', e => { if (e.target.id === 'qrOverlay') closeQR(); });
+addEventListener('keydown', e => { if (e.key === 'Escape') { closeQR(); closeDrawer(); } });
+
+$('menuBtn').onclick = () => {
+  if (isMobile()) $('app').classList.toggle('open');
+  else {
+    const c = $('app').classList.toggle('collapsed');
+    localStorage.setItem('collapsed', c ? '1' : '0');
+  }
+};
+$('scrim').onclick = closeDrawer;
 
 async function route() {
   if (!location.hash.startsWith('#game=')) return;
@@ -234,26 +342,33 @@ async function loadBook(id) {
   loadPuzzle(null);
   applyLang();
 }
+
 function loadPuzzle(p) {
   stopTimer();
   const built = p ? buildFromPayload(p) : null;
   pz = built ? { ...built, payload: p } : null;
-  started = finished = revealed = false;
-  elapsed = 0;
-  player = '';
+  finished = false; elapsed = 0; player = '';
   $('timer').textContent = '00:00';
   $('status').textContent = '';
   $('status').classList.remove('win');
   $('nameErr').textContent = '';
+  $('who').textContent = '';
   $('noPuzzle').hidden = !!pz;
   $('startBox').hidden = !pz;
   $('gameArea').hidden = true;
-  if (pz) {
-    $('playerName').value = '';
-    renderGrid();
-    renderClues();
-  }
+  if (pz) { $('playerName').value = ''; renderGrid(); renderClues(); }
 }
+
+function fitGrid() {
+  if (!pz) return;
+  const host = $('game');
+  if (!host || !host.clientWidth) return;
+  const wide = !isMobile() && host.clientWidth > 760;
+  const avail = (wide ? host.clientWidth - 320 : host.clientWidth) - 40;
+  const size = Math.max(22, Math.min(46, Math.floor((avail - 2 * (pz.W - 1)) / pz.W)));
+  $('grid').style.setProperty('--cell', size + 'px');
+}
+addEventListener('resize', fitGrid);
 
 function renderGrid() {
   const g = $('grid');
@@ -333,10 +448,13 @@ function move(k, dir) {
 
 function highlight() {
   cellMap.forEach(el => el.classList.remove('hl', 'act'));
-  const cur = (pz.at.get(active.k) || []).find(p => p.d === active.dir);
-  if (cur) cur.keys.forEach(k => cellMap.get(k)?.classList.add('hl'));
+  pz.placed.forEach(p => p.li?.classList.remove('cur'));
+  const words = pz.at.get(active.k) || [];
+  words.forEach(p => {
+    p.keys.forEach(k => cellMap.get(k)?.classList.add('hl'));
+    p.li?.classList.add('cur');
+  });
   cellMap.get(active.k)?.classList.add('act');
-  pz.placed.forEach(p => p.li?.classList.toggle('cur', p === cur));
 }
 
 function onInput(k, inp) {
@@ -405,10 +523,12 @@ function finish() {
   if (finished) return;
   finished = true;
   stopTimer();
+  checkAll(true);
   lockGrid();
   saveResult();
-  $('status').classList.add('win');
-  $('status').textContent = `${T('solved')} ${fmt(elapsed)}. ${T('savedNote')}`;
+  const s = $('status');
+  s.classList.add('win');
+  s.textContent = `${T('solved')} ${fmt(elapsed)}. ${T('savedNote')}`;
 }
 
 function saveResult() {
@@ -423,23 +543,25 @@ function saveResult() {
   renderBoard();
 }
 
-$('startBtn').onclick = () => {
+function beginGame() {
   const name = $('playerName').value.trim();
   if (!name) { $('nameErr').textContent = T('enterName'); return; }
   $('nameErr').textContent = '';
   player = name;
-  started = true;
   $('who').textContent = name;
   $('startBox').hidden = true;
   $('gameArea').hidden = false;
+  fitGrid();
   startTimer();
   const first = pz.placed.find(p => p.num === 1);
   if (first) move(first.keys[0], first.d);
-};
+}
+$('startBtn').onclick = beginGame;
+$('playerName').addEventListener('keydown', e => { if (e.key === 'Enter') beginGame(); });
 
 $('checkBtn').onclick = () => {
   if (!pz || finished) return;
-  const { wrong, empty } = checkAll();
+  const { wrong, empty } = checkAll(true);
   if (!wrong && !empty) return finish();
   $('status').textContent = `${T('wrongCount')}: ${wrong}, ${T('emptyCount')}: ${empty}`;
 };
@@ -458,7 +580,6 @@ $('hintBtn').onclick = () => {
 
 $('revealBtn').onclick = () => {
   if (!pz || finished) return;
-  revealed = true;
   finished = true;
   stopTimer();
   pz.cells.forEach((ch, k) => {
@@ -471,7 +592,6 @@ $('revealBtn').onclick = () => {
   $('status').textContent = T('revealedNote');
 };
 
-
 function buildDict() {
   const mods = [...new Set(WORDS.map(w => w.module))].sort(sortNat);
   $('chips').innerHTML = [['', T('all')], ...mods.map(m => [m, modLabel(m)])]
@@ -479,7 +599,7 @@ function buildDict() {
   renderDict();
 }
 
-const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong><button class="spk" data-w="${esc(w.word)}" aria-label="Listen">${SPK}</button></div><div class="tr">${esc(w.transcription)}</div><div class="tx">${esc(w.translation)}</div><span class="pos" data-p="${esc(w.pos.split(' ')[0])}">${esc(w.pos)}</span></article>`;
+const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong><button class="spk" data-w="${esc(w.word)}" aria-label="${esc(T('listen'))}" title="${esc(T('listen'))}">${ICON_SPK}${ICON_LOAD}</button></div><div class="tr">${esc(w.transcription)}</div><div class="tx">${esc(w.translation)}</div><span class="pos" data-p="${esc(w.pos.split(' ')[0])}">${esc(w.pos)}</span></article>`;
 
 function renderDict() {
   const q = $('search').value.trim().toLowerCase();
@@ -497,35 +617,57 @@ function renderDict() {
     const secs = [...g.get(m)].sort((a, b) => sortNat(a[0], b[0]));
     const n = secs.reduce((t, s) => t + s[1].length, 0);
     return `<section class="dm"><h3>${esc(modLabel(m))}<span>${n} ${T('words')}</span></h3>` +
-      secs.map(([s, l]) => `<div class="ds"><h4><b>${esc(s)}</b><span>${l.length}</span></h4><div class="cards">${l.map(card).join('')}</div></div>`).join('') + '</section>';
-  }).join('') : `<p class="mut">${T('dictEmpty')}</p>`;
+      secs.map(([s, l]) => `<div class="ds"><h4><b>${esc(s)}</b><span>${l.length}</span></h4><div class="cards">${l.map(card).join('')}</div></div>`).join('') +
+      '</section>';
+  }).join('') : `<p class="mut">${esc(T('dictEmpty'))}</p>`;
 }
 
-let au = null;
-function tts(w, btn) {
+function stopSpeech() {
+  if (au) { au.pause(); au = null; }
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+  document.querySelectorAll('.spk.on,.spk.loading').forEach(b => b.classList.remove('on', 'loading'));
+}
+
+function ttsFallback(w, btn) {
+  if (!('speechSynthesis' in window)) { btn.classList.remove('loading'); return; }
   const u = new SpeechSynthesisUtterance(w);
   u.lang = 'en-GB';
   const v = speechSynthesis.getVoices().find(x => x.lang.replace('_', '-') === 'en-GB');
   if (v) u.voice = v;
-  u.onend = u.onerror = () => btn.classList.remove('on');
+  const off = setTimeout(() => btn.classList.remove('loading'), 3000);
+  u.onstart = () => { clearTimeout(off); btn.classList.remove('loading'); btn.classList.add('on'); };
+  u.onend = u.onerror = () => { clearTimeout(off); btn.classList.remove('loading', 'on'); };
   speechSynthesis.speak(u);
 }
 
 function speak(w, btn) {
-  speechSynthesis?.cancel();
-  if (au) au.pause();
-  document.querySelectorAll('.spk.on').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
+  stopSpeech();
   const f = encodeURIComponent(w.trim().replace(/ /g, '_'));
   const srcs = ['En-uk-', 'En-us-'].map(p => `https://commons.wikimedia.org/wiki/Special:FilePath/${p}${f}.ogg`);
-  let i = 0;
-  au = new Audio(srcs[0]);
-  au.onended = () => btn.classList.remove('on');
-  au.onerror = () => {
-    if (++i < srcs.length) { au.src = srcs[i]; au.play().catch(() => { }); }
-    else tts(w, btn);
+  btn.classList.add('loading');
+  let i = 0, timer = null;
+  const next = () => {
+    clearTimeout(timer);
+    if (au) { au.pause(); au = null; }
+    if (++i < srcs.length) tryAudio();
+    else ttsFallback(w, btn);
   };
-  au.play().catch(() => { });
+  const tryAudio = () => {
+    const a = new Audio(srcs[i]);
+    au = a;
+    timer = setTimeout(next, 6000);
+    a.addEventListener('canplay', () => {
+      clearTimeout(timer);
+      btn.classList.remove('loading');
+      btn.classList.add('on');
+      a.play().catch(() => btn.classList.remove('on'));
+    }, { once: true });
+    a.onended = () => btn.classList.remove('on');
+    a.onerror = next;
+    a.preload = 'auto';
+    a.load();
+  };
+  tryAudio();
 }
 
 $('dictBody').addEventListener('click', e => {
@@ -552,23 +694,41 @@ $('clearBtn').onclick = () => {
   }
 };
 
-
 document.querySelectorAll('.tab').forEach(b => b.onclick = () => showTab(b.dataset.tab));
-document.querySelectorAll('[data-th]').forEach(b => b.onclick = () => { theme = b.dataset.th; localStorage.setItem('theme', theme); setMode(); });
-document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => { lang = b.dataset.lang; localStorage.setItem('lang', lang); applyLang(); });
+document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => showTab(b.dataset.go));
+document.querySelectorAll('[data-th]').forEach(b => b.onclick = () => {
+  theme = b.dataset.th;
+  localStorage.setItem('theme', theme);
+  setMode();
+});
+document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => {
+  lang = b.dataset.lang;
+  localStorage.setItem('lang', lang);
+  applyLang();
+  if (cur === 'teacher') buildTree();
+});
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setMode);
-$('bookSel').onchange = async e => { history.replaceState(null, '', location.pathname); await loadBook(e.target.value); };
+$('bookSel').onchange = async e => {
+  history.replaceState(null, '', location.pathname);
+  await loadBook(e.target.value);
+  if (cur === 'play') showTab('home');
+};
 window.addEventListener('hashchange', route);
 
 async function init() {
   setMode();
+  if (localStorage.getItem('collapsed') === '1') $('app').classList.add('collapsed');
   try { BOOKS.push(...await (await fetch('data/books.json')).json()); }
-  catch (e) { alert('Не удалось загрузить data/books.json'); return; }
+  catch (e) { console.error(e); alert('Не удалось загрузить data/books.json\n\n' + e.message); return; }
   $('bookSel').innerHTML = BOOKS.map(b => `<option value="${esc(b.id)}">${esc(b.title)}</option>`).join('');
   try { await loadBook(localStorage.getItem('book')); }
-  catch (e) { console.error(e); alert('Не удалось загрузить словарь ' + BOOKS[0].file + '\n\n' + e.message); return; }
-  showTab('teacher');
-  route();
+  catch (e) {
+    console.error(e);
+    alert('Не удалось загрузить словарь ' + BOOKS[0].file + '\n\n' + e.message);
+    return;
+  }
+  if (location.hash.startsWith('#game=')) await route();
+  else showTab('home');
 }
 
 init();
