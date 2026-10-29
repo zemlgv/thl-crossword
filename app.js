@@ -96,6 +96,7 @@ const isLatin = w => /^[A-Za-z]{3,}$/.test(w);
 const clue = t => String(t).replace(/\(.*?\)/g, '').split(/[,;]/)[0].trim();
 const moduleOf = s => { const m = String(s).match(/^(\d+)/); return m ? m[1] : String(s).replace(/\s*\d+$/, '').trim(); };
 const sortNat = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
+const secKey = w => w.module + '||' + w.section;
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
 const isMobile = () => matchMedia('(max-width: 860px)').matches;
 const modLabel = m => /^\d+$/.test(m) ? `${T('module')} ${m}` : m;
@@ -255,7 +256,7 @@ function applyLang() {
 function renderHome() {
   $('statWords').textContent = WORDS.length;
   $('statModules').textContent = new Set(WORDS.map(w => w.module)).size;
-  $('statSections').textContent = new Set(WORDS.map(w => w.section)).size;
+  $('statSections').textContent = new Set(WORDS.map(secKey)).size;
   $('heroBook').textContent = BOOK.title;
   $('footBook').textContent = BOOK.title;
 }
@@ -278,7 +279,7 @@ function candidates(secs) {
   const seen = new Set();
   return WORDS.filter(w => {
     const k = w.word.toLowerCase();
-    if (!secs.includes(w.section) || !isLatin(w.word) || seen.has(k)) return false;
+    if (!secs.includes(secKey(w)) || !isLatin(w.word) || seen.has(k)) return false;
     seen.add(k);
     return true;
   });
@@ -288,13 +289,14 @@ function buildTree() {
   const on = new Set(selSecs()), mods = new Map();
   WORDS.forEach(w => {
     if (!mods.has(w.module)) mods.set(w.module, new Map());
-    const s = mods.get(w.module);
-    s.set(w.section, (s.get(w.section) || 0) + 1);
+    const secs = mods.get(w.module), k = secKey(w);
+    if (!secs.has(k)) secs.set(k, { name: w.section, n: 0 });
+    secs.get(k).n++;
   });
-  $('tree').innerHTML = [...mods.keys()].sort(sortNat).map(m =>
+  $('tree').innerHTML = [...mods].map(([m, secs]) =>
     `<div class="mod"><label class="mh"><input type="checkbox" data-mod="${esc(m)}"><span>${esc(modLabel(m))}</span></label>` +
-    [...mods.get(m)].sort((a, b) => sortNat(a[0], b[0])).map(([s, n]) =>
-      `<label class="sec"><input type="checkbox" data-sec="${esc(s)}"${on.has(s) ? ' checked' : ''}><span>${esc(s)}</span><em>${n}</em></label>`
+    [...secs].map(([k, v]) =>
+      `<label class="sec"><input type="checkbox" data-sec="${esc(k)}"${on.has(k) ? ' checked' : ''}><span>${esc(v.name)}</span><em>${v.n}</em></label>`
     ).join('') + '</div>').join('');
   updateAvailable();
 }
@@ -423,7 +425,7 @@ async function loadBook(id) {
   localStorage.setItem('book', BOOK.id);
   WORDS = await (await fetch(BOOK.file)).json();
   BYID.clear();
-  WORDS.forEach(w => { w.module = moduleOf(w.section); w.clue = clue(w.translation); BYID.set(w.id, w); });
+  WORDS.forEach(w => { w.module = w.module || moduleOf(w.section); w.clue = clue(w.translation); BYID.set(w.id, w); });
   dictMod = '';
   loadPuzzle(null);
   applyLang();
@@ -738,7 +740,7 @@ setInterval(() => { if (cur === 'play' || cur === 'board') refreshLB(); }, 10000
 // ---------- Словарь ----------
 
 function buildDict() {
-  const mods = [...new Set(WORDS.map(w => w.module))].sort(sortNat);
+  const mods = [...new Set(WORDS.map(w => w.module))];
   $('chips').innerHTML = [['', T('all')], ...mods.map(m => [m, modLabel(m)])]
     .map(([v, l]) => `<button class="chip${v === dictMod ? ' on' : ''}" data-m="${esc(v)}">${esc(l)}</button>`).join('');
   renderDict();
@@ -758,8 +760,8 @@ function renderDict() {
     if (!s.has(w.section)) s.set(w.section, []);
     s.get(w.section).push(w);
   });
-  $('dictBody').innerHTML = rows.length ? [...g.keys()].sort(sortNat).map(m => {
-    const secs = [...g.get(m)].sort((a, b) => sortNat(a[0], b[0]));
+  $('dictBody').innerHTML = rows.length ? [...g.keys()].map(m => {
+    const secs = [...g.get(m)];
     const n = secs.reduce((t, s) => t + s[1].length, 0);
     return `<section class="dm"><h3>${esc(modLabel(m))}<span>${n} ${T('words')}</span></h3>` +
       secs.map(([s, l]) => `<div class="ds"><h4><b>${esc(s)}</b><span>${l.length}</span></h4><div class="cards">${l.map(card).join('')}</div></div>`).join('') +
