@@ -4,7 +4,7 @@ ru: {
   aboutKicker:'О проекте', aboutTitle:'Зачем это нужно',
   aboutText:'Сайт помогает запоминать слова из учебника Spotlight 9: словарь с озвучкой и кроссворды, которые учитель собирает за минуту. Ученики решают кроссворды со своих телефонов и видят место в таблице лидеров.',
   authorRole:'Автор проекта', authorName:'Георгий Земляков, ученик 9Б класса',
-  teacherRole:'Совместно с учителем английского языка', teacherName:'Елена Германовна Долбешкина',
+  teacherRole:'Совместно с учителем английского языка', teacherName:'Долбешкина Елена Германовна',
   check:'Проверить (+10 с)', reveal:'Показать ответы · без зачёта',
   revealConfirm:'Показать ответы? Кроссворд закроется, результат не засчитается и не попадёт в таблицу лидеров.',
   tabHome:'Главная', tabTeacher:'Генератор', tabPlay:'Кроссворд', tabDict:'Словарь', tabBoard:'Лидеры',
@@ -20,7 +20,7 @@ ru: {
   genHint:'Отметьте модули и разделы, из слов которых собрать кроссворд.',
   module:'Модуль', wordCount:'Слов в кроссворде (5–25)', available:'Подходит для кроссворда', outOf:'из',
   availDetail:'Не подходят: {s} (фразы, слова с дефисом или короче 3 букв). Повторы: {d}.',
-  ukLabel:'Брит.', usLabel:'Амер.', ukTitle:'Британское произношение', usTitle:'Американское произношение',
+  ukLabel:'UK', usLabel:'US', ukTitle:'Британское произношение', usTitle:'Американское произношение',
   generate:'Создать кроссворд', linkLabel:'Ссылка для учеников', copy:'Копировать', copied:'Скопировано',
   share:'Поделиться', qrCopy:'Скопировать QR', qrCopied:'QR скопирован', qrSaved:'QR сохранён',
   openGame:'Открыть кроссворд', qrFull:'QR на весь экран', closeQr:'Закрыть',
@@ -48,7 +48,7 @@ en: {
   aboutKicker:'About the project', aboutTitle:'Why it exists',
   aboutText:'The site helps learn words from the Spotlight 9 textbook: a dictionary with audio and crosswords a teacher builds in a minute. Students solve them on their phones and see their place on the leaderboard.',
   authorRole:'Project author', authorName:'Georgiy Zemlyakov, grade 9B',
-  teacherRole:'Together with the English teacher', teacherName:'Elena Germanovna Dolbeshkina',
+  teacherRole:'Together with the English teacher', teacherName:'Dolbeshkina Elena Germanovna',
   check:'Check (+10 s)', reveal:'Show answers · not counted',
   revealConfirm:'Show answers? The crossword will close, the result will not be counted and will not go to the leaderboard.',
   tabHome:'Home', tabTeacher:'Generator', tabPlay:'Crossword', tabDict:'Dictionary', tabBoard:'Leaderboard',
@@ -498,6 +498,11 @@ function renderGrid() {
       }
       const inp = document.createElement('input');
       inp.autocomplete = 'off';
+      inp.lang = 'en';
+      inp.spellcheck = false;
+      inp.autocapitalize = 'characters';
+      inp.setAttribute('autocorrect', 'off');
+      inp.setAttribute('enterkeyhint', 'next');
       inp.addEventListener('focus', () => { pick(k, false); inp.select(); });
       inp.addEventListener('click', () => pick(k, true));
       inp.addEventListener('input', () => onInput(k, inp));
@@ -804,15 +809,27 @@ const ACC = {
   us: { path: 'En-us-', lang: 'en-US' }
 };
 
-function ttsFallback(w, acc, btn) {
+function getVoicesSoon(timeout = 1500) {
+  return new Promise(resolve => {
+    const list = speechSynthesis.getVoices();
+    if (list.length) return resolve(list);
+    const t = setTimeout(() => resolve(speechSynthesis.getVoices()), timeout);
+    speechSynthesis.addEventListener('voiceschanged', () => {
+      clearTimeout(t);
+      resolve(speechSynthesis.getVoices());
+    }, { once: true });
+  });
+}
+
+async function ttsFallback(w, acc, btn) {
   if (!('speechSynthesis' in window)) { btn.classList.remove('loading'); return; }
+  const voices = await getVoicesSoon();
   const u = new SpeechSynthesisUtterance(w);
   u.lang = ACC[acc].lang;
-  const v = speechSynthesis.getVoices().find(x => x.lang.replace('_', '-') === ACC[acc].lang);
+  const v = voices.find(x => x.lang.replace('_', '-') === ACC[acc].lang);
   if (v) u.voice = v;
-  const off = setTimeout(() => btn.classList.remove('loading'), 3000);
-  u.onstart = () => { clearTimeout(off); btn.classList.remove('loading'); btn.classList.add('on'); };
-  u.onend = u.onerror = () => { clearTimeout(off); btn.classList.remove('loading', 'on'); };
+  u.onstart = () => { btn.classList.remove('loading'); btn.classList.add('on'); };
+  u.onend = u.onerror = () => btn.classList.remove('loading', 'on');
   speechSynthesis.speak(u);
 }
 
@@ -886,6 +903,10 @@ window.addEventListener('hashchange', route);
 
 async function init() {
   setMode();
+  if ('speechSynthesis' in window) {
+    speechSynthesis.getVoices();
+    speechSynthesis.addEventListener('voiceschanged', () => speechSynthesis.getVoices());
+  }
   if (localStorage.getItem('collapsed') === '1') $('app').classList.add('collapsed');
   try { BOOKS.push(...await (await fetch('data/books.json')).json()); }
   catch (e) { console.error(e); alert('Не удалось загрузить data/books.json\n\n' + e.message); return; }
