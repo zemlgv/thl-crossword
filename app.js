@@ -19,7 +19,7 @@ ru: {
   footer:'Технологический лицей · Сыктывкар',
   genHint:'Отметьте модули и разделы, из слов которых собрать кроссворд.',
   module:'Модуль', wordCount:'Слов в кроссворде (5–25)', available:'Подходит для кроссворда', outOf:'из',
-  availDetail:'Не подходят: {s} (фразы, слова с дефисом или короче 3 букв). Повторы: {d}.',
+  availDetail:'Не подходят: {s} (фразы, слова с дефисом или короче 3 букв). Повторы: {d}, в кроссворд попадает одно из одинаковых слов.',
   ukLabel:'UK', usLabel:'US', ukTitle:'Британское произношение', usTitle:'Американское произношение',
   generate:'Создать кроссворд', linkLabel:'Ссылка для учеников', copy:'Копировать', copied:'Скопировано',
   share:'Поделиться', qrCopy:'Скопировать QR', qrCopied:'QR скопирован', qrSaved:'QR сохранён',
@@ -60,10 +60,10 @@ en: {
   cardGen:'Generator', cardGenText:'Build a crossword from selected sections',
   cardPlay:'Solve', cardPlayText:'Open a crossword from the teacher’s link or QR code',
   cardBoard:'Leaderboard', cardBoardText:'Leaderboard of the crossword you are solving',
-  footer:'Technology Lyceum · Syktyvkar',
+  footer:'Technological Lyceum · Syktyvkar',
   genHint:'Tick the modules and sections to build the crossword from.',
   module:'Module', wordCount:'Words in crossword (5–25)', available:'Fits the crossword', outOf:'of',
-  availDetail:'Not suitable: {s} (phrases, hyphenated or shorter than 3 letters). Duplicates: {d}.',
+  availDetail:'Not suitable: {s} (phrases, hyphenated or shorter than 3 letters). Duplicates: {d}, only one of identical words goes into the crossword.',
   ukLabel:'UK', usLabel:'US', ukTitle:'British pronunciation', usTitle:'American pronunciation',
   generate:'Create crossword', linkLabel:'Link for students', copy:'Copy', copied:'Copied',
   share:'Share', qrCopy:'Copy QR', qrCopied:'QR copied', qrSaved:'QR saved',
@@ -247,6 +247,7 @@ function applyLang() {
   document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = T(el.dataset.i18n));
   document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = T(el.dataset.i18nPh));
   setSeg($('langSeg'), lang === 'ru' ? 0 : 1);
+  $('logo').textContent = lang === 'ru' ? 'ТхЛ' : 'ThL';
   showCrumb();
   if (WORDS.length) {
     buildTree();
