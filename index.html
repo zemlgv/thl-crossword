@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ТхЛ — Кроссворд по словарю</title>
+<title>Кроссворд по словарю · Технологический лицей</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
 
 <aside class="side" id="side">
   <button class="icon sx" id="sideClose" aria-label="Меню"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
-  <div class="brand"><div class="logo">ТхЛ</div><span data-i18n="appTitle"></span></div>
+  <div class="brand"><div class="logo">ТЛ</div><span data-i18n="appTitle"></span></div>
   <label class="field"><span data-i18n="book"></span><select id="bookSel"></select></label>
   <nav class="nav">
     <button class="tab" data-tab="home" data-i18n="tabHome"></button>
@@ -79,6 +79,17 @@
           <h3 data-i18n="cardBoard"></h3><p data-i18n="cardBoardText"></p>
         </button>
       </div>
+      <section class="about card">
+        <div>
+          <p class="eyebrow" data-i18n="aboutKicker"></p>
+          <h2 data-i18n="aboutTitle"></h2>
+          <p data-i18n="aboutText"></p>
+        </div>
+        <dl class="people">
+          <div><dt data-i18n="authorRole"></dt><dd data-i18n="authorName"></dd></div>
+          <div><dt data-i18n="teacherRole"></dt><dd data-i18n="teacherName"></dd></div>
+        </dl>
+      </section>
       <footer class="pagefoot"><span data-i18n="footer"></span><span id="footBook"></span></footer>
     </section>
 
@@ -123,7 +134,8 @@
           <span class="timer" id="timer">00:00</span><span id="who"></span><span class="sp"></span>
           <button id="hintBtn" data-i18n="hint"></button>
           <button id="checkBtn" data-i18n="check"></button>
-          <button id="revealBtn" data-i18n="reveal"></button>
+          <span class="sp"></span>
+          <button id="revealBtn" class="danger" data-i18n="reveal"></button>
         </div>
         <p id="status" class="msg"></p>
         <div class="game" id="game">
