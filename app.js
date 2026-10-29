@@ -1,6 +1,12 @@
 const I18N = {
 ru: {
   appTitle:'Кроссворд по словарю', book:'Учебник', listen:'Озвучить',
+  aboutKicker:'О проекте', aboutTitle:'Зачем это нужно',
+  aboutText:'Сайт помогает запоминать слова из учебника Spotlight 9: словарь с озвучкой и кроссворды, которые учитель собирает за минуту. Ученики решают кроссворды со своих телефонов и видят место в таблице лидеров.',
+  authorRole:'Автор проекта', authorName:'Георгий Земляков, ученик 9Б класса',
+  teacherRole:'Совместно с учителем английского языка', teacherName:'Елена Германовна Долбешкина',
+  check:'Проверить (+10 с)', penalty:'Штраф +10 с', reveal:'Показать ответы · без зачёта',
+  revealConfirm:'Показать ответы? Кроссворд закроется, результат не засчитается и не попадёт в таблицу лидеров.',
   tabHome:'Главная', tabTeacher:'Генератор', tabPlay:'Кроссворд', tabDict:'Словарь', tabBoard:'Лидеры',
   heroTitle:'Учим слова из учебника через словарь и кроссворды',
   heroText:'Словарь учебника с озвучкой и кроссворды, которые учитель собирает за минуту из любых модулей и разделов.',
@@ -10,7 +16,7 @@ ru: {
   cardGen:'Генератор', cardGenText:'Соберите кроссворд из выбранных разделов',
   cardPlay:'Решать', cardPlayText:'Откройте кроссворд по ссылке или QR-коду учителя',
   cardBoard:'Лидеры', cardBoardText:'Таблица лидеров кроссворда, которым вы занимаетесь',
-  footer:'ТхЛ · школьный проект',
+  footer:'Технологический лицей · Сыктывкар',
   genHint:'Отметьте модули и разделы, из слов которых собрать кроссворд.',
   module:'Модуль', wordCount:'Слов в кроссворде (5–25)', available:'Подходящих слов',
   generate:'Создать кроссворд', linkLabel:'Ссылка для учеников', copy:'Копировать', copied:'Скопировано',
@@ -20,7 +26,7 @@ ru: {
   selAll:'Выбрать всё', selNone:'Снять всё',
   clueMode:'Подсказки', cmTr:'Перевод', cmPos:'Перевод и часть речи', cmFirst:'Перевод и первая буква',
   playHint:'Введите имя и нажмите «Начать». Таймер запустится сразу.', yourName:'Ваше имя', start:'Начать',
-  enterName:'Введите имя', check:'Проверить', reveal:'Показать ответы', hint:'Открыть букву (+15 с)',
+  enterName:'Введите имя', hint:'Открыть букву (+15 с)',
   across:'По горизонтали', down:'По вертикали', solved:'Решено за', myPlace:'Ваше место',
   revealedNote:'Ответы показаны, результат не засчитан.', wrongCount:'Ошибок', emptyCount:'Пустых клеток',
   noPuzzle:'Кроссворд не выбран. Создайте его в генераторе или откройте ссылку учителя.',
@@ -37,6 +43,12 @@ ru: {
 },
 en: {
   appTitle:'Vocabulary Crossword', book:'Textbook', listen:'Listen',
+  aboutKicker:'About the project', aboutTitle:'Why it exists',
+  aboutText:'The site helps learn words from the Spotlight 9 textbook: a dictionary with audio and crosswords a teacher builds in a minute. Students solve them on their phones and see their place on the leaderboard.',
+  authorRole:'Project author', authorName:'Georgiy Zemlyakov, grade 9B',
+  teacherRole:'Together with the English teacher', teacherName:'Elena Germanovna Dolbeshkina',
+  check:'Check (+10 s)', penalty:'Penalty +10 s', reveal:'Show answers · not counted',
+  revealConfirm:'Show answers? The crossword will close, the result will not be counted and will not go to the leaderboard.',
   tabHome:'Home', tabTeacher:'Generator', tabPlay:'Crossword', tabDict:'Dictionary', tabBoard:'Leaderboard',
   heroTitle:'Learn textbook words through the dictionary and crosswords',
   heroText:'The textbook dictionary with audio, and crosswords a teacher builds in a minute from any modules and sections.',
@@ -46,7 +58,7 @@ en: {
   cardGen:'Generator', cardGenText:'Build a crossword from selected sections',
   cardPlay:'Solve', cardPlayText:'Open a crossword from the teacher’s link or QR code',
   cardBoard:'Leaderboard', cardBoardText:'Leaderboard of the crossword you are solving',
-  footer:'TkL · school project',
+  footer:'Technology Lyceum · Syktyvkar',
   genHint:'Tick the modules and sections to build the crossword from.',
   module:'Module', wordCount:'Words in crossword (5–25)', available:'Suitable words',
   generate:'Create crossword', linkLabel:'Link for students', copy:'Copy', copied:'Copied',
@@ -56,7 +68,7 @@ en: {
   selAll:'Select all', selNone:'Clear all',
   clueMode:'Clues', cmTr:'Translation', cmPos:'Translation + part of speech', cmFirst:'Translation + first letter',
   playHint:'Enter your name and press Start. The timer begins at once.', yourName:'Your name', start:'Start',
-  enterName:'Enter your name', check:'Check', reveal:'Show answers', hint:'Reveal letter (+15 s)',
+  enterName:'Enter your name', hint:'Reveal letter (+15 s)',
   across:'Across', down:'Down', solved:'Solved in', myPlace:'Your place',
   revealedNote:'Answers shown, result not counted.', wrongCount:'Errors', emptyCount:'Empty cells',
   noPuzzle:'No crossword selected. Create one in the generator or open the teacher’s link.',
@@ -625,11 +637,19 @@ function beginGame() {
 $('startBtn').onclick = beginGame;
 $('playerName').addEventListener('keydown', e => { if (e.key === 'Enter') beginGame(); });
 
+function addPenalty(sec) {
+  if (!timerId) return;
+  startTime -= sec * 1000;
+  elapsed += sec;
+  $('timer').textContent = fmt(elapsed);
+}
+
 $('checkBtn').onclick = () => {
   if (!pz || finished) return;
+  addPenalty(10);
   const { wrong, empty } = checkAll(true);
   if (!wrong && !empty) return finish();
-  $('status').textContent = `${T('wrongCount')}: ${wrong}, ${T('emptyCount')}: ${empty}`;
+  $('status').textContent = `${T('penalty')}. ${T('wrongCount')}: ${wrong}, ${T('emptyCount')}: ${empty}`;
 };
 
 $('hintBtn').onclick = () => {
@@ -646,6 +666,7 @@ $('hintBtn').onclick = () => {
 
 $('revealBtn').onclick = () => {
   if (!pz || finished) return;
+  if (!confirm(T('revealConfirm'))) return;
   finished = true;
   stopTimer();
   pz.cells.forEach((ch, k) => {
