@@ -220,7 +220,7 @@ tbody tr.me{background:var(--hl);font-weight:600}
   .side .tab{padding:9px 14px}
   .side .sx{top:10px;right:10px}
   #search{width:100%}
-  .tools{top:58px}
+  .tools{top:62px}
   .game{flex-direction:column}
   .clues{max-width:none;width:100%}
   .overlay button{width:100%}
