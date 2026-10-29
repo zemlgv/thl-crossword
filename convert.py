@@ -3,29 +3,44 @@ import os
 import sys
 import openpyxl
 
+# Использование: py convert.py "файл.xlsx" [data/words.json]
+# Каждая таблица (лист) в xlsx становится модулем.
+# Раздел — значение в первом столбце. Порядок строк сохраняется.
+
 if len(sys.argv) < 2:
-    print('Использование: python convert.py "файл.xlsx" [data/имя.json]')
+    print('Использование: py convert.py "файл.xlsx" [data/words.json]')
     sys.exit(1)
 
-wb = openpyxl.load_workbook(sys.argv[1], data_only=True)
+src = sys.argv[1]
+out_path = sys.argv[2] if len(sys.argv) > 2 else os.path.join("data", "words.json")
+
+wb = openpyxl.load_workbook(src, data_only=True)
 out = []
 for ws in wb.worksheets:
+    title = str(ws.title).strip()
+    module = f"Module {title}" if title.isdigit() else title
+    section = None
     for row in ws.iter_rows(min_row=2, values_only=True):
         row = list(row) + [None] * 5
-        section, word, tr, translation, pos = row[0], row[1], row[2], row[3], row[4]
-        if not section or not word:
+        sec, word, tr, translation, pos = row[0], row[1], row[2], row[3], row[4]
+        if sec and str(sec).strip():
+            section = str(sec).strip()
+        if not word or section is None:
             continue
         out.append({
             "id": len(out) + 1,
-            "section": str(section).strip(),
+            "module": module,
+            "section": section,
             "word": str(word).strip(),
             "transcription": str(tr or "").strip(),
             "translation": str(translation or "").strip(),
             "pos": str(pos or "").strip(),
         })
 
-out_path = sys.argv[2] if len(sys.argv) > 2 else "data/words.json"
 os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
 with open(out_path, "w", encoding="utf-8") as f:
     json.dump(out, f, ensure_ascii=False, indent=0)
-print(f"Готово: {len(out)} записей в {out_path}")
+
+modules = len({w["module"] for w in out})
+sections = len({(w["module"], w["section"]) for w in out})
+print(f"Готово: {len(out)} слов, {modules} модулей, {sections} разделов, файл {out_path}")
