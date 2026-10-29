@@ -11,7 +11,7 @@ svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-l
 .side .sx{position:absolute;top:12px;right:12px;width:36px;height:36px;padding:0;display:grid;place-items:center;background:var(--side2);border-color:#244584;color:#dbe6fa;border-radius:9px}
 .side .sx svg{width:18px;height:18px}
 .brand{display:flex;align-items:center;gap:12px;font-weight:600;line-height:1.25;padding-right:44px;min-width:0}
-.logo{width:42px;height:42px;border-radius:9px;background:#2f6bff;color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
+.logo{min-width:42px;height:42px;padding:0 6px;border-radius:9px;background:#2f6bff;color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
 .side .field span{color:#8fa6cf}
 .side select{background:var(--side2);border-color:#244584;color:#fff;width:100%}
 .nav{display:flex;flex-direction:column;gap:2px}
