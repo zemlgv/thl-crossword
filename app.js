@@ -5,7 +5,7 @@ ru: {
   aboutText:'Сайт помогает запоминать слова из учебника Spotlight 9: словарь с озвучкой и кроссворды, которые учитель собирает за минуту. Ученики решают кроссворды со своих телефонов и видят место в таблице лидеров.',
   authorRole:'Автор проекта', authorName:'Георгий Земляков, ученик 9Б класса',
   teacherRole:'Совместно с учителем английского языка', teacherName:'Елена Германовна Долбешкина',
-  check:'Проверить (+10 с)', penalty:'Штраф +10 с', reveal:'Показать ответы · без зачёта',
+  check:'Проверить (+10 с)', reveal:'Показать ответы · без зачёта',
   revealConfirm:'Показать ответы? Кроссворд закроется, результат не засчитается и не попадёт в таблицу лидеров.',
   tabHome:'Главная', tabTeacher:'Генератор', tabPlay:'Кроссворд', tabDict:'Словарь', tabBoard:'Лидеры',
   heroTitle:'Учим слова из учебника через словарь и кроссворды',
@@ -18,7 +18,9 @@ ru: {
   cardBoard:'Лидеры', cardBoardText:'Таблица лидеров кроссворда, которым вы занимаетесь',
   footer:'Технологический лицей · Сыктывкар',
   genHint:'Отметьте модули и разделы, из слов которых собрать кроссворд.',
-  module:'Модуль', wordCount:'Слов в кроссворде (5–25)', available:'Подходящих слов',
+  module:'Модуль', wordCount:'Слов в кроссворде (5–25)', available:'Подходит для кроссворда', outOf:'из',
+  availDetail:'Не подходят: {s} (фразы, слова с дефисом или короче 3 букв). Повторы: {d}.',
+  ukLabel:'Брит.', usLabel:'Амер.', ukTitle:'Британское произношение', usTitle:'Американское произношение',
   generate:'Создать кроссворд', linkLabel:'Ссылка для учеников', copy:'Копировать', copied:'Скопировано',
   share:'Поделиться', qrCopy:'Скопировать QR', qrCopied:'QR скопирован', qrSaved:'QR сохранён',
   openGame:'Открыть кроссворд', qrFull:'QR на весь экран', closeQr:'Закрыть',
@@ -47,7 +49,7 @@ en: {
   aboutText:'The site helps learn words from the Spotlight 9 textbook: a dictionary with audio and crosswords a teacher builds in a minute. Students solve them on their phones and see their place on the leaderboard.',
   authorRole:'Project author', authorName:'Georgiy Zemlyakov, grade 9B',
   teacherRole:'Together with the English teacher', teacherName:'Elena Germanovna Dolbeshkina',
-  check:'Check (+10 s)', penalty:'Penalty +10 s', reveal:'Show answers · not counted',
+  check:'Check (+10 s)', reveal:'Show answers · not counted',
   revealConfirm:'Show answers? The crossword will close, the result will not be counted and will not go to the leaderboard.',
   tabHome:'Home', tabTeacher:'Generator', tabPlay:'Crossword', tabDict:'Dictionary', tabBoard:'Leaderboard',
   heroTitle:'Learn textbook words through the dictionary and crosswords',
@@ -60,7 +62,9 @@ en: {
   cardBoard:'Leaderboard', cardBoardText:'Leaderboard of the crossword you are solving',
   footer:'Technology Lyceum · Syktyvkar',
   genHint:'Tick the modules and sections to build the crossword from.',
-  module:'Module', wordCount:'Words in crossword (5–25)', available:'Suitable words',
+  module:'Module', wordCount:'Words in crossword (5–25)', available:'Fits the crossword', outOf:'of',
+  availDetail:'Not suitable: {s} (phrases, hyphenated or shorter than 3 letters). Duplicates: {d}.',
+  ukLabel:'UK', usLabel:'US', ukTitle:'British pronunciation', usTitle:'American pronunciation',
   generate:'Create crossword', linkLabel:'Link for students', copy:'Copy', copied:'Copied',
   share:'Share', qrCopy:'Copy QR', qrCopied:'QR copied', qrSaved:'QR saved',
   openGame:'Open crossword', qrFull:'QR full screen', closeQr:'Close',
@@ -293,12 +297,28 @@ function buildTree() {
     if (!secs.has(k)) secs.set(k, { name: w.section, n: 0 });
     secs.get(k).n++;
   });
-  $('tree').innerHTML = [...mods].map(([m, secs]) =>
-    `<div class="mod"><label class="mh"><input type="checkbox" data-mod="${esc(m)}"><span>${esc(modLabel(m))}</span></label>` +
+  $('tree').innerHTML = [...mods].map(([m, secs]) => {
+    const total = [...secs.values()].reduce((t, v) => t + v.n, 0);
+    return `<div class="mod"><label class="mh"><input type="checkbox" data-mod="${esc(m)}"><span>${esc(modLabel(m))}</span><em>${total}</em></label>` +
     [...secs].map(([k, v]) =>
       `<label class="sec"><input type="checkbox" data-sec="${esc(k)}"${on.has(k) ? ' checked' : ''}><span>${esc(v.name)}</span><em>${v.n}</em></label>`
-    ).join('') + '</div>').join('');
+    ).join('') + '</div>';
+  }).join('');
   updateAvailable();
+}
+
+function poolStats(secs) {
+  const sel = WORDS.filter(w => secs.includes(secKey(w)));
+  const seen = new Set();
+  let ok = 0, skip = 0, dup = 0;
+  sel.forEach(w => {
+    if (!isLatin(w.word)) { skip++; return; }
+    const k = w.word.toLowerCase();
+    if (seen.has(k)) { dup++; return; }
+    seen.add(k);
+    ok++;
+  });
+  return { total: sel.length, ok, skip, dup };
 }
 
 function updateAvailable() {
@@ -306,7 +326,9 @@ function updateAvailable() {
     const c = [...g.querySelectorAll('input[data-sec]')];
     g.querySelector('input[data-mod]').checked = c.length > 0 && c.every(x => x.checked);
   });
-  $('available').textContent = `${T('available')}: ${candidates(selSecs()).length}`;
+  const st = poolStats(selSecs());
+  const detail = T('availDetail').replace('{s}', st.skip).replace('{d}', st.dup);
+  $('available').innerHTML = `<b>${T('available')}: ${st.ok}</b> ${T('outOf')} ${st.total}<span class="mut">${esc(detail)}</span>`;
 }
 
 $('tree').addEventListener('change', e => {
@@ -651,7 +673,7 @@ $('checkBtn').onclick = () => {
   addPenalty(10);
   const { wrong, empty } = checkAll(true);
   if (!wrong && !empty) return finish();
-  $('status').textContent = `${T('penalty')}. ${T('wrongCount')}: ${wrong}, ${T('emptyCount')}: ${empty}`;
+  $('status').textContent = `${T('wrongCount')}: ${wrong}, ${T('emptyCount')}: ${empty}`;
 };
 
 $('hintBtn').onclick = () => {
@@ -746,7 +768,7 @@ function buildDict() {
   renderDict();
 }
 
-const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong><button class="spk" data-w="${esc(w.word)}" aria-label="${esc(T('listen'))}" title="${esc(T('listen'))}">${ICON_SPK}${ICON_LOAD}</button></div><div class="tr">${esc(w.transcription)}</div><div class="tx">${esc(w.translation)}</div><span class="pos" data-p="${esc(w.pos.split(' ')[0])}">${esc(w.pos)}</span></article>`;
+const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong></div><div class="tr">${esc(w.transcription)}</div><div class="tx">${esc(w.translation)}</div><div class="wf"><span class="pos" data-p="${esc(w.pos.split(' ')[0])}">${esc(w.pos)}</span><span class="voices"><button class="spk" data-w="${esc(w.word)}" data-acc="uk" title="${esc(T('ukTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('ukLabel'))}</b></button><button class="spk" data-w="${esc(w.word)}" data-acc="us" title="${esc(T('usTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('usLabel'))}</b></button></span></div></article>`;
 
 function renderDict() {
   const q = $('search').value.trim().toLowerCase();
@@ -760,11 +782,13 @@ function renderDict() {
     if (!s.has(w.section)) s.set(w.section, []);
     s.get(w.section).push(w);
   });
-  $('dictBody').innerHTML = rows.length ? [...g.keys()].map(m => {
+  $('dictBody').innerHTML = rows.length ? [...g.keys()].map((m, mi) => {
     const secs = [...g.get(m)];
     const n = secs.reduce((t, s) => t + s[1].length, 0);
-    return `<section class="dm"><h3>${esc(modLabel(m))}<span>${n} ${T('words')}</span></h3>` +
-      secs.map(([s, l]) => `<div class="ds"><h4><b>${esc(s)}</b><span>${l.length}</span></h4><div class="cards">${l.map(card).join('')}</div></div>`).join('') +
+    const toc = `<nav class="toc">${secs.map(([s, l], si) =>
+      `<button class="tocbtn" data-jump="sec-${mi}-${si}"><b>${esc(s)}</b><em>${l.length}</em></button>`).join('')}</nav>`;
+    return `<section class="dm"><h3>${esc(modLabel(m))}<span>${n} ${T('words')}</span></h3>${toc}` +
+      secs.map(([s, l], si) => `<div class="ds" id="sec-${mi}-${si}"><h4><b>${esc(s)}</b><span>${l.length}</span></h4><div class="cards">${l.map(card).join('')}</div></div>`).join('') +
       '</section>';
   }).join('') : `<p class="mut">${esc(T('dictEmpty'))}</p>`;
 }
@@ -775,11 +799,16 @@ function stopSpeech() {
   document.querySelectorAll('.spk.on,.spk.loading').forEach(b => b.classList.remove('on', 'loading'));
 }
 
-function ttsFallback(w, btn) {
+const ACC = {
+  uk: { path: 'En-uk-', lang: 'en-GB' },
+  us: { path: 'En-us-', lang: 'en-US' }
+};
+
+function ttsFallback(w, acc, btn) {
   if (!('speechSynthesis' in window)) { btn.classList.remove('loading'); return; }
   const u = new SpeechSynthesisUtterance(w);
-  u.lang = 'en-GB';
-  const v = speechSynthesis.getVoices().find(x => x.lang.replace('_', '-') === 'en-GB');
+  u.lang = ACC[acc].lang;
+  const v = speechSynthesis.getVoices().find(x => x.lang.replace('_', '-') === ACC[acc].lang);
   if (v) u.voice = v;
   const off = setTimeout(() => btn.classList.remove('loading'), 3000);
   u.onstart = () => { clearTimeout(off); btn.classList.remove('loading'); btn.classList.add('on'); };
@@ -787,39 +816,46 @@ function ttsFallback(w, btn) {
   speechSynthesis.speak(u);
 }
 
-function speak(w, btn) {
+function speak(w, acc, btn) {
   stopSpeech();
   const f = encodeURIComponent(w.trim().replace(/ /g, '_'));
-  const srcs = ['En-uk-', 'En-us-'].map(p => `https://commons.wikimedia.org/wiki/Special:FilePath/${p}${f}.ogg`);
+  const url = `https://commons.wikimedia.org/wiki/Special:FilePath/${ACC[acc].path}${f}.ogg`;
   btn.classList.add('loading');
-  let i = 0, timer = null;
-  const next = () => {
+  let done = false, timer = null;
+  const a = new Audio();
+  au = a;
+  const fail = () => {
+    if (done) return;
+    done = true;
     clearTimeout(timer);
-    if (au) { au.pause(); au = null; }
-    if (++i < srcs.length) tryAudio();
-    else ttsFallback(w, btn);
+    if (au === a) au = null;
+    a.pause();
+    ttsFallback(w, acc, btn);
   };
-  const tryAudio = () => {
-    const a = new Audio(srcs[i]);
-    au = a;
-    timer = setTimeout(next, 6000);
-    a.addEventListener('canplay', () => {
-      clearTimeout(timer);
-      btn.classList.remove('loading');
-      btn.classList.add('on');
-      a.play().catch(() => btn.classList.remove('on'));
-    }, { once: true });
-    a.onended = () => btn.classList.remove('on');
-    a.onerror = next;
-    a.preload = 'auto';
-    a.load();
-  };
-  tryAudio();
+  timer = setTimeout(fail, 6000);
+  a.addEventListener('canplay', () => {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    btn.classList.remove('loading');
+    btn.classList.add('on');
+    a.play().catch(() => btn.classList.remove('on'));
+  }, { once: true });
+  a.onended = () => btn.classList.remove('on');
+  a.onerror = fail;
+  a.preload = 'auto';
+  a.src = url;
+  a.load();
 }
 
 $('dictBody').addEventListener('click', e => {
+  const jump = e.target.closest('.tocbtn');
+  if (jump) {
+    document.getElementById(jump.dataset.jump)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
   const b = e.target.closest('.spk');
-  if (b) speak(b.dataset.w, b);
+  if (b) speak(b.dataset.w, b.dataset.acc, b);
 });
 $('chips').addEventListener('click', e => {
   const b = e.target.closest('.chip');
