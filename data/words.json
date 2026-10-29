@@ -284,7 +284,7 @@
 "section": "1a",
 "word": "messy",
 "transcription": "/ˈmesi/",
-"translation": "грязный",
+"translation": "грязный, неряшливый",
 "pos": "adjective"
 },
 {
@@ -329,7 +329,7 @@
 "section": "1a",
 "word": "pancake",
 "transcription": "/ˈpænkeɪk/",
-"translation": "блин",
+"translation": "блин, оладья",
 "pos": "noun"
 },
 {
@@ -419,7 +419,7 @@
 "section": "1a",
 "word": "strong",
 "transcription": "/strɒŋ/",
-"translation": "устоявшийся (зд.)",
+"translation": "1. сильный, крепкий; 2. устоявшийся (напр. традиция)",
 "pos": "adjective"
 },
 {
@@ -563,7 +563,7 @@
 "section": "Vocabulary: Festivals & Celebrations",
 "word": "colourful street parade",
 "transcription": "/ˈkʌləfl striːt pəˈreɪd/",
-"translation": "красочный (уличный) парад",
+"translation": "красочный уличный парад",
 "pos": "phrase"
 },
 {
@@ -941,7 +941,7 @@
 "section": "1b",
 "word": "trouble",
 "transcription": "/ˈtrʌbl/",
-"translation": "беспокоить(ся), тревожить(ся)",
+"translation": "беспокоить (причинять неудобства, тревожить)",
 "pos": "verb"
 },
 {
@@ -968,7 +968,7 @@
 "section": "1b",
 "word": "worry",
 "transcription": "/ˈwʌri/",
-"translation": "беспокоить(ся), волновать(ся)",
+"translation": "волноваться, переживать (испытывать тревогу в мыслях)",
 "pos": "verb"
 },
 {
@@ -977,47 +977,11 @@
 "section": "1b",
 "word": "wrong",
 "transcription": "/rɒŋ/",
-"translation": "неудовлетворительный, неправильный",
+"translation": "неправильный, неудовлетворительный",
 "pos": "adjective"
 },
 {
 "id": 110,
-"module": "Module 1",
-"section": "1b",
-"word": "terribly",
-"transcription": "/ˈterəbli/",
-"translation": "ужасно",
-"pos": "adverb"
-},
-{
-"id": 111,
-"module": "Module 1",
-"section": "1b",
-"word": "tough",
-"transcription": "/tʌf/",
-"translation": "трудный",
-"pos": "adjective"
-},
-{
-"id": 112,
-"module": "Module 1",
-"section": "1b",
-"word": "unwell",
-"transcription": "/ʌnˈwel/",
-"translation": "нездоровый, плохо себя чувствующий",
-"pos": "adjective"
-},
-{
-"id": 113,
-"module": "Module 1",
-"section": "1b",
-"word": "weed",
-"transcription": "/wiːd/",
-"translation": "сорняк",
-"pos": "noun"
-},
-{
-"id": 114,
 "module": "Module 1",
 "section": "1c",
 "word": "admire",
@@ -1026,7 +990,7 @@
 "pos": "verb"
 },
 {
-"id": 115,
+"id": 111,
 "module": "Module 1",
 "section": "1c",
 "word": "album",
@@ -1035,7 +999,7 @@
 "pos": "noun"
 },
 {
-"id": 116,
+"id": 112,
 "module": "Module 1",
 "section": "1c",
 "word": "amazing",
@@ -1044,7 +1008,7 @@
 "pos": "adjective"
 },
 {
-"id": 117,
+"id": 113,
 "module": "Module 1",
 "section": "1c",
 "word": "atmosphere",
@@ -1053,7 +1017,7 @@
 "pos": "noun"
 },
 {
-"id": 118,
+"id": 114,
 "module": "Module 1",
 "section": "1c",
 "word": "candy floss",
@@ -1062,7 +1026,7 @@
 "pos": "noun"
 },
 {
-"id": 119,
+"id": 115,
 "module": "Module 1",
 "section": "1c",
 "word": "congratulate",
@@ -1071,7 +1035,7 @@
 "pos": "verb"
 },
 {
-"id": 120,
+"id": 116,
 "module": "Module 1",
 "section": "1c",
 "word": "dance the evening away",
@@ -1080,7 +1044,7 @@
 "pos": "phrase"
 },
 {
-"id": 121,
+"id": 117,
 "module": "Module 1",
 "section": "1c",
 "word": "decoration",
@@ -1089,7 +1053,7 @@
 "pos": "noun"
 },
 {
-"id": 122,
+"id": 118,
 "module": "Module 1",
 "section": "1c",
 "word": "delicious",
@@ -1098,7 +1062,7 @@
 "pos": "adjective"
 },
 {
-"id": 123,
+"id": 119,
 "module": "Module 1",
 "section": "1c",
 "word": "dig",
@@ -1107,7 +1071,7 @@
 "pos": "verb (irregular)"
 },
 {
-"id": 124,
+"id": 120,
 "module": "Module 1",
 "section": "1c",
 "word": "DJ (disc jockey)",
@@ -1116,7 +1080,7 @@
 "pos": "noun"
 },
 {
-"id": 125,
+"id": 121,
 "module": "Module 1",
 "section": "1c",
 "word": "dye",
@@ -1125,7 +1089,7 @@
 "pos": "verb"
 },
 {
-"id": 126,
+"id": 122,
 "module": "Module 1",
 "section": "1c",
 "word": "exhausted",
@@ -1134,7 +1098,7 @@
 "pos": "adjective"
 },
 {
-"id": 127,
+"id": 123,
 "module": "Module 1",
 "section": "1c",
 "word": "fantastic",
@@ -1143,7 +1107,7 @@
 "pos": "adjective"
 },
 {
-"id": 128,
+"id": 124,
 "module": "Module 1",
 "section": "1c",
 "word": "get-together",
@@ -1152,7 +1116,7 @@
 "pos": "noun"
 },
 {
-"id": 129,
+"id": 125,
 "module": "Module 1",
 "section": "1c",
 "word": "greeting",
@@ -1161,7 +1125,7 @@
 "pos": "noun"
 },
 {
-"id": 130,
+"id": 126,
 "module": "Module 1",
 "section": "1c",
 "word": "important",
@@ -1170,7 +1134,7 @@
 "pos": "adjective"
 },
 {
-"id": 131,
+"id": 127,
 "module": "Module 1",
 "section": "1c",
 "word": "in style",
@@ -1179,7 +1143,7 @@
 "pos": "phrase"
 },
 {
-"id": 132,
+"id": 128,
 "module": "Module 1",
 "section": "1c",
 "word": "invitation",
@@ -1188,7 +1152,7 @@
 "pos": "noun"
 },
 {
-"id": 133,
+"id": 129,
 "module": "Module 1",
 "section": "1c",
 "word": "midnight",
@@ -1197,7 +1161,7 @@
 "pos": "noun"
 },
 {
-"id": 134,
+"id": 130,
 "module": "Module 1",
 "section": "1c",
 "word": "nervous",
@@ -1206,7 +1170,7 @@
 "pos": "adjective"
 },
 {
-"id": 135,
+"id": 131,
 "module": "Module 1",
 "section": "1c",
 "word": "organise",
@@ -1215,7 +1179,7 @@
 "pos": "verb"
 },
 {
-"id": 136,
+"id": 132,
 "module": "Module 1",
 "section": "1c",
 "word": "outdoors",
@@ -1224,16 +1188,16 @@
 "pos": "adverb"
 },
 {
-"id": 137,
+"id": 133,
 "module": "Module 1",
 "section": "1c",
 "word": "outfit",
 "transcription": "/ˈaʊtfɪt/",
-"translation": "наряд",
+"translation": "наряд, образ",
 "pos": "noun"
 },
 {
-"id": 138,
+"id": 134,
 "module": "Module 1",
 "section": "1c",
 "word": "plant",
@@ -1242,7 +1206,7 @@
 "pos": "noun"
 },
 {
-"id": 139,
+"id": 135,
 "module": "Module 1",
 "section": "1c",
 "word": "prom night",
@@ -1251,7 +1215,7 @@
 "pos": "noun"
 },
 {
-"id": 140,
+"id": 136,
 "module": "Module 1",
 "section": "1c",
 "word": "recently",
@@ -1260,7 +1224,7 @@
 "pos": "adverb"
 },
 {
-"id": 141,
+"id": 137,
 "module": "Module 1",
 "section": "1c",
 "word": "remind",
@@ -1269,7 +1233,7 @@
 "pos": "verb"
 },
 {
-"id": 142,
+"id": 138,
 "module": "Module 1",
 "section": "1c",
 "word": "samba music",
@@ -1278,7 +1242,7 @@
 "pos": "noun"
 },
 {
-"id": 143,
+"id": 139,
 "module": "Module 1",
 "section": "1c",
 "word": "send out",
@@ -1287,7 +1251,7 @@
 "pos": "phrasal verb"
 },
 {
-"id": 144,
+"id": 140,
 "module": "Module 1",
 "section": "1c",
 "word": "stay up all night",
@@ -1296,7 +1260,7 @@
 "pos": "phrase"
 },
 {
-"id": 145,
+"id": 141,
 "module": "Module 1",
 "section": "1c",
 "word": "sunburnt",
@@ -1305,7 +1269,7 @@
 "pos": "adjective"
 },
 {
-"id": 146,
+"id": 142,
 "module": "Module 1",
 "section": "1c",
 "word": "take a week (some days) off",
@@ -1314,7 +1278,7 @@
 "pos": "phrase"
 },
 {
-"id": 147,
+"id": 143,
 "module": "Module 1",
 "section": "1c",
 "word": "take part in",
@@ -1323,12 +1287,48 @@
 "pos": "phrase"
 },
 {
-"id": 148,
+"id": 144,
 "module": "Module 1",
 "section": "1c",
 "word": "team",
 "transcription": "/tiːm/",
 "translation": "команда",
+"pos": "noun"
+},
+{
+"id": 145,
+"module": "Module 1",
+"section": "1c",
+"word": "terribly",
+"transcription": "/ˈterəbli/",
+"translation": "ужасно",
+"pos": "adverb"
+},
+{
+"id": 146,
+"module": "Module 1",
+"section": "1c",
+"word": "tough",
+"transcription": "/tʌf/",
+"translation": "трудный",
+"pos": "adjective"
+},
+{
+"id": 147,
+"module": "Module 1",
+"section": "1c",
+"word": "unwell",
+"transcription": "/ʌnˈwel/",
+"translation": "нездоровый, плохо себя чувствующий",
+"pos": "adjective"
+},
+{
+"id": 148,
+"module": "Module 1",
+"section": "1c",
+"word": "weed",
+"transcription": "/wiːd/",
+"translation": "сорняк",
 "pos": "noun"
 },
 {
@@ -1508,7 +1508,7 @@
 "section": "1d",
 "word": "ghost",
 "transcription": "/ɡəʊst/",
-"translation": "привидение",
+"translation": "привидение, призрак",
 "pos": "noun"
 },
 {
@@ -1625,7 +1625,7 @@
 "section": "1d",
 "word": "pull a cracker",
 "transcription": "/pʊl ə ˈkrækə/",
-"translation": "рождественский обычай: двое тянут хлопушку-крекер, внутри которой подарок; получает подарок тот, у кого больший кусок",
+"translation": "рождественский обычай: двое тянут бумажную хлопушку, внутри которой подарок или сувенир; приз достаётся тому, у кого больший кусок",
 "pos": "phrase"
 },
 {
@@ -1643,7 +1643,7 @@
 "section": "1d",
 "word": "rest",
 "transcription": "/rest/",
-"translation": "опираться, основывать(ся)",
+"translation": "1. отдыхать; 2. опираться (в букв./перен.), основывать(ся)",
 "pos": "verb"
 },
 {
@@ -1652,7 +1652,7 @@
 "section": "1d",
 "word": "rich",
 "transcription": "/rɪtʃ/",
-"translation": "жирный, питательный (о еде)",
+"translation": "1. богатый; 2. жирный, питательный (о еде)",
 "pos": "adjective"
 },
 {
@@ -1688,7 +1688,7 @@
 "section": "1d",
 "word": "sing a carol",
 "transcription": "/sɪŋ ə ˈkærəl/",
-"translation": "петь рождественский гимн",
+"translation": "петь рождественский гимн (колядку)",
 "pos": "phrase"
 },
 {
@@ -1733,7 +1733,7 @@
 "section": "1d",
 "word": "surprised",
 "transcription": "/səˈpraɪzd/",
-"translation": "удивленный",
+"translation": "удивлённый",
 "pos": "adjective"
 },
 {
@@ -1769,7 +1769,7 @@
 "section": "1d",
 "word": "thrilled",
 "transcription": "/θrɪld/",
-"translation": "взволнованный",
+"translation": "взволнованный, восхищённый (в восторге)",
 "pos": "adjective"
 },
 {
@@ -2111,7 +2111,7 @@
 "section": "1e",
 "word": "surely",
 "transcription": "/ˈʃʊəli/",
-"translation": "конечно",
+"translation": "несомненно, конечно, обязательно",
 "pos": "adverb"
 },
 {
@@ -2174,7 +2174,7 @@
 "section": "1f",
 "word": "annoy",
 "transcription": "/əˈnɔɪ/",
-"translation": "досаждать, раздражать",
+"translation": "раздражать, досаждать",
 "pos": "verb"
 },
 {
@@ -2183,7 +2183,7 @@
 "section": "1f",
 "word": "audience",
 "transcription": "/ˈɔːdiəns/",
-"translation": "публика, зрители, слушатели",
+"translation": "аудитория, публика, зрители, слушатели",
 "pos": "noun"
 },
 {
@@ -2264,7 +2264,7 @@
 "section": "1f",
 "word": "exhaust",
 "transcription": "/ɪɡˈzɔːst/",
-"translation": "изнурять",
+"translation": "изнурять, выматывать, истощать",
 "pos": "verb"
 },
 {
@@ -2345,7 +2345,7 @@
 "section": "1f",
 "word": "make",
 "transcription": "/meɪk/",
-"translation": "заставлять, побуждать (зд.)",
+"translation": "заставлять, побуждать",
 "pos": "verb (irregular)"
 },
 {
@@ -2435,7 +2435,7 @@
 "section": "1f",
 "word": "volume",
 "transcription": "/ˈvɒljuːm/",
-"translation": "звук",
+"translation": "звук, громкость, объём, том (книги)",
 "pos": "noun"
 },
 {
@@ -2489,7 +2489,7 @@
 "section": "Culture Corner 1",
 "word": "entry",
 "transcription": "/ˈentri/",
-"translation": "словарная статья",
+"translation": "статья, запись, вход/въезд, ввод (данных)",
 "pos": "noun"
 },
 {
@@ -2507,7 +2507,7 @@
 "section": "Culture Corner 1",
 "word": "grand",
 "transcription": "/ɡrænd/",
-"translation": "грандиозный",
+"translation": "грандиозный, величественный",
 "pos": "adjective"
 },
 {
@@ -2876,7 +2876,7 @@
 "section": "PSHE",
 "word": "solemn",
 "transcription": "/ˈsɒləm/",
-"translation": "торжественный",
+"translation": "1. торжественный; 2. серьёзный, мрачный",
 "pos": "adjective"
 },
 {
@@ -2903,7 +2903,7 @@
 "section": "PSHE",
 "word": "verse",
 "transcription": "/vɜːs/",
-"translation": "строфа (песни, стихотворения)",
+"translation": "строфа (песни, стихотворения), стих, куплет, библейский стих",
 "pos": "noun"
 },
 {
@@ -3020,7 +3020,7 @@
 "section": "2a",
 "word": "caravan",
 "transcription": "/ˈkærəvæn/",
-"translation": "трейлер",
+"translation": "трейлер, фургон, караван, дом на колёсах",
 "pos": "noun"
 },
 {
@@ -3119,7 +3119,7 @@
 "section": "2a",
 "word": "escape",
 "transcription": "/ɪˈskeɪp/",
-"translation": "избегать (зд.)",
+"translation": "сбегать, избегать",
 "pos": "verb"
 },
 {
@@ -3155,7 +3155,7 @@
 "section": "2a",
 "word": "float",
 "transcription": "/fləʊt/",
-"translation": "плавать по воздуху (зд.)",
+"translation": "плавать по воздуху",
 "pos": "verb"
 },
 {
@@ -3191,7 +3191,7 @@
 "section": "2a",
 "word": "gravity",
 "transcription": "/ˈɡrævəti/",
-"translation": "сила тяготения",
+"translation": "сила тяготения, гравитация",
 "pos": "noun"
 },
 {
@@ -3218,7 +3218,7 @@
 "section": "2a",
 "word": "inhabitant",
 "transcription": "/ɪnˈhæbɪtənt/",
-"translation": "житель",
+"translation": "житель, обитатель",
 "pos": "noun"
 },
 {
@@ -3245,7 +3245,7 @@
 "section": "2a",
 "word": "muscle",
 "transcription": "/ˈmʌsl/",
-"translation": "мышца",
+"translation": "мышца, мускул",
 "pos": "noun"
 },
 {
@@ -3263,7 +3263,7 @@
 "section": "2a",
 "word": "porch",
 "transcription": "/pɔːtʃ/",
-"translation": "подъезд, крыльцо",
+"translation": "крыльцо, подъезд",
 "pos": "noun"
 },
 {
@@ -3290,7 +3290,7 @@
 "section": "2a",
 "word": "resident",
 "transcription": "/ˈrezɪdənt/",
-"translation": "житель",
+"translation": "проживающий, житель (резидент)",
 "pos": "noun"
 },
 {
@@ -3326,7 +3326,7 @@
 "section": "2a",
 "word": "space",
 "transcription": "/speɪs/",
-"translation": "космос",
+"translation": "1. космос; 2. пространство",
 "pos": "noun"
 },
 {
@@ -3353,7 +3353,7 @@
 "section": "2a",
 "word": "stare",
 "transcription": "/steə/",
-"translation": "пристально смотреть, уставиться",
+"translation": "пристально смотреть, уставиться, пялиться",
 "pos": "verb"
 },
 {
@@ -3362,7 +3362,7 @@
 "section": "2a",
 "word": "strap",
 "transcription": "/stræp/",
-"translation": "прикреплять, привязывать",
+"translation": "прикреплять, привязывать, пристегнуть (напр. ремень безопасности)",
 "pos": "verb"
 },
 {
@@ -3371,7 +3371,7 @@
 "section": "2a",
 "word": "study",
 "transcription": "/ˈstʌdi/",
-"translation": "кабинет",
+"translation": "1. изучение, исследование, учёба; 2. кабинет",
 "pos": "noun"
 },
 {
@@ -3389,7 +3389,7 @@
 "section": "2a",
 "word": "swap",
 "transcription": "/swɒp/",
-"translation": "меняться",
+"translation": "менять(ся) (местами)",
 "pos": "verb"
 },
 {
@@ -3470,7 +3470,7 @@
 "section": "2a",
 "word": "zero gravity",
 "transcription": "/ˈzɪərəʊ ˈɡrævəti/",
-"translation": "невесомость",
+"translation": "невесомость (нулевая гравитация)",
 "pos": "noun"
 },
 {
@@ -3605,7 +3605,7 @@
 "section": "2b",
 "word": "get off the phone",
 "transcription": "/ɡet ɒf ðə fəʊn/",
-"translation": "закончить разговор",
+"translation": "закончить разговор по телефону",
 "pos": "phrase"
 },
 {
@@ -3630,7 +3630,7 @@
 "id": 404,
 "module": "Module 2",
 "section": "2b",
-"word": "I have had enough",
+"word": "I have had enough.",
 "transcription": "/aɪ hæv hæd ɪˈnʌf/",
 "translation": "С меня хватит.",
 "pos": "phrase"
@@ -3659,7 +3659,7 @@
 "section": "2b",
 "word": "matter",
 "transcription": "/ˈmætə/",
-"translation": "дело",
+"translation": "дело, вопрос, тема",
 "pos": "noun"
 },
 {
@@ -3749,7 +3749,7 @@
 "section": "2c",
 "word": "artist",
 "transcription": "/ˈɑːtɪst/",
-"translation": "художник",
+"translation": "художник (деятель искусства)",
 "pos": "noun"
 },
 {
@@ -3776,7 +3776,7 @@
 "section": "2c",
 "word": "below",
 "transcription": "/bɪˈləʊ/",
-"translation": "ниже, под; зд. менее чем",
+"translation": "ниже, под; менее чем",
 "pos": "adverb"
 },
 {
@@ -3812,7 +3812,7 @@
 "section": "2c",
 "word": "can't help",
 "transcription": "/kɑːnt help/",
-"translation": "быть не в состоянии контролировать свои чувства и поведение",
+"translation": "быть не в состоянии контролировать свои чувства/поведение (не могу не…)",
 "pos": "phrase"
 },
 {
@@ -3848,7 +3848,7 @@
 "section": "2c",
 "word": "cool",
 "transcription": "/kuːl/",
-"translation": "прохладный",
+"translation": "прохладный, крутой (неформ.)",
 "pos": "adjective"
 },
 {
@@ -3956,7 +3956,7 @@
 "section": "2c",
 "word": "gross",
 "transcription": "/ɡrəʊs/",
-"translation": "омерзительный, отвратительный (informal)",
+"translation": "омерзительный, отвратительный",
 "pos": "adjective"
 },
 {
@@ -4037,7 +4037,7 @@
 "section": "2c",
 "word": "nasty",
 "transcription": "/ˈnɑːsti/",
-"translation": "отвратительный, скверный; опасный",
+"translation": "1. противный, отвратительный, гадкий; 2. серьёзный/тяжёлый",
 "pos": "adjective"
 },
 {
@@ -4163,7 +4163,7 @@
 "section": "2d",
 "word": "bank",
 "transcription": "/bæŋk/",
-"translation": "банк",
+"translation": "1. банк; 2. берег",
 "pos": "noun"
 },
 {
@@ -4280,7 +4280,7 @@
 "section": "2d",
 "word": "grocer's",
 "transcription": "/ˈɡrəʊsəz/",
-"translation": "бакалея",
+"translation": "продуктовый, гастроном, бакалейная лавка",
 "pos": "noun"
 },
 {
@@ -4289,7 +4289,7 @@
 "section": "2d",
 "word": "helpful",
 "transcription": "/ˈhelpfl/",
-"translation": "услужливый",
+"translation": "полезный, услужливый, готовый помочь",
 "pos": "adjective"
 },
 {
@@ -4307,7 +4307,7 @@
 "section": "2d",
 "word": "industrial",
 "transcription": "/ɪnˈdʌstriəl/",
-"translation": "промышленный",
+"translation": "промышленный, индустриальный",
 "pos": "adjective"
 },
 {
@@ -4406,7 +4406,7 @@
 "section": "2d",
 "word": "neighbourhood",
 "transcription": "/ˈneɪbəhʊd/",
-"translation": "округа, микрорайон",
+"translation": "район, окрестности, соседство",
 "pos": "noun"
 },
 {
@@ -4451,7 +4451,7 @@
 "section": "2d",
 "word": "pretty",
 "transcription": "/ˈprɪti/",
-"translation": "хорошенький",
+"translation": "хорошенький, симпатичный",
 "pos": "adjective"
 },
 {
@@ -4568,7 +4568,7 @@
 "section": "2d",
 "word": "wonder",
 "transcription": "/ˈwʌndə/",
-"translation": "интересоваться",
+"translation": "интересоваться, задаваться вопросом",
 "pos": "verb"
 },
 {
@@ -4658,7 +4658,7 @@
 "section": "2e",
 "word": "hang out",
 "transcription": "/hæŋ aʊt/",
-"translation": "проводить время",
+"translation": "проводить время, тусоваться (неформ.)",
 "pos": "phrasal verb"
 },
 {
@@ -4676,7 +4676,7 @@
 "section": "2e",
 "word": "input",
 "transcription": "/ˈɪnpʊt/",
-"translation": "полученная информация",
+"translation": "ввод (данных), полученная информация, вклад во что-то",
 "pos": "noun"
 },
 {
@@ -4721,7 +4721,7 @@
 "section": "2e",
 "word": "refuse",
 "transcription": "/rɪˈfjuːz/",
-"translation": "отказываться",
+"translation": "отказывать(ся)",
 "pos": "verb"
 },
 {
@@ -4739,7 +4739,7 @@
 "section": "2e",
 "word": "remark",
 "transcription": "/rɪˈmɑːk/",
-"translation": "комментарий",
+"translation": "примечание, комментарий",
 "pos": "noun"
 },
 {
@@ -4748,7 +4748,7 @@
 "section": "2e",
 "word": "upstairs",
 "transcription": "/ʌpˈsteəz/",
-"translation": "наверху",
+"translation": "наверху (этажом выше)",
 "pos": "adverb"
 },
 {
@@ -4800,22 +4800,13 @@
 "id": 534,
 "module": "Module 2",
 "section": "2f",
-"word": "Cabinet",
-"transcription": "/ˈkæbɪnət/",
-"translation": "Кабинет министров",
-"pos": "noun"
-},
-{
-"id": 535,
-"module": "Module 2",
-"section": "2f",
 "word": "civil servant",
 "transcription": "/ˌsɪvl ˈsɜːvənt/",
 "translation": "государственный служащий",
 "pos": "noun"
 },
 {
-"id": 536,
+"id": 535,
 "module": "Module 2",
 "section": "2f",
 "word": "clean",
@@ -4824,7 +4815,7 @@
 "pos": "verb"
 },
 {
-"id": 537,
+"id": 536,
 "module": "Module 2",
 "section": "2f",
 "word": "cleaning",
@@ -4833,7 +4824,7 @@
 "pos": "noun"
 },
 {
-"id": 538,
+"id": 537,
 "module": "Module 2",
 "section": "2f",
 "word": "colleague",
@@ -4842,7 +4833,7 @@
 "pos": "noun"
 },
 {
-"id": 539,
+"id": 538,
 "module": "Module 2",
 "section": "2f",
 "word": "cupboard",
@@ -4851,7 +4842,7 @@
 "pos": "noun"
 },
 {
-"id": 540,
+"id": 539,
 "module": "Module 2",
 "section": "2f",
 "word": "décor",
@@ -4860,7 +4851,7 @@
 "pos": "noun"
 },
 {
-"id": 541,
+"id": 540,
 "module": "Module 2",
 "section": "2f",
 "word": "elegant",
@@ -4869,7 +4860,7 @@
 "pos": "adjective"
 },
 {
-"id": 542,
+"id": 541,
 "module": "Module 2",
 "section": "2f",
 "word": "elf",
@@ -4878,7 +4869,7 @@
 "pos": "noun"
 },
 {
-"id": 543,
+"id": 542,
 "module": "Module 2",
 "section": "2f",
 "word": "fine",
@@ -4887,7 +4878,7 @@
 "pos": "adjective"
 },
 {
-"id": 544,
+"id": 543,
 "module": "Module 2",
 "section": "2f",
 "word": "furnished",
@@ -4896,7 +4887,7 @@
 "pos": "adjective"
 },
 {
-"id": 545,
+"id": 544,
 "module": "Module 2",
 "section": "2f",
 "word": "gentle",
@@ -4905,7 +4896,7 @@
 "pos": "adjective"
 },
 {
-"id": 546,
+"id": 545,
 "module": "Module 2",
 "section": "2f",
 "word": "gentleness",
@@ -4914,7 +4905,7 @@
 "pos": "noun"
 },
 {
-"id": 547,
+"id": 546,
 "module": "Module 2",
 "section": "2f",
 "word": "gift",
@@ -4923,7 +4914,7 @@
 "pos": "noun"
 },
 {
-"id": 548,
+"id": 547,
 "module": "Module 2",
 "section": "2f",
 "word": "government minister",
@@ -4932,7 +4923,7 @@
 "pos": "noun"
 },
 {
-"id": 549,
+"id": 548,
 "module": "Module 2",
 "section": "2f",
 "word": "grand",
@@ -4941,16 +4932,16 @@
 "pos": "adjective"
 },
 {
-"id": 550,
+"id": 549,
 "module": "Module 2",
 "section": "2f",
 "word": "grave",
 "transcription": "/ɡreɪv/",
-"translation": "серьезный",
+"translation": "серьёзный, тяжкий (ситуация)",
 "pos": "adjective"
 },
 {
-"id": 551,
+"id": 550,
 "module": "Module 2",
 "section": "2f",
 "word": "gravity",
@@ -4959,7 +4950,7 @@
 "pos": "noun"
 },
 {
-"id": 552,
+"id": 551,
 "module": "Module 2",
 "section": "2f",
 "word": "guest",
@@ -4968,7 +4959,7 @@
 "pos": "noun"
 },
 {
-"id": 553,
+"id": 552,
 "module": "Module 2",
 "section": "2f",
 "word": "interview",
@@ -4977,7 +4968,7 @@
 "pos": "noun"
 },
 {
-"id": 554,
+"id": 553,
 "module": "Module 2",
 "section": "2f",
 "word": "move in",
@@ -4986,7 +4977,7 @@
 "pos": "phrasal verb"
 },
 {
-"id": 555,
+"id": 554,
 "module": "Module 2",
 "section": "2f",
 "word": "official function",
@@ -4995,7 +4986,7 @@
 "pos": "noun"
 },
 {
-"id": 556,
+"id": 555,
 "module": "Module 2",
 "section": "2f",
 "word": "ordinary",
@@ -5004,7 +4995,7 @@
 "pos": "adjective"
 },
 {
-"id": 557,
+"id": 556,
 "module": "Module 2",
 "section": "2f",
 "word": "originally",
@@ -5013,7 +5004,7 @@
 "pos": "adverb"
 },
 {
-"id": 558,
+"id": 557,
 "module": "Module 2",
 "section": "2f",
 "word": "past",
@@ -5022,7 +5013,7 @@
 "pos": "adjective"
 },
 {
-"id": 559,
+"id": 558,
 "module": "Module 2",
 "section": "2f",
 "word": "prime minister",
@@ -5031,7 +5022,7 @@
 "pos": "noun"
 },
 {
-"id": 560,
+"id": 559,
 "module": "Module 2",
 "section": "2f",
 "word": "receive",
@@ -5040,7 +5031,7 @@
 "pos": "verb"
 },
 {
-"id": 561,
+"id": 560,
 "module": "Module 2",
 "section": "2f",
 "word": "recognise",
@@ -5049,7 +5040,7 @@
 "pos": "verb"
 },
 {
-"id": 562,
+"id": 561,
 "module": "Module 2",
 "section": "2f",
 "word": "sane",
@@ -5058,16 +5049,16 @@
 "pos": "adjective"
 },
 {
-"id": 563,
+"id": 562,
 "module": "Module 2",
 "section": "2f",
 "word": "sanity",
 "transcription": "/ˈsænəti/",
-"translation": "здравый ум",
+"translation": "здравый ум, рассудок",
 "pos": "noun"
 },
 {
-"id": 564,
+"id": 563,
 "module": "Module 2",
 "section": "2f",
 "word": "security",
@@ -5076,7 +5067,7 @@
 "pos": "noun"
 },
 {
-"id": 565,
+"id": 564,
 "module": "Module 2",
 "section": "2f",
 "word": "state dinner",
@@ -5085,7 +5076,7 @@
 "pos": "noun"
 },
 {
-"id": 566,
+"id": 565,
 "module": "Module 2",
 "section": "2f",
 "word": "sweep",
@@ -5094,12 +5085,21 @@
 "pos": "verb (irregular)"
 },
 {
-"id": 567,
+"id": 566,
 "module": "Module 2",
 "section": "2f",
 "word": "terraced house",
 "transcription": "/ˈterəst haʊs/",
-"translation": "дом ленточной застройки",
+"translation": "дом рядовой (ленточной) застройки",
+"pos": "noun"
+},
+{
+"id": 567,
+"module": "Module 2",
+"section": "2f",
+"word": "the Cabinet",
+"transcription": "/ðə ˈkæbɪnɪt/",
+"translation": "Кабинет министров",
 "pos": "noun"
 },
 {
@@ -5234,7 +5234,7 @@
 "section": "GG2",
 "word": "grain",
 "transcription": "/ɡreɪn/",
-"translation": "песчинка (зд.)",
+"translation": "1. песчинка, крупица; 2. зерно",
 "pos": "noun"
 },
 {
@@ -5340,94 +5340,22 @@
 "id": 594,
 "module": "Module 2",
 "section": "GG2",
+"word": "remain",
+"transcription": "/rɪˈmeɪn/",
+"translation": "оставаться, сохраняться",
+"pos": "verb"
+},
+{
+"id": 595,
+"module": "Module 2",
+"section": "GG2",
 "word": "remain unspoiled",
 "transcription": "/rɪˈmeɪn ʌnˈspɔɪld/",
 "translation": "оставаться неиспорченным",
 "pos": "phrase"
 },
 {
-"id": 595,
-"module": "Module 2",
-"section": "GG2",
-"word": "solution",
-"transcription": "/səˈluːʃn/",
-"translation": "решение",
-"pos": "noun"
-},
-{
 "id": 596,
-"module": "Module 2",
-"section": "GG2",
-"word": "species",
-"transcription": "/ˈspiːʃiːz/",
-"translation": "вид",
-"pos": "noun"
-},
-{
-"id": 597,
-"module": "Module 2",
-"section": "GG2",
-"word": "survive",
-"transcription": "/səˈvaɪv/",
-"translation": "выживать",
-"pos": "verb"
-},
-{
-"id": 598,
-"module": "Module 2",
-"section": "GG2",
-"word": "threaten",
-"transcription": "/ˈθretn/",
-"translation": "угрожать",
-"pos": "verb"
-},
-{
-"id": 599,
-"module": "Module 2",
-"section": "GG2",
-"word": "tiny",
-"transcription": "/ˈtaɪni/",
-"translation": "крошечный",
-"pos": "adjective"
-},
-{
-"id": 600,
-"module": "Module 2",
-"section": "GG2",
-"word": "wildlife",
-"transcription": "/ˈwaɪldlaɪf/",
-"translation": "дикая природа",
-"pos": "noun"
-},
-{
-"id": 601,
-"module": "Module 2",
-"section": "GG2",
-"word": "wing",
-"transcription": "/wɪŋ/",
-"translation": "крыло",
-"pos": "noun"
-},
-{
-"id": 602,
-"module": "Module 2",
-"section": "GG2",
-"word": "woodland",
-"transcription": "/ˈwʊdlənd/",
-"translation": "лес",
-"pos": "noun"
-},
-{
-"id": 603,
-"module": "Module 2",
-"section": "GG2",
-"word": "remain",
-"transcription": "/rɪˈmeɪn/",
-"translation": "оставаться",
-"pos": "verb"
-},
-{
-"id": 604,
 "module": "Module 2",
 "section": "GG2",
 "word": "report",
@@ -5436,7 +5364,7 @@
 "pos": "verb"
 },
 {
-"id": 605,
+"id": 597,
 "module": "Module 2",
 "section": "GG2",
 "word": "roll",
@@ -5445,7 +5373,7 @@
 "pos": "verb"
 },
 {
-"id": 606,
+"id": 598,
 "module": "Module 2",
 "section": "GG2",
 "word": "sharp",
@@ -5454,7 +5382,7 @@
 "pos": "adjective"
 },
 {
-"id": 607,
+"id": 599,
 "module": "Module 2",
 "section": "GG2",
 "word": "shocking",
@@ -5463,7 +5391,7 @@
 "pos": "adjective"
 },
 {
-"id": 608,
+"id": 600,
 "module": "Module 2",
 "section": "GG2",
 "word": "sighting",
@@ -5472,7 +5400,7 @@
 "pos": "noun"
 },
 {
-"id": 609,
+"id": 601,
 "module": "Module 2",
 "section": "GG2",
 "word": "similar",
@@ -5481,7 +5409,7 @@
 "pos": "adjective"
 },
 {
-"id": 610,
+"id": 602,
 "module": "Module 2",
 "section": "GG2",
 "word": "skeleton",
@@ -5490,7 +5418,7 @@
 "pos": "noun"
 },
 {
-"id": 611,
+"id": 603,
 "module": "Module 2",
 "section": "GG2",
 "word": "snake-like",
@@ -5499,16 +5427,34 @@
 "pos": "adjective"
 },
 {
-"id": 612,
+"id": 604,
+"module": "Module 2",
+"section": "GG2",
+"word": "solution",
+"transcription": "/səˈluːʃn/",
+"translation": "решение",
+"pos": "noun"
+},
+{
+"id": 605,
 "module": "Module 2",
 "section": "GG2",
 "word": "species",
 "transcription": "/ˈspiːʃiːz/",
-"translation": "вид (растений, животных)",
+"translation": "вид, разновидность, порода",
 "pos": "noun"
 },
 {
-"id": 613,
+"id": 606,
+"module": "Module 2",
+"section": "GG2",
+"word": "species",
+"transcription": "/ˈspiːʃiːz/",
+"translation": "вид (растений, животных), порода",
+"pos": "noun"
+},
+{
+"id": 607,
 "module": "Module 2",
 "section": "GG2",
 "word": "squid",
@@ -5517,7 +5463,7 @@
 "pos": "noun"
 },
 {
-"id": 614,
+"id": 608,
 "module": "Module 2",
 "section": "GG2",
 "word": "strange",
@@ -5526,7 +5472,16 @@
 "pos": "adjective"
 },
 {
-"id": 615,
+"id": 609,
+"module": "Module 2",
+"section": "GG2",
+"word": "survive",
+"transcription": "/səˈvaɪv/",
+"translation": "выживать",
+"pos": "verb"
+},
+{
+"id": 610,
 "module": "Module 2",
 "section": "GG2",
 "word": "tail",
@@ -5535,7 +5490,7 @@
 "pos": "noun"
 },
 {
-"id": 616,
+"id": 611,
 "module": "Module 2",
 "section": "GG2",
 "word": "tentacle",
@@ -5544,7 +5499,25 @@
 "pos": "noun"
 },
 {
-"id": 617,
+"id": 612,
+"module": "Module 2",
+"section": "GG2",
+"word": "threaten",
+"transcription": "/ˈθretn/",
+"translation": "угрожать",
+"pos": "verb"
+},
+{
+"id": 613,
+"module": "Module 2",
+"section": "GG2",
+"word": "tiny",
+"transcription": "/ˈtaɪni/",
+"translation": "крошечный",
+"pos": "adjective"
+},
+{
+"id": 614,
 "module": "Module 2",
 "section": "GG2",
 "word": "unfortunately",
@@ -5553,7 +5526,7 @@
 "pos": "adverb"
 },
 {
-"id": 618,
+"id": 615,
 "module": "Module 2",
 "section": "GG2",
 "word": "unicorn",
@@ -5562,7 +5535,7 @@
 "pos": "noun"
 },
 {
-"id": 619,
+"id": 616,
 "module": "Module 2",
 "section": "GG2",
 "word": "various",
@@ -5571,16 +5544,16 @@
 "pos": "adjective"
 },
 {
-"id": 620,
+"id": 617,
 "module": "Module 2",
 "section": "GG2",
 "word": "violent",
 "transcription": "/ˈvaɪələnt/",
-"translation": "сильный, мощный",
+"translation": "жестокий, сильный, мощный",
 "pos": "adjective"
 },
 {
-"id": 621,
+"id": 618,
 "module": "Module 2",
 "section": "GG2",
 "word": "whirlpool",
@@ -5589,12 +5562,39 @@
 "pos": "noun"
 },
 {
-"id": 622,
+"id": 619,
+"module": "Module 2",
+"section": "GG2",
+"word": "wildlife",
+"transcription": "/ˈwaɪldlaɪf/",
+"translation": "дикая природа",
+"pos": "noun"
+},
+{
+"id": 620,
+"module": "Module 2",
+"section": "GG2",
+"word": "wing",
+"transcription": "/wɪŋ/",
+"translation": "крыло",
+"pos": "noun"
+},
+{
+"id": 621,
 "module": "Module 2",
 "section": "GG2",
 "word": "witness",
 "transcription": "/ˈwɪtnəs/",
 "translation": "свидетель, очевидец",
+"pos": "noun"
+},
+{
+"id": 622,
+"module": "Module 2",
+"section": "GG2",
+"word": "woodland",
+"transcription": "/ˈwʊdlənd/",
+"translation": "лесной массив",
 "pos": "noun"
 },
 {
@@ -7545,400 +7545,13 @@
 "id": 839,
 "module": "Module 4",
 "section": "4a",
-"word": "companion",
-"transcription": "/kəmˈpænjən/",
-"translation": "друг",
-"pos": "noun"
-},
-{
-"id": 840,
-"module": "Module 4",
-"section": "4a",
-"word": "conflict",
-"transcription": "/ˈkɒnflɪkt/",
-"translation": "конфликт, ссора",
-"pos": "noun"
-},
-{
-"id": 841,
-"module": "Module 4",
-"section": "4a",
-"word": "consciousness",
-"transcription": "/ˈkɒnʃəsnəs/",
-"translation": "сознание, разум",
-"pos": "noun"
-},
-{
-"id": 842,
-"module": "Module 4",
-"section": "4a",
-"word": "copy",
-"transcription": "/ˈkɒpi/",
-"translation": "копировать, имитировать",
-"pos": "verb"
-},
-{
-"id": 843,
-"module": "Module 4",
-"section": "4a",
-"word": "creativity",
-"transcription": "/ˌkriːeɪˈtɪvəti/",
-"translation": "творчество",
-"pos": "noun"
-},
-{
-"id": 844,
-"module": "Module 4",
-"section": "4a",
-"word": "decision",
-"transcription": "/dɪˈsɪʒn/",
-"translation": "решение",
-"pos": "noun"
-},
-{
-"id": 845,
-"module": "Module 4",
-"section": "4a",
-"word": "divided",
-"transcription": "/dɪˈvaɪdɪd/",
-"translation": "обнаруживающий разногласия",
-"pos": "adjective"
-},
-{
-"id": 846,
-"module": "Module 4",
-"section": "4a",
-"word": "emotional response",
-"transcription": "/ɪˈməʊʃənl rɪˈspɒns/",
-"translation": "эмоциональная реакция",
-"pos": "phrase"
-},
-{
-"id": 847,
-"module": "Module 4",
-"section": "4a",
-"word": "except for",
-"transcription": "/ɪkˈsept fɔː/",
-"translation": "кроме",
-"pos": "prepositional phrase"
-},
-{
-"id": 848,
-"module": "Module 4",
-"section": "4a",
-"word": "existence",
-"transcription": "/ɪɡˈzɪstəns/",
-"translation": "существование",
-"pos": "noun"
-},
-{
-"id": 849,
-"module": "Module 4",
-"section": "4a",
-"word": "expert",
-"transcription": "/ˈekspɜːt/",
-"translation": "эксперт, профессионал",
-"pos": "noun"
-},
-{
-"id": 850,
-"module": "Module 4",
-"section": "4a",
-"word": "figurative speech",
-"transcription": "/ˈfɪɡərətɪv spiːtʃ/",
-"translation": "образная речь",
-"pos": "phrase"
-},
-{
-"id": 851,
-"module": "Module 4",
-"section": "4a",
-"word": "function",
-"transcription": "/ˈfʌŋkʃn/",
-"translation": "функция",
-"pos": "noun"
-},
-{
-"id": 852,
-"module": "Module 4",
-"section": "4a",
-"word": "gesture",
-"transcription": "/ˈdʒestʃə/",
-"translation": "жест",
-"pos": "noun"
-},
-{
-"id": 853,
-"module": "Module 4",
-"section": "4a",
-"word": "harm",
-"transcription": "/hɑːm/",
-"translation": "вред",
-"pos": "noun"
-},
-{
-"id": 854,
-"module": "Module 4",
-"section": "4a",
-"word": "helper",
-"transcription": "/ˈhelpə/",
-"translation": "помощник",
-"pos": "noun"
-},
-{
-"id": 855,
-"module": "Module 4",
-"section": "4a",
-"word": "in theory",
-"transcription": "/ɪn ˈθɪəri/",
-"translation": "теоретически",
-"pos": "phrase"
-},
-{
-"id": 856,
-"module": "Module 4",
-"section": "4a",
-"word": "inaction",
-"transcription": "/ɪnˈækʃn/",
-"translation": "бездействие",
-"pos": "noun"
-},
-{
-"id": 857,
-"module": "Module 4",
-"section": "4a",
-"word": "injure",
-"transcription": "/ˈɪndʒə/",
-"translation": "ранить, повредить",
-"pos": "verb"
-},
-{
-"id": 858,
-"module": "Module 4",
-"section": "4a",
-"word": "intelligence",
-"transcription": "/ɪnˈtelɪdʒəns/",
-"translation": "интеллект, рассудок",
-"pos": "noun"
-},
-{
-"id": 859,
-"module": "Module 4",
-"section": "4a",
-"word": "ironing",
-"transcription": "/ˈaɪənɪŋ/",
-"translation": "глажение (одежды)",
-"pos": "noun"
-},
-{
-"id": 860,
-"module": "Module 4",
-"section": "4a",
-"word": "knowledge",
-"transcription": "/ˈnɒlɪdʒ/",
-"translation": "зд. понимание",
-"pos": "noun"
-},
-{
-"id": 861,
-"module": "Module 4",
-"section": "4a",
-"word": "mobility",
-"transcription": "/məʊˈbɪləti/",
-"translation": "мобильность",
-"pos": "noun"
-},
-{
-"id": 862,
-"module": "Module 4",
-"section": "4a",
-"word": "mow the lawn",
-"transcription": "/məʊ ðə lɔːn/",
-"translation": "косить лужайку",
-"pos": "phrase"
-},
-{
-"id": 863,
-"module": "Module 4",
-"section": "4a",
-"word": "nuclear power",
-"transcription": "/ˈnjuːkliə ˈpaʊə/",
-"translation": "атомная энергия",
-"pos": "noun"
-},
-{
-"id": 864,
-"module": "Module 4",
-"section": "4a",
-"word": "obey",
-"transcription": "/əˈbeɪ/",
-"translation": "подчиняться",
-"pos": "verb"
-},
-{
-"id": 865,
-"module": "Module 4",
-"section": "4a",
-"word": "obstacle",
-"transcription": "/ˈɒbstəkl/",
-"translation": "помеха, преграда",
-"pos": "noun"
-},
-{
-"id": 866,
-"module": "Module 4",
-"section": "4a",
-"word": "perform",
-"transcription": "/pəˈfɔːm/",
-"translation": "выполнять, исполнять",
-"pos": "verb"
-},
-{
-"id": 867,
-"module": "Module 4",
-"section": "4a",
-"word": "power of reasoning",
-"transcription": "/ˈpaʊə əv ˈriːzənɪŋ/",
-"translation": "способность к умозаключениям",
-"pos": "phrase"
-},
-{
-"id": 868,
-"module": "Module 4",
-"section": "4a",
-"word": "promise",
-"transcription": "/ˈprɒmɪs/",
-"translation": "обещать",
-"pos": "verb"
-},
-{
-"id": 869,
-"module": "Module 4",
-"section": "4a",
-"word": "protect",
-"transcription": "/prəˈtekt/",
-"translation": "защищать",
-"pos": "verb"
-},
-{
-"id": 870,
-"module": "Module 4",
-"section": "4a",
-"word": "protection",
-"transcription": "/prəˈtekʃn/",
-"translation": "защита",
-"pos": "noun"
-},
-{
-"id": 871,
-"module": "Module 4",
-"section": "4a",
-"word": "reasoning",
-"transcription": "/ˈriːzənɪŋ/",
-"translation": "умозаключение",
-"pos": "noun"
-},
-{
-"id": 872,
-"module": "Module 4",
-"section": "4a",
-"word": "roboticist",
-"transcription": "/ˌrəʊbəˈtɪsɪst/",
-"translation": "инженер, создающий роботов; робототехник",
-"pos": "noun"
-},
-{
-"id": 873,
-"module": "Module 4",
-"section": "4a",
-"word": "rocket",
-"transcription": "/ˈrɒkɪt/",
-"translation": "ракета",
-"pos": "noun"
-},
-{
-"id": 874,
-"module": "Module 4",
-"section": "4a",
-"word": "science fiction",
-"transcription": "/ˈsaɪəns ˈfɪkʃn/",
-"translation": "научная фантастика",
-"pos": "noun"
-},
-{
-"id": 875,
-"module": "Module 4",
-"section": "4a",
-"word": "scientist",
-"transcription": "/ˈsaɪəntɪst/",
-"translation": "ученый",
-"pos": "noun"
-},
-{
-"id": 876,
-"module": "Module 4",
-"section": "4a",
-"word": "simply",
-"transcription": "/ˈsɪmpli/",
-"translation": "просто",
-"pos": "adverb"
-},
-{
-"id": 877,
-"module": "Module 4",
-"section": "4a",
-"word": "task",
-"transcription": "/tɑːsk/",
-"translation": "задание",
-"pos": "noun"
-},
-{
-"id": 878,
-"module": "Module 4",
-"section": "4a",
-"word": "vacuum",
-"transcription": "/ˈvækjuːm/",
-"translation": "пылесосить",
-"pos": "verb"
-},
-{
-"id": 879,
-"module": "Module 4",
-"section": "Vocabulary: Technology",
-"word": "be divided",
-"transcription": "/bi dɪˈvaɪdɪd/",
-"translation": "разойтись во взглядах",
-"pos": "phrase"
-},
-{
-"id": 880,
-"module": "Module 4",
-"section": "Vocabulary: Technology",
-"word": "become a reality",
-"transcription": "/bɪˈkʌm ə riˈæləti/",
-"translation": "становиться реальным",
-"pos": "phrase"
-},
-{
-"id": 881,
-"module": "Module 4",
-"section": "Vocabulary: Technology",
-"word": "build",
-"transcription": "/bɪld/",
-"translation": "строить",
-"pos": "verb (irregular)"
-},
-{
-"id": 882,
-"module": "Module 4",
-"section": "4a",
 "word": "cater for one's needs",
 "transcription": "/ˈkeɪtə fɔː wʌnz niːdz/",
 "translation": "удовлетворять чьи-либо нужды",
 "pos": "phrase"
 },
 {
-"id": 883,
+"id": 840,
 "module": "Module 4",
 "section": "4a",
 "word": "clean",
@@ -7947,7 +7560,7 @@
 "pos": "verb"
 },
 {
-"id": 884,
+"id": 841,
 "module": "Module 4",
 "section": "4a",
 "word": "clear",
@@ -7956,7 +7569,7 @@
 "pos": "verb"
 },
 {
-"id": 885,
+"id": 842,
 "module": "Module 4",
 "section": "4a",
 "word": "common",
@@ -7965,7 +7578,61 @@
 "pos": "adjective"
 },
 {
-"id": 886,
+"id": 843,
+"module": "Module 4",
+"section": "4a",
+"word": "companion",
+"transcription": "/kəmˈpænjən/",
+"translation": "друг",
+"pos": "noun"
+},
+{
+"id": 844,
+"module": "Module 4",
+"section": "4a",
+"word": "conflict",
+"transcription": "/ˈkɒnflɪkt/",
+"translation": "конфликт, ссора",
+"pos": "noun"
+},
+{
+"id": 845,
+"module": "Module 4",
+"section": "4a",
+"word": "consciousness",
+"transcription": "/ˈkɒnʃəsnəs/",
+"translation": "сознание, разум",
+"pos": "noun"
+},
+{
+"id": 846,
+"module": "Module 4",
+"section": "4a",
+"word": "copy",
+"transcription": "/ˈkɒpi/",
+"translation": "копировать, имитировать",
+"pos": "verb"
+},
+{
+"id": 847,
+"module": "Module 4",
+"section": "4a",
+"word": "creativity",
+"transcription": "/ˌkriːeɪˈtɪvəti/",
+"translation": "творчество",
+"pos": "noun"
+},
+{
+"id": 848,
+"module": "Module 4",
+"section": "4a",
+"word": "decision",
+"transcription": "/dɪˈsɪʒn/",
+"translation": "решение",
+"pos": "noun"
+},
+{
+"id": 849,
 "module": "Module 4",
 "section": "4a",
 "word": "discovery",
@@ -7974,7 +7641,70 @@
 "pos": "noun"
 },
 {
-"id": 887,
+"id": 850,
+"module": "Module 4",
+"section": "4a",
+"word": "divided",
+"transcription": "/dɪˈvaɪdɪd/",
+"translation": "обнаруживающий разногласия",
+"pos": "adjective"
+},
+{
+"id": 851,
+"module": "Module 4",
+"section": "4a",
+"word": "emotional response",
+"transcription": "/ɪˈməʊʃənl rɪˈspɒns/",
+"translation": "эмоциональная реакция",
+"pos": "phrase"
+},
+{
+"id": 852,
+"module": "Module 4",
+"section": "4a",
+"word": "except for",
+"transcription": "/ɪkˈsept fɔː/",
+"translation": "кроме",
+"pos": "prepositional phrase"
+},
+{
+"id": 853,
+"module": "Module 4",
+"section": "4a",
+"word": "existence",
+"transcription": "/ɪɡˈzɪstəns/",
+"translation": "существование",
+"pos": "noun"
+},
+{
+"id": 854,
+"module": "Module 4",
+"section": "4a",
+"word": "expert",
+"transcription": "/ˈekspɜːt/",
+"translation": "эксперт, профессионал",
+"pos": "noun"
+},
+{
+"id": 855,
+"module": "Module 4",
+"section": "4a",
+"word": "figurative speech",
+"transcription": "/ˈfɪɡərətɪv spiːtʃ/",
+"translation": "образная речь",
+"pos": "phrase"
+},
+{
+"id": 856,
+"module": "Module 4",
+"section": "4a",
+"word": "function",
+"transcription": "/ˈfʌŋkʃn/",
+"translation": "функция",
+"pos": "noun"
+},
+{
+"id": 857,
 "module": "Module 4",
 "section": "4a",
 "word": "functioning",
@@ -7983,7 +7713,7 @@
 "pos": "adjective"
 },
 {
-"id": 888,
+"id": 858,
 "module": "Module 4",
 "section": "4a",
 "word": "gadget",
@@ -7992,7 +7722,34 @@
 "pos": "noun"
 },
 {
-"id": 889,
+"id": 859,
+"module": "Module 4",
+"section": "4a",
+"word": "gesture",
+"transcription": "/ˈdʒestʃə/",
+"translation": "жест",
+"pos": "noun"
+},
+{
+"id": 860,
+"module": "Module 4",
+"section": "4a",
+"word": "harm",
+"transcription": "/hɑːm/",
+"translation": "вред",
+"pos": "noun"
+},
+{
+"id": 861,
+"module": "Module 4",
+"section": "4a",
+"word": "helper",
+"transcription": "/ˈhelpə/",
+"translation": "помощник",
+"pos": "noun"
+},
+{
+"id": 862,
 "module": "Module 4",
 "section": "4a",
 "word": "high-tech",
@@ -8001,7 +7758,7 @@
 "pos": "adjective"
 },
 {
-"id": 890,
+"id": 863,
 "module": "Module 4",
 "section": "4a",
 "word": "housework",
@@ -8010,7 +7767,43 @@
 "pos": "noun"
 },
 {
-"id": 891,
+"id": 864,
+"module": "Module 4",
+"section": "4a",
+"word": "in theory",
+"transcription": "/ɪn ˈθɪəri/",
+"translation": "теоретически",
+"pos": "phrase"
+},
+{
+"id": 865,
+"module": "Module 4",
+"section": "4a",
+"word": "inaction",
+"transcription": "/ɪnˈækʃn/",
+"translation": "бездействие",
+"pos": "noun"
+},
+{
+"id": 866,
+"module": "Module 4",
+"section": "4a",
+"word": "injure",
+"transcription": "/ˈɪndʒə/",
+"translation": "ранить, повредить",
+"pos": "verb"
+},
+{
+"id": 867,
+"module": "Module 4",
+"section": "4a",
+"word": "intelligence",
+"transcription": "/ɪnˈtelɪdʒəns/",
+"translation": "интеллект, рассудок",
+"pos": "noun"
+},
+{
+"id": 868,
 "module": "Module 4",
 "section": "4a",
 "word": "invention",
@@ -8019,7 +7812,25 @@
 "pos": "noun"
 },
 {
-"id": 892,
+"id": 869,
+"module": "Module 4",
+"section": "4a",
+"word": "ironing",
+"transcription": "/ˈaɪənɪŋ/",
+"translation": "глажение (одежды)",
+"pos": "noun"
+},
+{
+"id": 870,
+"module": "Module 4",
+"section": "4a",
+"word": "knowledge",
+"transcription": "/ˈnɒlɪdʒ/",
+"translation": "зд. понимание",
+"pos": "noun"
+},
+{
+"id": 871,
 "module": "Module 4",
 "section": "4a",
 "word": "microwave",
@@ -8028,7 +7839,52 @@
 "pos": "noun"
 },
 {
-"id": 893,
+"id": 872,
+"module": "Module 4",
+"section": "4a",
+"word": "mobility",
+"transcription": "/məʊˈbɪləti/",
+"translation": "мобильность",
+"pos": "noun"
+},
+{
+"id": 873,
+"module": "Module 4",
+"section": "4a",
+"word": "mow the lawn",
+"transcription": "/məʊ ðə lɔːn/",
+"translation": "косить лужайку",
+"pos": "phrase"
+},
+{
+"id": 874,
+"module": "Module 4",
+"section": "4a",
+"word": "nuclear power",
+"transcription": "/ˈnjuːkliə ˈpaʊə/",
+"translation": "атомная энергия",
+"pos": "noun"
+},
+{
+"id": 875,
+"module": "Module 4",
+"section": "4a",
+"word": "obey",
+"transcription": "/əˈbeɪ/",
+"translation": "подчиняться",
+"pos": "verb"
+},
+{
+"id": 876,
+"module": "Module 4",
+"section": "4a",
+"word": "obstacle",
+"transcription": "/ˈɒbstəkl/",
+"translation": "помеха, преграда",
+"pos": "noun"
+},
+{
+"id": 877,
 "module": "Module 4",
 "section": "4a",
 "word": "obstruction",
@@ -8037,7 +7893,7 @@
 "pos": "noun"
 },
 {
-"id": 894,
+"id": 878,
 "module": "Module 4",
 "section": "4a",
 "word": "ordinary",
@@ -8046,7 +7902,7 @@
 "pos": "adjective"
 },
 {
-"id": 895,
+"id": 879,
 "module": "Module 4",
 "section": "4a",
 "word": "overcome a problem",
@@ -8055,7 +7911,7 @@
 "pos": "phrase"
 },
 {
-"id": 896,
+"id": 880,
 "module": "Module 4",
 "section": "4a",
 "word": "own",
@@ -8064,7 +7920,16 @@
 "pos": "verb"
 },
 {
-"id": 897,
+"id": 881,
+"module": "Module 4",
+"section": "4a",
+"word": "perform",
+"transcription": "/pəˈfɔːm/",
+"translation": "выполнять, исполнять",
+"pos": "verb"
+},
+{
+"id": 882,
 "module": "Module 4",
 "section": "4a",
 "word": "perform a task",
@@ -8073,13 +7938,148 @@
 "pos": "phrase"
 },
 {
-"id": 898,
+"id": 883,
+"module": "Module 4",
+"section": "4a",
+"word": "power of reasoning",
+"transcription": "/ˈpaʊə əv ˈriːzənɪŋ/",
+"translation": "способность к умозаключениям",
+"pos": "phrase"
+},
+{
+"id": 884,
+"module": "Module 4",
+"section": "4a",
+"word": "promise",
+"transcription": "/ˈprɒmɪs/",
+"translation": "обещать",
+"pos": "verb"
+},
+{
+"id": 885,
+"module": "Module 4",
+"section": "4a",
+"word": "protect",
+"transcription": "/prəˈtekt/",
+"translation": "защищать",
+"pos": "verb"
+},
+{
+"id": 886,
+"module": "Module 4",
+"section": "4a",
+"word": "protection",
+"transcription": "/prəˈtekʃn/",
+"translation": "защита",
+"pos": "noun"
+},
+{
+"id": 887,
 "module": "Module 4",
 "section": "4a",
 "word": "reality",
 "transcription": "/riˈæləti/",
 "translation": "реальность",
 "pos": "noun"
+},
+{
+"id": 888,
+"module": "Module 4",
+"section": "4a",
+"word": "reasoning",
+"transcription": "/ˈriːzənɪŋ/",
+"translation": "умозаключение",
+"pos": "noun"
+},
+{
+"id": 889,
+"module": "Module 4",
+"section": "4a",
+"word": "roboticist",
+"transcription": "/ˌrəʊbəˈtɪsɪst/",
+"translation": "инженер, создающий роботов; робототехник",
+"pos": "noun"
+},
+{
+"id": 890,
+"module": "Module 4",
+"section": "4a",
+"word": "rocket",
+"transcription": "/ˈrɒkɪt/",
+"translation": "ракета",
+"pos": "noun"
+},
+{
+"id": 891,
+"module": "Module 4",
+"section": "4a",
+"word": "science fiction",
+"transcription": "/ˈsaɪəns ˈfɪkʃn/",
+"translation": "научная фантастика",
+"pos": "noun"
+},
+{
+"id": 892,
+"module": "Module 4",
+"section": "4a",
+"word": "scientist",
+"transcription": "/ˈsaɪəntɪst/",
+"translation": "ученый",
+"pos": "noun"
+},
+{
+"id": 893,
+"module": "Module 4",
+"section": "4a",
+"word": "simply",
+"transcription": "/ˈsɪmpli/",
+"translation": "просто",
+"pos": "adverb"
+},
+{
+"id": 894,
+"module": "Module 4",
+"section": "4a",
+"word": "task",
+"transcription": "/tɑːsk/",
+"translation": "задание",
+"pos": "noun"
+},
+{
+"id": 895,
+"module": "Module 4",
+"section": "4a",
+"word": "vacuum",
+"transcription": "/ˈvækjuːm/",
+"translation": "пылесосить",
+"pos": "verb"
+},
+{
+"id": 896,
+"module": "Module 4",
+"section": "Vocabulary: Technology",
+"word": "be divided",
+"transcription": "/bi dɪˈvaɪdɪd/",
+"translation": "разойтись во взглядах",
+"pos": "phrase"
+},
+{
+"id": 897,
+"module": "Module 4",
+"section": "Vocabulary: Technology",
+"word": "become a reality",
+"transcription": "/bɪˈkʌm ə riˈæləti/",
+"translation": "становиться реальным",
+"pos": "phrase"
+},
+{
+"id": 898,
+"module": "Module 4",
+"section": "Vocabulary: Technology",
+"word": "build",
+"transcription": "/bɪld/",
+"translation": "строить",
+"pos": "verb (irregular)"
 },
 {
 "id": 899,
@@ -9660,13 +9660,22 @@
 "id": 1074,
 "module": "Module 4",
 "section": "GG4",
+"word": "e-waste",
+"transcription": "/ˈiː weɪst/",
+"translation": "электронные отходы",
+"pos": "noun"
+},
+{
+"id": 1075,
+"module": "Module 4",
+"section": "GG4",
 "word": "emit",
 "transcription": "/ɪˈmɪt/",
 "translation": "выделять",
 "pos": "verb"
 },
 {
-"id": 1075,
+"id": 1076,
 "module": "Module 4",
 "section": "GG4",
 "word": "encourage",
@@ -9675,22 +9684,13 @@
 "pos": "verb"
 },
 {
-"id": 1076,
+"id": 1077,
 "module": "Module 4",
 "section": "GG4",
 "word": "eventually",
 "transcription": "/ɪˈventʃuəli/",
 "translation": "в конце концов",
 "pos": "adverb"
-},
-{
-"id": 1077,
-"module": "Module 4",
-"section": "GG4",
-"word": "e-waste",
-"transcription": "/ˈiː weɪst/",
-"translation": "электронные отходы",
-"pos": "noun"
 },
 {
 "id": 1078,
@@ -14385,13 +14385,22 @@
 "id": 1599,
 "module": "Module 6",
 "section": "6d",
+"word": "walker",
+"transcription": "/ˈwɔːkə/",
+"translation": "ходок",
+"pos": "noun"
+},
+{
+"id": 1600,
+"module": "Module 6",
+"section": "6d",
 "word": "withdraw",
 "transcription": "/wɪðˈdrɔː, wɪθ-/",
 "translation": "снимать деньги со счета",
 "pos": "verb (irregular)"
 },
 {
-"id": 1600,
+"id": 1601,
 "module": "Module 6",
 "section": "6d",
 "word": "witness",
@@ -14400,22 +14409,13 @@
 "pos": "noun"
 },
 {
-"id": 1601,
+"id": 1602,
 "module": "Module 6",
 "section": "6d",
 "word": "witness",
 "transcription": "/ˈwɪtnəs/",
 "translation": "быть свидетелем",
 "pos": "verb"
-},
-{
-"id": 1602,
-"module": "Module 6",
-"section": "6d",
-"word": "walker",
-"transcription": "/ˈwɔːkə/",
-"translation": "ходок",
-"pos": "noun"
 },
 {
 "id": 1603,
@@ -16707,535 +16707,13 @@
 "id": 1857,
 "module": "Module 7",
 "section": "7f",
-"word": "habit",
-"transcription": "/ˈhæbɪt/",
-"translation": "привычка",
-"pos": "noun"
-},
-{
-"id": 1858,
-"module": "Module 7",
-"section": "7f",
-"word": "harm",
-"transcription": "/hɑːm/",
-"translation": "наносить вред",
-"pos": "verb"
-},
-{
-"id": 1859,
-"module": "Module 7",
-"section": "7f",
-"word": "in good shape",
-"transcription": "/ɪn ɡʊd ʃeɪp/",
-"translation": "в хорошей форме",
-"pos": "phrase"
-},
-{
-"id": 1860,
-"module": "Module 7",
-"section": "7f",
-"word": "lead",
-"transcription": "/liːd/",
-"translation": "вести; привести (к чему-либо)",
-"pos": "verb (irregular)"
-},
-{
-"id": 1861,
-"module": "Module 7",
-"section": "7f",
-"word": "lead a quiet busy life",
-"transcription": "/liːd ə ˈkwaɪət ˈbɪzi laɪf/",
-"translation": "вести (спокойный, занятый) образ жизни",
-"pos": "phrase"
-},
-{
-"id": 1862,
-"module": "Module 7",
-"section": "7f",
-"word": "low",
-"transcription": "/ləʊ/",
-"translation": "низкий",
-"pos": "adjective"
-},
-{
-"id": 1863,
-"module": "Module 7",
-"section": "7f",
-"word": "manner",
-"transcription": "/ˈmænə/",
-"translation": "способ, метод",
-"pos": "noun"
-},
-{
-"id": 1864,
-"module": "Module 7",
-"section": "7f",
-"word": "out of sight",
-"transcription": "/aʊt əv saɪt/",
-"translation": "вне поля зрения",
-"pos": "phrase"
-},
-{
-"id": 1865,
-"module": "Module 7",
-"section": "7f",
-"word": "pass",
-"transcription": "/pɑːs/",
-"translation": "проходить (о времени)",
-"pos": "verb"
-},
-{
-"id": 1866,
-"module": "Module 7",
-"section": "7f",
-"word": "poor",
-"transcription": "/pʊə/",
-"translation": "бедный; скудный",
-"pos": "adjective"
-},
-{
-"id": 1867,
-"module": "Module 7",
-"section": "7f",
-"word": "protect",
-"transcription": "/prəˈtekt/",
-"translation": "защищать",
-"pos": "verb"
-},
-{
-"id": 1868,
-"module": "Module 7",
-"section": "7f",
-"word": "recover",
-"transcription": "/rɪˈkʌvə/",
-"translation": "выздоравливать",
-"pos": "verb"
-},
-{
-"id": 1869,
-"module": "Module 7",
-"section": "7f",
-"word": "ruin",
-"transcription": "/ˈruːɪn/",
-"translation": "уничтожать",
-"pos": "verb"
-},
-{
-"id": 1870,
-"module": "Module 7",
-"section": "7f",
-"word": "shaky",
-"transcription": "/ˈʃeɪki/",
-"translation": "нестабильный",
-"pos": "adjective"
-},
-{
-"id": 1871,
-"module": "Module 7",
-"section": "7f",
-"word": "spend",
-"transcription": "/spend/",
-"translation": "проводить (время)",
-"pos": "verb (irregular)"
-},
-{
-"id": 1872,
-"module": "Module 7",
-"section": "7f",
-"word": "study",
-"transcription": "/ˈstʌdi/",
-"translation": "детальное изучение",
-"pos": "noun"
-},
-{
-"id": 1873,
-"module": "Module 7",
-"section": "7f",
-"word": "weak",
-"transcription": "/wiːk/",
-"translation": "слабый",
-"pos": "adjective"
-},
-{
-"id": 1874,
-"module": "Module 7",
-"section": "CC7",
-"word": "alligator",
-"transcription": "/ˈæləɡeɪtə/",
-"translation": "аллигатор",
-"pos": "noun"
-},
-{
-"id": 1875,
-"module": "Module 7",
-"section": "CC7",
-"word": "approach",
-"transcription": "/əˈprəʊtʃ/",
-"translation": "приближаться",
-"pos": "verb"
-},
-{
-"id": 1876,
-"module": "Module 7",
-"section": "CC7",
-"word": "beware",
-"transcription": "/bɪˈweə/",
-"translation": "быть осторожным",
-"pos": "verb"
-},
-{
-"id": 1877,
-"module": "Module 7",
-"section": "CC7",
-"word": "bite",
-"transcription": "/baɪt/",
-"translation": "кусать(ся)",
-"pos": "verb (irregular)"
-},
-{
-"id": 1878,
-"module": "Module 7",
-"section": "CC7",
-"word": "cat flap",
-"transcription": "/kæt flæp/",
-"translation": "маленькая входная дверца в дом для кошек",
-"pos": "noun"
-},
-{
-"id": 1879,
-"module": "Module 7",
-"section": "CC7",
-"word": "common",
-"transcription": "/ˈkɒmən/",
-"translation": "обычный, обыкновенный",
-"pos": "adjective"
-},
-{
-"id": 1880,
-"module": "Module 7",
-"section": "CC7",
-"word": "continuously",
-"transcription": "/kənˈtɪnjuəsli/",
-"translation": "постоянно",
-"pos": "adverb"
-},
-{
-"id": 1881,
-"module": "Module 7",
-"section": "CC7",
-"word": "cub",
-"transcription": "/kʌb/",
-"translation": "детеныш (зверя)",
-"pos": "noun"
-},
-{
-"id": 1882,
-"module": "Module 7",
-"section": "CC7",
-"word": "cuddly",
-"transcription": "/ˈkʌdli/",
-"translation": "приятный, милый (которого хочется обнять)",
-"pos": "adjective"
-},
-{
-"id": 1883,
-"module": "Module 7",
-"section": "CC7",
-"word": "disease",
-"transcription": "/dɪˈziːz/",
-"translation": "болезнь, заболевание",
-"pos": "noun"
-},
-{
-"id": 1884,
-"module": "Module 7",
-"section": "CC7",
-"word": "drag",
-"transcription": "/dræɡ/",
-"translation": "тащить, волочить (по земле)",
-"pos": "verb"
-},
-{
-"id": 1885,
-"module": "Module 7",
-"section": "CC7",
-"word": "edge",
-"transcription": "/edʒ/",
-"translation": "край",
-"pos": "noun"
-},
-{
-"id": 1886,
-"module": "Module 7",
-"section": "CC7",
-"word": "ferocious",
-"transcription": "/fəˈrəʊʃəs/",
-"translation": "свирепый",
-"pos": "adjective"
-},
-{
-"id": 1887,
-"module": "Module 7",
-"section": "CC7",
-"word": "go through",
-"transcription": "/ɡəʊ θruː/",
-"translation": "расходовать",
-"pos": "phrasal verb"
-},
-{
-"id": 1888,
-"module": "Module 7",
-"section": "CC7",
-"word": "grizzly bear",
-"transcription": "/ˈɡrizli beə/",
-"translation": "гризли (североамериканский медведь)",
-"pos": "noun"
-},
-{
-"id": 1889,
-"module": "Module 7",
-"section": "CC7",
-"word": "kick",
-"transcription": "/kɪk/",
-"translation": "ударять ногой",
-"pos": "verb"
-},
-{
-"id": 1890,
-"module": "Module 7",
-"section": "CC7",
-"word": "marsh",
-"transcription": "/mɑːʃ/",
-"translation": "болото",
-"pos": "noun"
-},
-{
-"id": 1891,
-"module": "Module 7",
-"section": "CC7",
-"word": "motionless",
-"transcription": "/ˈməʊʃnləs/",
-"translation": "неподвижный",
-"pos": "adjective"
-},
-{
-"id": 1892,
-"module": "Module 7",
-"section": "CC7",
-"word": "painful",
-"transcription": "/ˈpeɪnfl/",
-"translation": "болезненный",
-"pos": "adjective"
-},
-{
-"id": 1893,
-"module": "Module 7",
-"section": "CC7",
-"word": "paw",
-"transcription": "/pɔː/",
-"translation": "лапа (животного)",
-"pos": "noun"
-},
-{
-"id": 1894,
-"module": "Module 7",
-"section": "CC7",
-"word": "poisonous",
-"transcription": "/ˈpɔɪzənəs/",
-"translation": "ядовитый",
-"pos": "adjective"
-},
-{
-"id": 1895,
-"module": "Module 7",
-"section": "CC7",
-"word": "prey",
-"transcription": "/preɪ/",
-"translation": "добыча",
-"pos": "noun"
-},
-{
-"id": 1896,
-"module": "Module 7",
-"section": "CC7",
-"word": "rabies",
-"transcription": "/ˈreɪbiːz/",
-"translation": "бешенство (болезнь)",
-"pos": "noun"
-},
-{
-"id": 1897,
-"module": "Module 7",
-"section": "CC7",
-"word": "raccoon",
-"transcription": "/rəˈkuːn, ræ-/",
-"translation": "енот",
-"pos": "noun"
-},
-{
-"id": 1898,
-"module": "Module 7",
-"section": "CC7",
-"word": "rattlesnake",
-"transcription": "/ˈrætlsneɪk/",
-"translation": "гремучая змея",
-"pos": "noun"
-},
-{
-"id": 1899,
-"module": "Module 7",
-"section": "CC7",
-"word": "scratch",
-"transcription": "/skrætʃ/",
-"translation": "царапать(ся)",
-"pos": "verb"
-},
-{
-"id": 1900,
-"module": "Module 7",
-"section": "CC7",
-"word": "sighting",
-"transcription": "/ˈsaɪtɪŋ/",
-"translation": "наблюдение",
-"pos": "noun"
-},
-{
-"id": 1901,
-"module": "Module 7",
-"section": "CC7",
-"word": "slow-moving river",
-"transcription": "/ˌsləʊ ˈmuːvɪŋ ˈrɪvə/",
-"translation": "спокойная река",
-"pos": "noun"
-},
-{
-"id": 1902,
-"module": "Module 7",
-"section": "CC7",
-"word": "snatch",
-"transcription": "/snætʃ/",
-"translation": "хватать",
-"pos": "verb"
-},
-{
-"id": 1903,
-"module": "Module 7",
-"section": "CC7",
-"word": "spit",
-"transcription": "/spɪt/",
-"translation": "плевать(ся)",
-"pos": "verb (irregular)"
-},
-{
-"id": 1904,
-"module": "Module 7",
-"section": "CC7",
-"word": "sting",
-"transcription": "/stɪŋ/",
-"translation": "жалить",
-"pos": "verb (irregular)"
-},
-{
-"id": 1905,
-"module": "Module 7",
-"section": "CC7",
-"word": "swamp",
-"transcription": "/swɒmp/",
-"translation": "болото",
-"pos": "noun"
-},
-{
-"id": 1906,
-"module": "Module 7",
-"section": "CC7",
-"word": "unpredictable",
-"transcription": "/ˌʌnprɪˈdɪktəbl/",
-"translation": "непредсказуемый",
-"pos": "adjective"
-},
-{
-"id": 1907,
-"module": "Module 7",
-"section": "CC7",
-"word": "venom",
-"transcription": "/ˈvenəm/",
-"translation": "яд (паучий, змеиный)",
-"pos": "noun"
-},
-{
-"id": 1908,
-"module": "Module 7",
-"section": "CC7",
-"word": "warn",
-"transcription": "/wɔːn/",
-"translation": "предостерегать",
-"pos": "verb"
-},
-{
-"id": 1909,
-"module": "Module 7",
-"section": "ATC7",
-"word": "beat",
-"transcription": "/biːt/",
-"translation": "бить; побеждать",
-"pos": "verb (irregular)"
-},
-{
-"id": 1910,
-"module": "Module 7",
-"section": "ATC7",
-"word": "bully",
-"transcription": "/ˈbʊli/",
-"translation": "задира",
-"pos": "noun"
-},
-{
-"id": 1911,
-"module": "Module 7",
-"section": "ATC7",
-"word": "busy area",
-"transcription": "/ˈbɪzi ˈeəriə/",
-"translation": "оживленная часть города",
-"pos": "phrase"
-},
-{
-"id": 1912,
-"module": "Module 7",
-"section": "ATC7",
-"word": "common sense",
-"transcription": "/ˌkɒmən ˈsens/",
-"translation": "здравый смысл",
-"pos": "noun"
-},
-{
-"id": 1913,
-"module": "Module 7",
-"section": "ATC7",
-"word": "community centre",
-"transcription": "/kəˈmjuːnəti ˈsentə/",
-"translation": "общественный центр",
-"pos": "noun"
-},
-{
-"id": 1914,
-"module": "Module 7",
-"section": "ATC7",
-"word": "confidently",
-"transcription": "/ˈkɒnfɪdəntli/",
-"translation": "уверенно",
-"pos": "adverb"
-},
-{
-"id": 1915,
-"module": "Module 7",
-"section": "7f",
 "word": "department",
 "transcription": "/dɪˈpɑːtmənt/",
 "translation": "отдел (в организации)",
 "pos": "noun"
 },
 {
-"id": 1916,
+"id": 1858,
 "module": "Module 7",
 "section": "7f",
 "word": "end up",
@@ -17244,7 +16722,7 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1917,
+"id": 1859,
 "module": "Module 7",
 "section": "7f",
 "word": "expert",
@@ -17253,7 +16731,7 @@
 "pos": "adjective"
 },
 {
-"id": 1918,
+"id": 1860,
 "module": "Module 7",
 "section": "7f",
 "word": "find out",
@@ -17262,7 +16740,7 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1919,
+"id": 1861,
 "module": "Module 7",
 "section": "7f",
 "word": "get across",
@@ -17271,7 +16749,7 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1920,
+"id": 1862,
 "module": "Module 7",
 "section": "7f",
 "word": "get back",
@@ -17280,7 +16758,7 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1921,
+"id": 1863,
 "module": "Module 7",
 "section": "7f",
 "word": "get down",
@@ -17289,7 +16767,7 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1922,
+"id": 1864,
 "module": "Module 7",
 "section": "7f",
 "word": "get up",
@@ -17298,7 +16776,34 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1923,
+"id": 1865,
+"module": "Module 7",
+"section": "7f",
+"word": "habit",
+"transcription": "/ˈhæbɪt/",
+"translation": "привычка",
+"pos": "noun"
+},
+{
+"id": 1866,
+"module": "Module 7",
+"section": "7f",
+"word": "harm",
+"transcription": "/hɑːm/",
+"translation": "наносить вред",
+"pos": "verb"
+},
+{
+"id": 1867,
+"module": "Module 7",
+"section": "7f",
+"word": "in good shape",
+"transcription": "/ɪn ɡʊd ʃeɪp/",
+"translation": "в хорошей форме",
+"pos": "phrase"
+},
+{
+"id": 1868,
 "module": "Module 7",
 "section": "7f",
 "word": "in the same way",
@@ -17307,7 +16812,7 @@
 "pos": "phrase"
 },
 {
-"id": 1924,
+"id": 1869,
 "module": "Module 7",
 "section": "7f",
 "word": "instinct",
@@ -17316,7 +16821,7 @@
 "pos": "noun"
 },
 {
-"id": 1925,
+"id": 1870,
 "module": "Module 7",
 "section": "7f",
 "word": "insulting",
@@ -17325,7 +16830,7 @@
 "pos": "adjective"
 },
 {
-"id": 1926,
+"id": 1871,
 "module": "Module 7",
 "section": "7f",
 "word": "intuition",
@@ -17334,7 +16839,7 @@
 "pos": "noun"
 },
 {
-"id": 1927,
+"id": 1872,
 "module": "Module 7",
 "section": "7f",
 "word": "kick",
@@ -17343,7 +16848,25 @@
 "pos": "noun"
 },
 {
-"id": 1928,
+"id": 1873,
+"module": "Module 7",
+"section": "7f",
+"word": "lead",
+"transcription": "/liːd/",
+"translation": "вести; привести (к чему-либо)",
+"pos": "verb (irregular)"
+},
+{
+"id": 1874,
+"module": "Module 7",
+"section": "7f",
+"word": "lead a quiet busy life",
+"transcription": "/liːd ə ˈkwaɪət ˈbɪzi laɪf/",
+"translation": "вести (спокойный, занятый) образ жизни",
+"pos": "phrase"
+},
+{
+"id": 1875,
 "module": "Module 7",
 "section": "7f",
 "word": "look for",
@@ -17352,7 +16875,7 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1929,
+"id": 1876,
 "module": "Module 7",
 "section": "7f",
 "word": "look to",
@@ -17361,7 +16884,25 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1930,
+"id": 1877,
+"module": "Module 7",
+"section": "7f",
+"word": "low",
+"transcription": "/ləʊ/",
+"translation": "низкий",
+"pos": "adjective"
+},
+{
+"id": 1878,
+"module": "Module 7",
+"section": "7f",
+"word": "manner",
+"transcription": "/ˈmænə/",
+"translation": "способ, метод",
+"pos": "noun"
+},
+{
+"id": 1879,
 "module": "Module 7",
 "section": "7f",
 "word": "manner",
@@ -17370,7 +16911,7 @@
 "pos": "noun"
 },
 {
-"id": 1931,
+"id": 1880,
 "module": "Module 7",
 "section": "7f",
 "word": "mode",
@@ -17379,7 +16920,7 @@
 "pos": "noun"
 },
 {
-"id": 1932,
+"id": 1881,
 "module": "Module 7",
 "section": "7f",
 "word": "mugger",
@@ -17388,7 +16929,25 @@
 "pos": "noun"
 },
 {
-"id": 1933,
+"id": 1882,
+"module": "Module 7",
+"section": "7f",
+"word": "out of sight",
+"transcription": "/aʊt əv saɪt/",
+"translation": "вне поля зрения",
+"pos": "phrase"
+},
+{
+"id": 1883,
+"module": "Module 7",
+"section": "7f",
+"word": "pass",
+"transcription": "/pɑːs/",
+"translation": "проходить (о времени)",
+"pos": "verb"
+},
+{
+"id": 1884,
 "module": "Module 7",
 "section": "7f",
 "word": "poke",
@@ -17397,7 +16956,25 @@
 "pos": "verb"
 },
 {
-"id": 1934,
+"id": 1885,
+"module": "Module 7",
+"section": "7f",
+"word": "poor",
+"transcription": "/pʊə/",
+"translation": "бедный; скудный",
+"pos": "adjective"
+},
+{
+"id": 1886,
+"module": "Module 7",
+"section": "7f",
+"word": "protect",
+"transcription": "/prəˈtekt/",
+"translation": "защищать",
+"pos": "verb"
+},
+{
+"id": 1887,
 "module": "Module 7",
 "section": "7f",
 "word": "put up a fight",
@@ -17406,7 +16983,16 @@
 "pos": "phrase"
 },
 {
-"id": 1935,
+"id": 1888,
+"module": "Module 7",
+"section": "7f",
+"word": "recover",
+"transcription": "/rɪˈkʌvə/",
+"translation": "выздоравливать",
+"pos": "verb"
+},
+{
+"id": 1889,
 "module": "Module 7",
 "section": "7f",
 "word": "region",
@@ -17415,7 +17001,16 @@
 "pos": "noun"
 },
 {
-"id": 1936,
+"id": 1890,
+"module": "Module 7",
+"section": "7f",
+"word": "ruin",
+"transcription": "/ˈruːɪn/",
+"translation": "уничтожать",
+"pos": "verb"
+},
+{
+"id": 1891,
 "module": "Module 7",
 "section": "7f",
 "word": "run around",
@@ -17424,7 +17019,7 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1937,
+"id": 1892,
 "module": "Module 7",
 "section": "7f",
 "word": "run away",
@@ -17433,7 +17028,7 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1938,
+"id": 1893,
 "module": "Module 7",
 "section": "7f",
 "word": "run up (a debt or bill)",
@@ -17442,7 +17037,16 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1939,
+"id": 1894,
+"module": "Module 7",
+"section": "7f",
+"word": "shaky",
+"transcription": "/ˈʃeɪki/",
+"translation": "нестабильный",
+"pos": "adjective"
+},
+{
+"id": 1895,
 "module": "Module 7",
 "section": "7f",
 "word": "short cut",
@@ -17451,7 +17055,7 @@
 "pos": "noun"
 },
 {
-"id": 1940,
+"id": 1896,
 "module": "Module 7",
 "section": "7f",
 "word": "snatch",
@@ -17460,7 +17064,25 @@
 "pos": "verb"
 },
 {
-"id": 1941,
+"id": 1897,
+"module": "Module 7",
+"section": "7f",
+"word": "spend",
+"transcription": "/spend/",
+"translation": "проводить (время)",
+"pos": "verb (irregular)"
+},
+{
+"id": 1898,
+"module": "Module 7",
+"section": "7f",
+"word": "study",
+"transcription": "/ˈstʌdi/",
+"translation": "детальное изучение",
+"pos": "noun"
+},
+{
+"id": 1899,
 "module": "Module 7",
 "section": "7f",
 "word": "threatening",
@@ -17469,7 +17091,7 @@
 "pos": "adjective"
 },
 {
-"id": 1942,
+"id": 1900,
 "module": "Module 7",
 "section": "7f",
 "word": "vulnerable target",
@@ -17478,7 +17100,7 @@
 "pos": "noun"
 },
 {
-"id": 1943,
+"id": 1901,
 "module": "Module 7",
 "section": "7f",
 "word": "watch out",
@@ -17487,13 +17109,391 @@
 "pos": "phrasal verb"
 },
 {
-"id": 1944,
+"id": 1902,
+"module": "Module 7",
+"section": "7f",
+"word": "weak",
+"transcription": "/wiːk/",
+"translation": "слабый",
+"pos": "adjective"
+},
+{
+"id": 1903,
 "module": "Module 7",
 "section": "7f",
 "word": "well-lit",
 "transcription": "/ˌwel ˈlɪt/",
 "translation": "хорошо освещенный",
 "pos": "adjective"
+},
+{
+"id": 1904,
+"module": "Module 7",
+"section": "CC7",
+"word": "alligator",
+"transcription": "/ˈæləɡeɪtə/",
+"translation": "аллигатор",
+"pos": "noun"
+},
+{
+"id": 1905,
+"module": "Module 7",
+"section": "CC7",
+"word": "approach",
+"transcription": "/əˈprəʊtʃ/",
+"translation": "приближаться",
+"pos": "verb"
+},
+{
+"id": 1906,
+"module": "Module 7",
+"section": "CC7",
+"word": "beware",
+"transcription": "/bɪˈweə/",
+"translation": "быть осторожным",
+"pos": "verb"
+},
+{
+"id": 1907,
+"module": "Module 7",
+"section": "CC7",
+"word": "bite",
+"transcription": "/baɪt/",
+"translation": "кусать(ся)",
+"pos": "verb (irregular)"
+},
+{
+"id": 1908,
+"module": "Module 7",
+"section": "CC7",
+"word": "cat flap",
+"transcription": "/kæt flæp/",
+"translation": "маленькая входная дверца в дом для кошек",
+"pos": "noun"
+},
+{
+"id": 1909,
+"module": "Module 7",
+"section": "CC7",
+"word": "common",
+"transcription": "/ˈkɒmən/",
+"translation": "обычный, обыкновенный",
+"pos": "adjective"
+},
+{
+"id": 1910,
+"module": "Module 7",
+"section": "CC7",
+"word": "continuously",
+"transcription": "/kənˈtɪnjuəsli/",
+"translation": "постоянно",
+"pos": "adverb"
+},
+{
+"id": 1911,
+"module": "Module 7",
+"section": "CC7",
+"word": "cub",
+"transcription": "/kʌb/",
+"translation": "детеныш (зверя)",
+"pos": "noun"
+},
+{
+"id": 1912,
+"module": "Module 7",
+"section": "CC7",
+"word": "cuddly",
+"transcription": "/ˈkʌdli/",
+"translation": "приятный, милый (которого хочется обнять)",
+"pos": "adjective"
+},
+{
+"id": 1913,
+"module": "Module 7",
+"section": "CC7",
+"word": "disease",
+"transcription": "/dɪˈziːz/",
+"translation": "болезнь, заболевание",
+"pos": "noun"
+},
+{
+"id": 1914,
+"module": "Module 7",
+"section": "CC7",
+"word": "drag",
+"transcription": "/dræɡ/",
+"translation": "тащить, волочить (по земле)",
+"pos": "verb"
+},
+{
+"id": 1915,
+"module": "Module 7",
+"section": "CC7",
+"word": "edge",
+"transcription": "/edʒ/",
+"translation": "край",
+"pos": "noun"
+},
+{
+"id": 1916,
+"module": "Module 7",
+"section": "CC7",
+"word": "ferocious",
+"transcription": "/fəˈrəʊʃəs/",
+"translation": "свирепый",
+"pos": "adjective"
+},
+{
+"id": 1917,
+"module": "Module 7",
+"section": "CC7",
+"word": "go through",
+"transcription": "/ɡəʊ θruː/",
+"translation": "расходовать",
+"pos": "phrasal verb"
+},
+{
+"id": 1918,
+"module": "Module 7",
+"section": "CC7",
+"word": "grizzly bear",
+"transcription": "/ˈɡrizli beə/",
+"translation": "гризли (североамериканский медведь)",
+"pos": "noun"
+},
+{
+"id": 1919,
+"module": "Module 7",
+"section": "CC7",
+"word": "kick",
+"transcription": "/kɪk/",
+"translation": "ударять ногой",
+"pos": "verb"
+},
+{
+"id": 1920,
+"module": "Module 7",
+"section": "CC7",
+"word": "marsh",
+"transcription": "/mɑːʃ/",
+"translation": "болото",
+"pos": "noun"
+},
+{
+"id": 1921,
+"module": "Module 7",
+"section": "CC7",
+"word": "motionless",
+"transcription": "/ˈməʊʃnləs/",
+"translation": "неподвижный",
+"pos": "adjective"
+},
+{
+"id": 1922,
+"module": "Module 7",
+"section": "CC7",
+"word": "painful",
+"transcription": "/ˈpeɪnfl/",
+"translation": "болезненный",
+"pos": "adjective"
+},
+{
+"id": 1923,
+"module": "Module 7",
+"section": "CC7",
+"word": "paw",
+"transcription": "/pɔː/",
+"translation": "лапа (животного)",
+"pos": "noun"
+},
+{
+"id": 1924,
+"module": "Module 7",
+"section": "CC7",
+"word": "poisonous",
+"transcription": "/ˈpɔɪzənəs/",
+"translation": "ядовитый",
+"pos": "adjective"
+},
+{
+"id": 1925,
+"module": "Module 7",
+"section": "CC7",
+"word": "prey",
+"transcription": "/preɪ/",
+"translation": "добыча",
+"pos": "noun"
+},
+{
+"id": 1926,
+"module": "Module 7",
+"section": "CC7",
+"word": "rabies",
+"transcription": "/ˈreɪbiːz/",
+"translation": "бешенство (болезнь)",
+"pos": "noun"
+},
+{
+"id": 1927,
+"module": "Module 7",
+"section": "CC7",
+"word": "raccoon",
+"transcription": "/rəˈkuːn, ræ-/",
+"translation": "енот",
+"pos": "noun"
+},
+{
+"id": 1928,
+"module": "Module 7",
+"section": "CC7",
+"word": "rattlesnake",
+"transcription": "/ˈrætlsneɪk/",
+"translation": "гремучая змея",
+"pos": "noun"
+},
+{
+"id": 1929,
+"module": "Module 7",
+"section": "CC7",
+"word": "scratch",
+"transcription": "/skrætʃ/",
+"translation": "царапать(ся)",
+"pos": "verb"
+},
+{
+"id": 1930,
+"module": "Module 7",
+"section": "CC7",
+"word": "sighting",
+"transcription": "/ˈsaɪtɪŋ/",
+"translation": "наблюдение",
+"pos": "noun"
+},
+{
+"id": 1931,
+"module": "Module 7",
+"section": "CC7",
+"word": "slow-moving river",
+"transcription": "/ˌsləʊ ˈmuːvɪŋ ˈrɪvə/",
+"translation": "спокойная река",
+"pos": "noun"
+},
+{
+"id": 1932,
+"module": "Module 7",
+"section": "CC7",
+"word": "snatch",
+"transcription": "/snætʃ/",
+"translation": "хватать",
+"pos": "verb"
+},
+{
+"id": 1933,
+"module": "Module 7",
+"section": "CC7",
+"word": "spit",
+"transcription": "/spɪt/",
+"translation": "плевать(ся)",
+"pos": "verb (irregular)"
+},
+{
+"id": 1934,
+"module": "Module 7",
+"section": "CC7",
+"word": "sting",
+"transcription": "/stɪŋ/",
+"translation": "жалить",
+"pos": "verb (irregular)"
+},
+{
+"id": 1935,
+"module": "Module 7",
+"section": "CC7",
+"word": "swamp",
+"transcription": "/swɒmp/",
+"translation": "болото",
+"pos": "noun"
+},
+{
+"id": 1936,
+"module": "Module 7",
+"section": "CC7",
+"word": "unpredictable",
+"transcription": "/ˌʌnprɪˈdɪktəbl/",
+"translation": "непредсказуемый",
+"pos": "adjective"
+},
+{
+"id": 1937,
+"module": "Module 7",
+"section": "CC7",
+"word": "venom",
+"transcription": "/ˈvenəm/",
+"translation": "яд (паучий, змеиный)",
+"pos": "noun"
+},
+{
+"id": 1938,
+"module": "Module 7",
+"section": "CC7",
+"word": "warn",
+"transcription": "/wɔːn/",
+"translation": "предостерегать",
+"pos": "verb"
+},
+{
+"id": 1939,
+"module": "Module 7",
+"section": "ATC7",
+"word": "beat",
+"transcription": "/biːt/",
+"translation": "бить; побеждать",
+"pos": "verb (irregular)"
+},
+{
+"id": 1940,
+"module": "Module 7",
+"section": "ATC7",
+"word": "bully",
+"transcription": "/ˈbʊli/",
+"translation": "задира",
+"pos": "noun"
+},
+{
+"id": 1941,
+"module": "Module 7",
+"section": "ATC7",
+"word": "busy area",
+"transcription": "/ˈbɪzi ˈeəriə/",
+"translation": "оживленная часть города",
+"pos": "phrase"
+},
+{
+"id": 1942,
+"module": "Module 7",
+"section": "ATC7",
+"word": "common sense",
+"transcription": "/ˌkɒmən ˈsens/",
+"translation": "здравый смысл",
+"pos": "noun"
+},
+{
+"id": 1943,
+"module": "Module 7",
+"section": "ATC7",
+"word": "community centre",
+"transcription": "/kəˈmjuːnəti ˈsentə/",
+"translation": "общественный центр",
+"pos": "noun"
+},
+{
+"id": 1944,
+"module": "Module 7",
+"section": "ATC7",
+"word": "confidently",
+"transcription": "/ˈkɒnfɪdəntli/",
+"translation": "уверенно",
+"pos": "adverb"
 },
 {
 "id": 1945,
@@ -18696,19 +18696,19 @@
 "id": 2078,
 "module": "Module 8",
 "section": "8e",
-"word": "participate",
-"transcription": "/pɑːˈtɪsɪpeɪt/",
-"translation": "участвовать",
-"pos": "verb"
+"word": "part-time",
+"transcription": "/ˌpɑːt ˈtaɪm/",
+"translation": "в режиме неполного рабочего дня (недели)",
+"pos": "adverb"
 },
 {
 "id": 2079,
 "module": "Module 8",
 "section": "8e",
-"word": "part-time",
-"transcription": "/ˌpɑːt ˈtaɪm/",
-"translation": "в режиме неполного рабочего дня (недели)",
-"pos": "adverb"
+"word": "participate",
+"transcription": "/pɑːˈtɪsɪpeɪt/",
+"translation": "участвовать",
+"pos": "verb"
 },
 {
 "id": 2080,
@@ -19416,18 +19416,18 @@
 "id": 2158,
 "module": "Module 8",
 "section": "GG8",
-"word": "CO₂ emission",
-"transcription": "/ˌsiː əʊ ɪˈmɪʃn/",
-"translation": "выделение углекислого газа (CO₂) в атмосферу",
+"word": "continent",
+"transcription": "/ˈkɒntɪnənt/",
+"translation": "континент",
 "pos": "noun"
 },
 {
 "id": 2159,
 "module": "Module 8",
 "section": "GG8",
-"word": "continent",
-"transcription": "/ˈkɒntɪnənt/",
-"translation": "континент",
+"word": "CO₂ emission",
+"transcription": "/ˌsiː əʊ ɪˈmɪʃn/",
+"translation": "выделение углекислого газа (CO₂) в атмосферу",
 "pos": "noun"
 },
 {
