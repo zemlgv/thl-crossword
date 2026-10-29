@@ -156,12 +156,14 @@ button.danger:hover{background:#d6394a;color:#fff;border-style:solid;border-colo
 .wc{background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
 .wh{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .wh strong{font-size:17px}
-.spk{width:34px;height:34px;padding:0;display:grid;place-items:center;border-radius:50%;color:var(--ac);flex:none}
-.spk svg{width:16px;height:16px}
+.spk{height:28px;padding:0 9px 0 7px;display:inline-flex;align-items:center;gap:4px;border-radius:999px;color:var(--ac);font-size:12px;flex:none}
+.spk svg{width:14px;height:14px}
+.spk b{font-weight:700}
 .spk .i-load{display:none}
 .spk.loading .i-spk{display:none}
 .spk.loading .i-load{display:block;animation:spin .8s linear infinite}
 .spk.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.spk[data-acc=us]{}
 @keyframes spin{to{transform:rotate(360deg)}}
 .tr{color:var(--mut);font-size:13px}
 .tx{margin:4px 0 8px}
@@ -171,6 +173,16 @@ button.danger:hover{background:#d6394a;color:#fff;border-style:solid;border-colo
 [data-mode=dark] .pos[data-p=verb]{background:#12404a;color:#7fd6e4}
 [data-mode=dark] .pos[data-p=adjective]{background:#4a3410;color:#f2c571}
 
+.avail{font-size:15px;line-height:1.4;display:flex;flex-direction:column;gap:2px}
+.avail .mut{font-size:12px}
+.mh em{margin-left:auto;font-style:normal;font-size:12px;font-weight:600;background:var(--acs);color:var(--ac);padding:1px 8px;border-radius:999px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.tocbtn{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;font-size:13px;background:var(--sf)}
+.tocbtn em{font-style:normal;font-size:12px;background:var(--acs);color:var(--ac);padding:1px 8px;border-radius:999px}
+.ds{scroll-margin-top:140px}
+.wf{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;flex-wrap:wrap}
+.voices{display:inline-flex;gap:6px}
+.wf .pos{margin-top:0}
 .tbl{padding:0;overflow:auto;max-height:65vh}
 table{border-collapse:collapse;width:100%}
 th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--ln)}
