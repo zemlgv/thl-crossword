@@ -4,8 +4,8 @@ import sys
 import openpyxl
 
 # Использование: py convert.py "файл.xlsx" [data/words.json]
-# Каждая таблица (лист) в xlsx становится модулем.
-# Раздел — значение в первом столбце. Порядок строк сохраняется.
+# Каждая таблица (лист) — отдельный модуль.
+# Разделы идут в порядке таблицы, слова внутри раздела сортируются по алфавиту.
 
 if len(sys.argv) < 2:
     print('Использование: py convert.py "файл.xlsx" [data/words.json]')
@@ -19,6 +19,7 @@ out = []
 for ws in wb.worksheets:
     title = str(ws.title).strip()
     module = f"Module {title}" if title.isdigit() else title
+    groups = {}          # раздел -> список слов; порядок ключей = порядок в таблице
     section = None
     for row in ws.iter_rows(min_row=2, values_only=True):
         row = list(row) + [None] * 5
@@ -27,8 +28,7 @@ for ws in wb.worksheets:
             section = str(sec).strip()
         if not word or section is None:
             continue
-        out.append({
-            "id": len(out) + 1,
+        groups.setdefault(section, []).append({
             "module": module,
             "section": section,
             "word": str(word).strip(),
@@ -36,6 +36,11 @@ for ws in wb.worksheets:
             "translation": str(translation or "").strip(),
             "pos": str(pos or "").strip(),
         })
+    for section, items in groups.items():
+        items.sort(key=lambda w: w["word"].lower())
+        out.extend(items)
+
+out = [{"id": i, **w} for i, w in enumerate(out, start=1)]
 
 os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
 with open(out_path, "w", encoding="utf-8") as f:
