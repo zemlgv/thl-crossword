@@ -124,6 +124,16 @@ input[type=number]{width:90px}
 .clues li:hover{background:var(--bg)}
 .clues li.cur{background:var(--hl);font-weight:600}
 
+.about{margin-top:18px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:center}
+.about h2{margin:0 0 8px;font-size:22px;letter-spacing:-.01em}
+.about p{margin:0;color:var(--mut)}
+.about .eyebrow{color:var(--ac)}
+.people{margin:0;display:grid;gap:14px}
+.people div{border-left:3px solid var(--ac);padding-left:14px}
+.people dt{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+.people dd{margin:3px 0 0;font-weight:600}
+button.danger{background:transparent;border:1px dashed #d6394a;color:#d6394a;margin-left:6px}
+button.danger:hover{background:#d6394a;color:#fff;border-style:solid;border-color:#d6394a}
 .lb{margin-top:18px}
 .lbt{margin:0 0 10px;font-size:15px}
 .lbl-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
@@ -188,6 +198,15 @@ tbody tr.me{background:var(--hl);font-weight:600}
   .cards{grid-template-columns:1fr}
   .params{flex-direction:column;align-items:stretch}
   .params .mut{display:none}
+  .about{grid-template-columns:1fr;gap:18px}
+  .side{height:100vh;height:100dvh;padding:16px;gap:14px;overflow:hidden}
+  .side .brand{order:1}
+  .side .sfoot{order:2;margin-top:0;flex-direction:row}
+  .side .sfoot .seg{flex:1}
+  .side .field{order:3}
+  .side .nav{order:4;gap:0}
+  .side .tab{padding:9px 14px}
+  .side .sx{top:10px;right:10px}
   #search{width:100%}
   .tools{top:58px}
   .game{flex-direction:column}
