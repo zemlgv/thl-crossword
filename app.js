@@ -1,6 +1,6 @@
 const I18N = {
 ru: {
-  appTitle:'Кроссворд по словарю', book:'Учебник', menu:'Меню', listen:'Озвучить',
+  appTitle:'Кроссворд по словарю', book:'Учебник', listen:'Озвучить',
   tabHome:'Главная', tabTeacher:'Генератор', tabPlay:'Кроссворд', tabDict:'Словарь', tabBoard:'Лидеры',
   heroTitle:'Учим слова из учебника через словарь и кроссворды',
   heroText:'Словарь учебника с озвучкой и кроссворды, которые учитель собирает за минуту из любых модулей и разделов.',
@@ -9,27 +9,34 @@ ru: {
   cardDict:'Словарь', cardDictText:'Слова по модулям и разделам, озвучка',
   cardGen:'Генератор', cardGenText:'Соберите кроссворд из выбранных разделов',
   cardPlay:'Решать', cardPlayText:'Откройте кроссворд по ссылке или QR-коду учителя',
-  cardBoard:'Лидеры', cardBoardText:'Лучшие результаты на этом устройстве',
+  cardBoard:'Лидеры', cardBoardText:'Таблица лидеров кроссворда, которым вы занимаетесь',
   footer:'ТхЛ · школьный проект',
   genHint:'Отметьте модули и разделы, из слов которых собрать кроссворд.',
   module:'Модуль', wordCount:'Слов в кроссворде (5–25)', available:'Подходящих слов',
   generate:'Создать кроссворд', linkLabel:'Ссылка для учеников', copy:'Копировать', copied:'Скопировано',
-  openGame:'Открыть кроссворд', qrFull:'QR на весь экран', qrHint:'Ученики открывают ссылку или сканируют QR-код телефоном.',
-  closeQr:'Закрыть', selAll:'Выбрать всё', selNone:'Снять всё',
+  share:'Поделиться', qrCopy:'Скопировать QR', qrCopied:'QR скопирован', qrSaved:'QR сохранён',
+  openGame:'Открыть кроссворд', qrFull:'QR на весь экран', closeQr:'Закрыть',
+  qrHint:'Ученики открывают ссылку или сканируют QR-код телефоном.',
+  selAll:'Выбрать всё', selNone:'Снять всё',
   clueMode:'Подсказки', cmTr:'Перевод', cmPos:'Перевод и часть речи', cmFirst:'Перевод и первая буква',
   playHint:'Введите имя и нажмите «Начать». Таймер запустится сразу.', yourName:'Ваше имя', start:'Начать',
   enterName:'Введите имя', check:'Проверить', reveal:'Показать ответы', hint:'Открыть букву (+15 с)',
-  across:'По горизонтали', down:'По вертикали', solved:'Решено за', savedNote:'Результат записан.',
-  revealedNote:'Ответы показаны, результат не записан.', wrongCount:'Ошибок', emptyCount:'Пустых клеток',
+  across:'По горизонтали', down:'По вертикали', solved:'Решено за', myPlace:'Ваше место',
+  revealedNote:'Ответы показаны, результат не засчитан.', wrongCount:'Ошибок', emptyCount:'Пустых клеток',
   noPuzzle:'Кроссворд не выбран. Создайте его в генераторе или откройте ссылку учителя.',
   tooFew:'Мало подходящих слов: нужно минимум 5 слов из латинских букв.',
   searchPh:'Слово или перевод', all:'Все', dictEmpty:'Ничего не найдено', words:'слов',
-  boardNote:'Результаты хранятся в браузере этого устройства.', colName:'Имя', colTime:'Время',
-  colPuzzle:'Кроссворд', colDate:'Дата', boardEmpty:'Результатов пока нет', clearBoard:'Очистить таблицу',
-  confirmClear:'Удалить все результаты на этом устройстве?'
+  colName:'Имя', colTime:'Время', lbTitle:'Лидеры этого кроссворда',
+  lbOpenFirst:'Откройте или создайте кроссворд, чтобы увидеть лидеров.',
+  lbOff:'Общие лидеры не подключены. См. README.txt.',
+  lbEmpty:'Пока никто не решил этот кроссворд.',
+  lbErr:'Не удалось загрузить лидеров. Проверьте интернет.',
+  lbSendErr:'Не удалось отправить результат в лидеры.',
+  lbNote:'Результаты общие для класса и хранятся 15 минут после последнего прохождения.',
+  menu:'Меню', confirmSelect:''
 },
 en: {
-  appTitle:'Vocabulary Crossword', book:'Textbook', menu:'Menu', listen:'Listen',
+  appTitle:'Vocabulary Crossword', book:'Textbook', listen:'Listen',
   tabHome:'Home', tabTeacher:'Generator', tabPlay:'Crossword', tabDict:'Dictionary', tabBoard:'Leaderboard',
   heroTitle:'Learn textbook words through the dictionary and crosswords',
   heroText:'The textbook dictionary with audio, and crosswords a teacher builds in a minute from any modules and sections.',
@@ -38,24 +45,31 @@ en: {
   cardDict:'Dictionary', cardDictText:'Words by module and section, with audio',
   cardGen:'Generator', cardGenText:'Build a crossword from selected sections',
   cardPlay:'Solve', cardPlayText:'Open a crossword from the teacher’s link or QR code',
-  cardBoard:'Leaderboard', cardBoardText:'Best results on this device',
+  cardBoard:'Leaderboard', cardBoardText:'Leaderboard of the crossword you are solving',
   footer:'TkL · school project',
   genHint:'Tick the modules and sections to build the crossword from.',
   module:'Module', wordCount:'Words in crossword (5–25)', available:'Suitable words',
   generate:'Create crossword', linkLabel:'Link for students', copy:'Copy', copied:'Copied',
-  openGame:'Open crossword', qrFull:'QR full screen', qrHint:'Students open the link or scan the QR code with a phone.',
-  closeQr:'Close', selAll:'Select all', selNone:'Clear all',
+  share:'Share', qrCopy:'Copy QR', qrCopied:'QR copied', qrSaved:'QR saved',
+  openGame:'Open crossword', qrFull:'QR full screen', closeQr:'Close',
+  qrHint:'Students open the link or scan the QR code with a phone.',
+  selAll:'Select all', selNone:'Clear all',
   clueMode:'Clues', cmTr:'Translation', cmPos:'Translation + part of speech', cmFirst:'Translation + first letter',
   playHint:'Enter your name and press Start. The timer begins at once.', yourName:'Your name', start:'Start',
   enterName:'Enter your name', check:'Check', reveal:'Show answers', hint:'Reveal letter (+15 s)',
-  across:'Across', down:'Down', solved:'Solved in', savedNote:'Result saved.',
-  revealedNote:'Answers shown, result not saved.', wrongCount:'Errors', emptyCount:'Empty cells',
+  across:'Across', down:'Down', solved:'Solved in', myPlace:'Your place',
+  revealedNote:'Answers shown, result not counted.', wrongCount:'Errors', emptyCount:'Empty cells',
   noPuzzle:'No crossword selected. Create one in the generator or open the teacher’s link.',
   tooFew:'Not enough words: at least 5 Latin-letter words are needed.',
   searchPh:'Word or translation', all:'All', dictEmpty:'Nothing found', words:'words',
-  boardNote:'Results are stored in this device’s browser.', colName:'Name', colTime:'Time',
-  colPuzzle:'Crossword', colDate:'Date', boardEmpty:'No results yet', clearBoard:'Clear leaderboard',
-  confirmClear:'Delete all results on this device?'
+  colName:'Name', colTime:'Time', lbTitle:'Leaderboard of this crossword',
+  lbOpenFirst:'Open or create a crossword to see the leaderboard.',
+  lbOff:'Shared leaderboard is not connected. See README.txt.',
+  lbEmpty:'Nobody has solved this crossword yet.',
+  lbErr:'Could not load the leaderboard. Check your connection.',
+  lbSendErr:'Could not send the result to the leaderboard.',
+  lbNote:'Results are shared within the class and kept for 15 minutes after the last solve.',
+  menu:'Menu', confirmSelect:''
 }
 };
 
@@ -73,6 +87,7 @@ const sortNat = (a, b) => String(a).localeCompare(String(b), undefined, { numeri
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
 const isMobile = () => matchMedia('(max-width: 860px)').matches;
 const modLabel = m => /^\d+$/.test(m) ? `${T('module')} ${m}` : m;
+const medal = i => ['🥇', '🥈', '🥉'][i] || String(i + 1);
 
 const BOOKS = [];
 let BOOK = null, WORDS = [];
@@ -80,6 +95,7 @@ const BYID = new Map();
 let dictMod = '';
 let pz = null, active = { k: null, dir: 'a' }, cellMap = new Map();
 let finished = false, player = '', elapsed = 0, startTime = 0, timerId = null;
+let curCode = null, pzId = null, myT = null;
 let cur = 'home', au = null;
 
 const ICON_SPK = '<svg class="i-spk" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
@@ -181,6 +197,23 @@ function buildFromPayload(p) {
   return layout(words, p.s);
 }
 
+// Короткий детерминированный идентификатор кроссворда: одинаков на всех устройствах
+function puzzleHash(s) {
+  let h1 = 0x811c9dc5, h2 = 5381;
+  for (let i = 0; i < s.length; i++) {
+    const c = s.charCodeAt(i);
+    h1 = Math.imul(h1 ^ c, 0x01000193);
+    h2 = ((h2 << 5) + h2 + c) | 0;
+  }
+  return (h1 >>> 0).toString(16).padStart(8, '0') + (h2 >>> 0).toString(16).padStart(8, '0');
+}
+
+function setCurrent(code) {
+  curCode = code;
+  pzId = puzzleHash(code);
+  myT = null;
+}
+
 function setSeg(s, i) { s.style.setProperty('--i', i); }
 
 function setMode() {
@@ -190,7 +223,6 @@ function setMode() {
 }
 
 const TAB_KEY = { home: 'tabHome', dict: 'tabDict', teacher: 'tabTeacher', play: 'tabPlay', board: 'tabBoard' };
-
 function showCrumb() { $('crumb').textContent = T(TAB_KEY[cur]); }
 
 function applyLang() {
@@ -202,9 +234,9 @@ function applyLang() {
   if (WORDS.length) {
     buildTree();
     buildDict();
-    renderBoard();
     renderHome();
     if (pz) renderClues();
+    renderLB(lbCache);
   }
 }
 
@@ -216,17 +248,15 @@ function renderHome() {
   $('footBook').textContent = BOOK.title;
 }
 
-function closeDrawer() { $('app').classList.remove('open'); }
-
 function showTab(n) {
   cur = n;
   document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== n);
   document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b.dataset.tab === n));
   showCrumb();
-  if (n === 'board') renderBoard();
   if (n === 'teacher') buildTree();
   if (n === 'play') fitGrid();
-  closeDrawer();
+  if (n === 'play' || n === 'board') refreshLB();
+  $('app').classList.remove('open');
   scrollTo({ top: 0 });
 }
 
@@ -279,6 +309,14 @@ function makeQR(el, text, size) {
   try { new QRCode(el, { text, width: size, height: size }); } catch (e) { }
 }
 
+function flash(btn, msg) {
+  const old = btn.dataset.label || btn.textContent;
+  btn.dataset.label = old;
+  btn.textContent = msg;
+  clearTimeout(btn._t);
+  btn._t = setTimeout(() => { btn.textContent = old; }, 1600);
+}
+
 $('genBtn').onclick = () => {
   const pool = candidates(selSecs());
   const want = Math.min(25, Math.max(5, parseInt($('wordCount').value, 10) || 12));
@@ -289,17 +327,46 @@ $('genBtn').onclick = () => {
   if (!buildFromPayload(payload)) return alert(T('tooFew'));
   const code = btoa(JSON.stringify(payload));
   const link = location.href.split('#')[0] + '#game=' + code;
+  setCurrent(code);
   $('linkBox').value = link;
   $('result').hidden = false;
-  makeQR($('qr'), link, 240);
+  makeQR($('qr'), link, 168);
   $('openBtn').onclick = () => { location.hash = 'game=' + code; };
-  $('qrFull').onclick = () => openQR(link);
+  refreshLB();
 };
 
 $('copyBtn').onclick = () => {
   navigator.clipboard?.writeText($('linkBox').value);
-  $('copyBtn').textContent = T('copied');
-  setTimeout(() => $('copyBtn').textContent = T('copy'), 1500);
+  flash($('copyBtn'), T('copied'));
+};
+
+$('shareBtn').onclick = async () => {
+  const url = $('linkBox').value;
+  if (navigator.share) {
+    try { await navigator.share({ title: BOOK.title, text: T('appTitle'), url }); return; }
+    catch (e) { if (e.name === 'AbortError') return; }
+  }
+  navigator.clipboard?.writeText(url);
+  flash($('shareBtn'), T('copied'));
+};
+
+$('qrCopy').onclick = () => {
+  const src = document.querySelector('#qr canvas');
+  const btn = $('qrCopy');
+  if (!src) return;
+  src.toBlob(async blob => {
+    if (!blob) return;
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+      flash(btn, T('qrCopied'));
+    } catch (e) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'tkl-qr.png';
+      a.click();
+      flash(btn, T('qrSaved'));
+    }
+  }, 'image/png');
 };
 
 function openQR(link) {
@@ -309,24 +376,31 @@ function openQR(link) {
   $('qrOverlay').hidden = false;
 }
 const closeQR = () => { $('qrOverlay').hidden = true; };
+$('qrFull').onclick = () => openQR($('linkBox').value);
 $('qrClose').onclick = closeQR;
 $('qrOverlay').addEventListener('click', e => { if (e.target.id === 'qrOverlay') closeQR(); });
-addEventListener('keydown', e => { if (e.key === 'Escape') { closeQR(); closeDrawer(); } });
 
-$('menuBtn').onclick = () => {
+function toggleSide() {
   if (isMobile()) $('app').classList.toggle('open');
   else {
     const c = $('app').classList.toggle('collapsed');
     localStorage.setItem('collapsed', c ? '1' : '0');
   }
-};
-$('scrim').onclick = closeDrawer;
+}
+$('menuBtn').onclick = toggleSide;
+$('sideClose').onclick = toggleSide;
+$('scrim').onclick = () => $('app').classList.remove('open');
+addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeQR(); $('app').classList.remove('open'); }
+});
 
 async function route() {
   if (!location.hash.startsWith('#game=')) return;
+  const code = location.hash.slice(6);
   let p = null;
-  try { p = JSON.parse(atob(location.hash.slice(6))); } catch (e) { }
+  try { p = JSON.parse(atob(code)); } catch (e) { }
   if (p && p.b && BOOK && p.b !== BOOK.id) await loadBook(p.b);
+  setCurrent(code);
   loadPuzzle(p);
   showTab('play');
 }
@@ -449,8 +523,7 @@ function move(k, dir) {
 function highlight() {
   cellMap.forEach(el => el.classList.remove('hl', 'act'));
   pz.placed.forEach(p => p.li?.classList.remove('cur'));
-  const words = pz.at.get(active.k) || [];
-  words.forEach(p => {
+  (pz.at.get(active.k) || []).forEach(p => {
     p.keys.forEach(k => cellMap.get(k)?.classList.add('hl'));
     p.li?.classList.add('cur');
   });
@@ -525,22 +598,14 @@ function finish() {
   stopTimer();
   checkAll(true);
   lockGrid();
-  saveResult();
   const s = $('status');
   s.classList.add('win');
-  s.textContent = `${T('solved')} ${fmt(elapsed)}. ${T('savedNote')}`;
-}
-
-function saveResult() {
-  const list = JSON.parse(localStorage.getItem('tkl_results') || '[]');
-  list.push({
-    name: player,
-    sec: elapsed,
-    puzzle: `${BOOK.title}, ${pz.placed.length} ${T('words')}`,
-    date: new Date().toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB')
-  });
-  localStorage.setItem('tkl_results', JSON.stringify(list));
-  renderBoard();
+  s.textContent = `${T('solved')} ${fmt(elapsed)}.`;
+  if (LEADER_URL) {
+    submitResult()
+      .then(j => { if (j && j.rank) s.textContent += ` ${T('myPlace')}: ${j.rank}.`; })
+      .catch(() => { s.textContent += ' ' + T('lbSendErr'); });
+  }
 }
 
 function beginGame() {
@@ -553,6 +618,7 @@ function beginGame() {
   $('gameArea').hidden = false;
   fitGrid();
   startTimer();
+  refreshLB();
   const first = pz.placed.find(p => p.num === 1);
   if (first) move(first.keys[0], first.d);
 }
@@ -591,6 +657,64 @@ $('revealBtn').onclick = () => {
   lockGrid();
   $('status').textContent = T('revealedNote');
 };
+
+// ---------- Общие лидеры ----------
+
+let lbCache = null, lbError = false;
+
+async function lbCall(params = {}) {
+  const q = new URLSearchParams({ id: pzId, ...params });
+  const r = await fetch(LEADER_URL + '?' + q.toString(), { cache: 'no-store' });
+  const j = await r.json();
+  if (j.error) throw new Error(j.error);
+  return j;
+}
+
+async function submitResult() {
+  const j = await lbCall({ action: 'submit', name: player, sec: String(elapsed) });
+  myT = j.me;
+  lbCache = j.list;
+  renderLB(lbCache);
+  return j;
+}
+
+async function refreshLB() {
+  if (!curCode) { lbCache = null; renderLB(null); return; }
+  if (!LEADER_URL) { renderLB(null); return; }
+  try {
+    const j = await lbCall();
+    lbError = false;
+    lbCache = j.list;
+  } catch (e) {
+    lbError = true;
+  }
+  renderLB(lbCache);
+}
+
+function renderLB(list) {
+  let msg = '';
+  if (!curCode) msg = T('lbOpenFirst');
+  else if (!LEADER_URL) msg = T('lbOff');
+  else if (lbError) msg = T('lbErr');
+  else if (!list || !list.length) msg = T('lbEmpty');
+
+  const rows = list || [];
+  const play = rows.slice(0, 10).map((r, i) =>
+    `<li class="${r.t === myT ? 'me' : ''}"><span>${i + 1}</span><span>${esc(r.name)}</span><span class="pt">${fmt(r.sec)}</span></li>`).join('');
+  $('lbPlayList').innerHTML = play;
+  $('lbPlayMsg').textContent = msg;
+  $('lbPlayMsg').hidden = !msg;
+
+  $('boardBody').innerHTML = rows.map((r, i) =>
+    `<tr class="${r.t === myT ? 'me' : ''}"><td>${medal(i)}</td><td>${esc(r.name)}</td><td>${fmt(r.sec)}</td></tr>`).join('');
+  $('boardMsg').textContent = msg || T('lbNote');
+  $('boardMsg').hidden = false;
+  $('boardInfo').textContent = pz ? `${BOOK.title} · ${pz.placed.length} ${T('words')}` : (BOOK ? BOOK.title : '');
+}
+
+setInterval(() => { if (cur === 'play' || cur === 'board') refreshLB(); }, 10000);
+
+// ---------- Словарь ----------
 
 function buildDict() {
   const mods = [...new Set(WORDS.map(w => w.module))].sort(sortNat);
@@ -680,20 +804,6 @@ $('chips').addEventListener('click', e => {
 });
 $('search').addEventListener('input', renderDict);
 
-function renderBoard() {
-  const list = JSON.parse(localStorage.getItem('tkl_results') || '[]').sort((a, b) => a.sec - b.sec);
-  $('boardBody').innerHTML = list.length
-    ? list.map((r, i) => `<tr><td>${['🥇', '🥈', '🥉'][i] || i + 1}</td><td>${esc(r.name)}</td><td>${fmt(r.sec)}</td><td>${esc(r.puzzle)}</td><td>${esc(r.date)}</td></tr>`).join('')
-    : `<tr><td colspan="5">${esc(T('boardEmpty'))}</td></tr>`;
-}
-
-$('clearBtn').onclick = () => {
-  if (confirm(T('confirmClear'))) {
-    localStorage.removeItem('tkl_results');
-    renderBoard();
-  }
-};
-
 document.querySelectorAll('.tab').forEach(b => b.onclick = () => showTab(b.dataset.tab));
 document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => showTab(b.dataset.go));
 document.querySelectorAll('[data-th]').forEach(b => b.onclick = () => {
@@ -705,11 +815,11 @@ document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => {
   lang = b.dataset.lang;
   localStorage.setItem('lang', lang);
   applyLang();
-  if (cur === 'teacher') buildTree();
 });
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setMode);
 $('bookSel').onchange = async e => {
   history.replaceState(null, '', location.pathname);
+  curCode = null;
   await loadBook(e.target.value);
   if (cur === 'play') showTab('home');
 };
