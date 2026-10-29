@@ -6,11 +6,11 @@ body{margin:0;font:15px/1.5 "Segoe UI",system-ui,sans-serif;background:var(--bg)
 button,input,select{font:inherit;color:inherit}
 svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;display:block}
 
-.app{display:grid;grid-template-columns:var(--sw) minmax(0,1fr);min-height:100vh;transition:grid-template-columns .25s ease}
-.app.collapsed{grid-template-columns:0 minmax(0,1fr)}
-.side{background:var(--side);color:#dbe6fa;padding:24px 18px;display:flex;flex-direction:column;gap:22px;position:sticky;top:0;height:100vh;overflow:hidden;min-width:0}
-.app.collapsed .side{visibility:hidden;padding-left:0;padding-right:0}
-.brand{display:flex;align-items:center;gap:12px;font-weight:600;line-height:1.25;min-width:0}
+/* Боковое меню: фиксированное, сдвигается трансформацией, контент не переформатируется */
+.side{position:fixed;left:0;top:0;bottom:0;width:var(--sw);height:100vh;background:var(--side);color:#dbe6fa;padding:22px 18px;display:flex;flex-direction:column;gap:22px;z-index:40;transition:transform .25s ease;overflow:hidden}
+.side .sx{position:absolute;top:12px;right:12px;width:36px;height:36px;padding:0;display:grid;place-items:center;background:var(--side2);border-color:#244584;color:#dbe6fa;border-radius:9px}
+.side .sx svg{width:18px;height:18px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;line-height:1.25;padding-right:44px;min-width:0}
 .logo{width:42px;height:42px;border-radius:9px;background:#2f6bff;color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
 .side .field span{color:#8fa6cf}
 .side select{background:var(--side2);border-color:#244584;color:#fff;width:100%}
@@ -26,7 +26,10 @@ svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-l
 .seg button svg{width:16px;height:16px}
 .scrim{display:none}
 
-.shell{min-width:0;display:flex;flex-direction:column}
+/* Рабочая область: контент по центру, отступ под меню на широком экране */
+.shell{margin-left:var(--sw);min-width:0;display:flex;flex-direction:column;min-height:100vh}
+.app.collapsed .side{transform:translateX(-100%)}
+.app.collapsed .shell{margin-left:0}
 .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;padding:12px max(24px,calc(50% - 528px));background:var(--bg);border-bottom:1px solid var(--ln)}
 .icon{width:40px;height:40px;padding:0;display:grid;place-items:center;border-radius:10px;border:1px solid var(--ln);background:var(--sf);cursor:pointer}
 .icon svg{width:20px;height:20px}
@@ -69,6 +72,7 @@ input[type=number]{width:90px}
 .ph h2{margin:0;font-size:28px;letter-spacing:-.02em}
 .ph p{margin:4px 0 0;color:var(--mut)}
 .mut{color:var(--mut)}
+.center{text-align:center}
 .err{color:#d6394a;margin:6px 0 0;min-height:1.2em}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:20px}
@@ -87,12 +91,13 @@ input[type=number]{width:90px}
 .sec em{font-style:normal;font-size:12px;background:var(--acs);color:var(--ac);padding:1px 8px;border-radius:999px}
 .params{display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap}
 .params .mut{flex:1;padding-bottom:10px}
-.result{margin-top:16px;display:flex;gap:28px;justify-content:space-between;align-items:center;flex-wrap:wrap}
-.result>div:first-child{flex:1;min-width:260px}
-#linkBox{flex:1;min-width:200px}
-.qrbox{display:flex;justify-content:center}
-#qr{padding:14px;background:#fff;border-radius:14px;border:1px solid var(--ln);line-height:0}
-#qr img,#qr canvas{display:block}
+
+.result{margin-top:16px;display:flex;flex-direction:column;gap:14px}
+#linkBox{flex:1;min-width:0}
+.qrwrap{display:flex;flex-direction:column;align-items:center;gap:10px;padding:6px 0 2px}
+#qr{padding:12px;background:#fff;border-radius:14px;border:1px solid var(--ln);line-height:0}
+#qr canvas,#qr img{width:168px;height:168px}
+.qrbtns{justify-content:center}
 
 .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
 .sp{flex:1}
@@ -118,6 +123,13 @@ input[type=number]{width:90px}
 .clues li{cursor:pointer;padding:5px 8px;border-radius:7px}
 .clues li:hover{background:var(--bg)}
 .clues li.cur{background:var(--hl);font-weight:600}
+
+.lb{margin-top:18px}
+.lbt{margin:0 0 10px;font-size:15px}
+.lbl-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.lbl-list li{display:grid;grid-template-columns:32px 1fr auto;gap:8px;padding:7px 10px;border-radius:8px}
+.lbl-list li.me{background:var(--hl);font-weight:600}
+.lbl-list .pt{font-variant-numeric:tabular-nums;color:var(--mut)}
 
 .tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:62px;z-index:10;background:var(--bg);padding:10px 0 14px}
 #search{width:280px;max-width:100%}
@@ -154,18 +166,18 @@ table{border-collapse:collapse;width:100%}
 th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--ln)}
 th{position:sticky;top:0;background:var(--sf);color:var(--mut);font-size:13px;font-weight:600}
 tbody tr:hover{background:var(--bg)}
+tbody tr.me{background:var(--hl);font-weight:600}
 
 .overlay{position:fixed;inset:0;z-index:60;background:rgba(6,14,32,.86);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:20px}
 #qrBig{background:#fff;padding:18px;border-radius:18px;line-height:0;max-width:92vw}
-#qrBig img,#qrBig canvas{max-width:86vw;max-height:70vh;width:auto!important;height:auto!important}
+#qrBig canvas,#qrBig img{max-width:86vw;max-height:70vh;width:auto!important;height:auto!important}
 .ovtext{color:#c9d7f2;font-size:13px;word-break:break-all;margin:0;text-align:center;max-width:90vw}
 .overlay button{background:#fff;color:#0e1c34;border:0;font-weight:600;padding:12px 26px;border-radius:10px}
 
 @media (max-width:860px){
-  .app,.app.collapsed{grid-template-columns:minmax(0,1fr)}
-  .side{position:fixed;left:0;top:0;bottom:0;height:100%;width:284px;max-width:84vw;z-index:40;transform:translateX(-102%);transition:transform .25s ease;visibility:visible;padding:24px 18px}
+  .side{transform:translateX(-102%);width:284px;max-width:84vw}
   .app.open .side{transform:none;box-shadow:0 0 40px rgba(0,0,0,.4)}
-  .app.collapsed .side{visibility:visible;padding:24px 18px}
+  .shell,.app.collapsed .shell{margin-left:0}
   .app.open .scrim{display:block;position:fixed;inset:0;background:rgba(5,12,28,.45);z-index:30}
   .topbar{padding:10px 16px}
   .main{padding:18px 16px 44px}
@@ -176,7 +188,6 @@ tbody tr:hover{background:var(--bg)}
   .cards{grid-template-columns:1fr}
   .params{flex-direction:column;align-items:stretch}
   .params .mut{display:none}
-  .result>div:first-child{min-width:0;width:100%}
   #search{width:100%}
   .tools{top:58px}
   .game{flex-direction:column}
