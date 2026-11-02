@@ -8,7 +8,7 @@ ru: {
   check:'Проверить (+10 с)', reveal:'Показать ответы · без зачёта',
   revealConfirm:'Показать ответы? Кроссворд закроется, результат не засчитается и не попадёт в таблицу лидеров.',
   tabHome:'Главная', tabTeacher:'Генератор', tabPlay:'Кроссворд', tabDict:'Словарь', tabBoard:'Лидеры',
-  heroTitle:'Учим слова из учебника через словарь и кроссворды',
+  heroTitle:'Словарь и кроссворды к учебнику Spotlight 9',
   heroText:'Словарь учебника с озвучкой и кроссворды, которые учитель собирает за минуту из любых модулей и разделов.',
   heroBtn:'Открыть словарь', heroBtn2:'Создать кроссворд',
   statWords:'слов', statModules:'модулей', statSections:'разделов',
@@ -52,7 +52,7 @@ en: {
   check:'Check (+10 s)', reveal:'Show answers · not counted',
   revealConfirm:'Show answers? The crossword will close, the result will not be counted and will not go to the leaderboard.',
   tabHome:'Home', tabTeacher:'Generator', tabPlay:'Crossword', tabDict:'Dictionary', tabBoard:'Leaderboard',
-  heroTitle:'Learn textbook words through the dictionary and crosswords',
+  heroTitle:'Vocabulary and crosswords for Spotlight 9',
   heroText:'The textbook dictionary with audio, and crosswords a teacher builds in a minute from any modules and sections.',
   heroBtn:'Open dictionary', heroBtn2:'Create crossword',
   statWords:'words', statModules:'modules', statSections:'sections',
@@ -104,7 +104,7 @@ const secKey = w => w.module + '||' + w.section;
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
 const isMobile = () => matchMedia('(max-width: 860px)').matches;
 const modLabel = m => /^\d+$/.test(m) ? `${T('module')} ${m}` : m;
-const medal = i => ['🥇', '🥈', '🥉'][i] || String(i + 1);
+const medal = i => String(i + 1);
 
 const BOOKS = [];
 let BOOK = null, WORDS = [];
