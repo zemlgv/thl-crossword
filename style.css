@@ -243,22 +243,31 @@ tbody tr.me{background:var(--hl);font-weight:600}
 .bookNav{display:flex;flex-direction:column;gap:8px}
 .bookName{color:var(--sidetxt);font-weight:600;font-size:14px;padding:0 14px;border-left:3px solid var(--ac2);line-height:1.3}
 
-/* Части речи: каждая свой цвет, одинаковый в светлой и тёмной теме */
+/* Части речи: каждая свой цвет (--c). Светлый фон и тонкая обводка того же оттенка, текст темнее; в тёмной теме наоборот */
 .posrow{display:inline-flex;gap:4px;flex-wrap:wrap;align-self:flex-start;margin-top:auto}
-.pos{font-size:11px;font-weight:600;line-height:1.4;padding:2px 8px;border-radius:5px;background:#475569;color:#fff;white-space:nowrap}
-.pos[data-p=noun]{background:#222222}
-.pos[data-p=adjective]{background:#1D4ED8}
-.pos[data-p=numeral]{background:#3B82F6}
-.pos[data-p=verb]{background:#DC2626}
-.pos[data-p=verb-irregular]{background:#991B1B}
-.pos[data-p=adverb]{background:#F97316;color:#1a1a1a}
-.pos[data-p=pronoun]{background:#7E22CE}
-.pos[data-p=preposition]{background:#16A34A}
-.pos[data-p=conjunction]{background:#F472B6;color:#1a1a1a}
-.pos[data-p=interjection]{background:#EAB308;color:#1a1a1a}
-.pos[data-p=phrasal-verb]{background:#E11D48}
-.pos[data-p=prepositional-phrase]{background:#065F46}
-.pos[data-p=phrase]{background:#475569}
+.pos{--c:#475569;font-size:11px;font-weight:600;line-height:1.4;padding:2px 8px;border-radius:5px;white-space:nowrap;
+  background:color-mix(in srgb,var(--c) 14%,transparent);
+  border:1px solid color-mix(in srgb,var(--c) 42%,transparent);
+  color:color-mix(in srgb,var(--c) 62%,#000)}
+[data-mode=dark] .pos{
+  background:color-mix(in srgb,var(--c) 24%,transparent);
+  border-color:color-mix(in srgb,var(--c) 50%,transparent);
+  color:color-mix(in srgb,var(--c) 45%,#fff)}
+.pos[data-p=noun]{--c:#222222}
+[data-mode=dark] .pos[data-p=noun]{--c:#d4d4d8}
+[data-mode=dark] .pos[data-p=phrase]{--c:#94a3b8}
+.pos[data-p=adjective]{--c:#1D4ED8}
+.pos[data-p=numeral]{--c:#3B82F6}
+.pos[data-p=verb]{--c:#DC2626}
+.pos[data-p=verb-irregular]{--c:#991B1B}
+.pos[data-p=adverb]{--c:#F97316}
+.pos[data-p=pronoun]{--c:#7E22CE}
+.pos[data-p=preposition]{--c:#16A34A}
+.pos[data-p=conjunction]{--c:#F472B6}
+.pos[data-p=interjection]{--c:#EAB308}
+.pos[data-p=phrasal-verb]{--c:#E11D48}
+.pos[data-p=prepositional-phrase]{--c:#065F46}
+.pos[data-p=phrase]{--c:#475569}
 .wf .posrow{margin-top:0}
 
 /* Нажатие: видно сразу, на телефоне и мышью. Без синей вспышки браузера */
