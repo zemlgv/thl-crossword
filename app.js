@@ -931,7 +931,19 @@ function buildDict() {
   renderDict();
 }
 
-const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong></div><div class="tr">${esc(w.transcription)}</div><div class="tx">${esc(w.translation)}</div><div class="wf"><span class="pos" data-p="${esc(w.pos.split(' ')[0])}">${esc(w.pos)}</span><span class="voices"><button class="spk" data-w="${esc(w.word)}" data-acc="uk" title="${esc(T('ukTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('ukLabel'))}</b></button><button class="spk" data-w="${esc(w.word)}" data-acc="us" title="${esc(T('usTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('usLabel'))}</b></button></span></div></article>`;
+// Часть речи -> отдельные бейджи: "adjective, adverb" дают два бейджа, "noun (plural)" и "phrase (idiom)" - один цвет основной части речи
+function posHtml(pos) {
+  const parts = String(pos || '').split(',').map(x => x.trim()).filter(Boolean);
+  const chips = parts.map(label => {
+    const base = label.toLowerCase();
+    const key = /irregular/.test(base) ? 'verb-irregular'
+      : base.replace(/\s*\(.*\)/, '').trim().replace(/\s+/g, '-');
+    return `<span class="pos" data-p="${esc(key)}">${esc(label)}</span>`;
+  });
+  return chips.length ? `<span class="posrow">${chips.join('')}</span>` : '';
+}
+
+const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong></div><div class="tr">${esc(w.transcription)}</div><div class="tx">${esc(w.translation)}</div><div class="wf">${posHtml(w.pos)}<span class="voices"><button class="spk" data-w="${esc(w.word)}" data-acc="uk" title="${esc(T('ukTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('ukLabel'))}</b></button><button class="spk" data-w="${esc(w.word)}" data-acc="us" title="${esc(T('usTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('usLabel'))}</b></button></span></div></article>`;
 
 function renderDict() {
   const q = $('search').value.trim().toLowerCase();
@@ -1061,6 +1073,7 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setMode);
 window.addEventListener('hashchange', route);
 
 async function init() {
+  document.addEventListener('touchstart', () => {}, { passive: true });
   setMode();
   if ('speechSynthesis' in window) {
     speechSynthesis.getVoices();
