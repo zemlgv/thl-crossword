@@ -46,7 +46,7 @@ ru: {
   lbEmpty:'Пока никто не решил этот кроссворд.',
   lbErr:'Не удалось загрузить лидеров. Проверьте интернет.',
   lbSendErr:'Не удалось отправить результат в лидеры.',
-  tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
+  pageTitle:'Кроссворд по словарю · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', csvHead:'Место;Имя;Время', allBooks:'во всех учебниках', statsTitle:'Статистика', statsLine:'Создано: {c} · начато: {s} · решено: {v}', installBtn:'Установить приложение', iosHint:'Чтобы установить: «Поделиться» → «На экран «Домой»».', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
   partialFit:'Подходящих слов: {p}, а вы указали {n}. Выберите больше разделов или уменьшите число слов.', placeFail:'Не удалось вставить {n} слов в сетку: мало пересечений. Выберите больше разделов или уменьшите число слов. Вошло: {p}.', qrFail:'QR-код не загрузился, нужен интернет.', lbNote:'Результаты общие для класса и хранятся 15 минут после последнего прохождения.',
   
 },
@@ -97,7 +97,7 @@ en: {
   lbEmpty:'Nobody has solved this crossword yet.',
   lbErr:'Could not load the leaderboard. Check your connection.',
   lbSendErr:'Could not send the result to the leaderboard.',
-  tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
+  pageTitle:'Vocabulary crossword · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', csvHead:'Place;Name;Time', allBooks:'all textbooks', statsTitle:'Statistics', statsLine:'Created: {c} · started: {s} · solved: {v}', installBtn:'Install app', iosHint:'To install: Share → Add to Home Screen.', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
   partialFit:'Suitable words: {p}, but you asked for {n}. Choose more sections or reduce the number of words.', placeFail:'Could not fit {n} words into the grid: too few crossings. Choose more sections or reduce the number of words. Fitted: {p}.', qrFail:'QR code did not load, internet needed.', lbNote:'Results are shared within the class and kept for 15 minutes after the last solve.',
   
 }
@@ -111,7 +111,7 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': 
 const key = (x, y) => x + ',' + y;
 const parseKey = k => k.split(',').map(Number);
 const isLatin = w => /^[A-Za-z]{3,}$/.test(w);
-const clue = t => String(t).replace(/\(.*?\)/g, '').split(/[,;]/)[0].trim();
+const clue = t => String(t).trim();
 const moduleOf = s => { const m = String(s).match(/^(\d+)/); return m ? m[1] : String(s).replace(/\s*\d+$/, '').trim(); };
 const sortNat = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
 const secKey = w => w.module + '||' + w.section;
@@ -301,6 +301,8 @@ function setMode() {
 
 function applyLang() {
   document.documentElement.lang = lang;
+  document.title = T('pageTitle');
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => el.setAttribute('aria-label', T(el.dataset.i18nAria)));
   document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = T(el.dataset.i18n));
   document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = T(el.dataset.i18nPh));
   setSeg($('langSeg'), lang === 'ru' ? 0 : 1);
@@ -330,6 +332,7 @@ function renderHome() {
 
 function showTab(n) {
   cur = n;
+  if (n === 'teacher') showStats();
   document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== n);
   document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b.dataset.tab === n));
   $('bookNav').hidden = n === 'library' || !BOOK;
@@ -418,6 +421,24 @@ function flash(btn, msg) {
   btn._t = setTimeout(() => { btn.textContent = old; }, 1600);
 }
 
+// Статистика: отправляет событие на сервер, если включена в config.js (см. README)
+function stat(ev) {
+  if (!STATS_ON || !LEADER_URL) return;
+  fetch(LEADER_URL + '?action=stat&ev=' + ev, { cache: 'no-store' }).catch(() => { });
+}
+
+async function showStats() {
+  const box = $('statsBox');
+  box.hidden = !(STATS_ON && LEADER_URL);
+  if (box.hidden) return;
+  try {
+    const j = await (await fetch(LEADER_URL + '?action=stats', { cache: 'no-store' })).json();
+    $('statsLine').textContent = T('statsLine').replace('{c}', j.created).replace('{s}', j.started).replace('{v}', j.solved);
+  } catch (e) { $('statsLine').textContent = ''; }
+}
+
+let lastPayload = null;
+
 $('genBtn').onclick = () => {
   const pool = candidates(selSecs());
   const want = Math.min(25, Math.max(5, parseInt($('wordCount').value, 10) || 12));
@@ -434,6 +455,8 @@ $('genBtn').onclick = () => {
   }
   if (!best || best.placed < want) return alert(T('placeFail').replace('{p}', best ? best.placed : 0).replace('{n}', want));
   const payload = { b: BOOK.id, i: best.chosen.map(w => w.id), s: best.seed, c: $('clueMode').value };
+  lastPayload = payload;
+  stat('created');
   const code = btoa(JSON.stringify(payload));
   const link = location.href.split('#')[0] + '#game=' + code;
   setCurrent(code);
@@ -445,6 +468,51 @@ $('genBtn').onclick = () => {
     if (location.hash === h) route(); else location.hash = h;
   };
   refreshLB();
+};
+
+// Текст подсказки: общая функция для игры и для печати
+function clueOf(p, mode) {
+  let t = p.src.clue || p.src.translation;
+  if (mode === 'pos' && p.src.pos) t += ` [${p.src.pos}]`;
+  if (mode === 'first') t += ` — ${p.w[0]}…`;
+  return `${t} (${p.w.length})`;
+}
+
+// Печать: сетка с номерами и подсказки, без букв. Печатается только блок #printArea
+$('printBtn').onclick = () => {
+  if (!lastPayload) return;
+  const lay = buildFromPayload(lastPayload);
+  if (!lay) return;
+  const rows = [];
+  for (let y = lay.minY; y < lay.minY + lay.H; y++) {
+    let tr = '';
+    for (let x = lay.minX; x < lay.minX + lay.W; x++) {
+      const k = key(x, y);
+      if (!lay.cells.has(k)) { tr += '<td class="e"></td>'; continue; }
+      const n = lay.numAt.get(k);
+      tr += `<td>${n ? `<i>${n}</i>` : ''}</td>`;
+    }
+    rows.push(`<tr>${tr}</tr>`);
+  }
+  const list = d => lay.placed.filter(p => p.d === d).sort((a, b) => a.num - b.num)
+    .map(p => `<li><b>${p.num}.</b> ${esc(clueOf(p, lastPayload.c))}</li>`).join('');
+  $('printArea').innerHTML = `<h1>${esc(BOOK.title)}</h1><table class="pgrid">${rows.join('')}</table>` +
+    `<div class="pclues"><div><h3>${esc(T('across'))}</h3><ul>${list('a')}</ul></div>` +
+    `<div><h3>${esc(T('down'))}</h3><ul>${list('d')}</ul></div></div>`;
+  window.print();
+};
+
+// Экспорт результатов текущего кроссворда в CSV (открывается в Excel)
+$('csvBtn').onclick = () => {
+  if (!lbCache || !lbCache.length) return;
+  const lines = [T('csvHead').split(';').join(';')];
+  lbCache.forEach((r, i) => lines.push([i + 1, `"${String(r.name).replace(/"/g, '""')}"`, fmt(r.sec)].join(';')));
+  const blob = new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `results-${pzId}.csv`;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 };
 
 $('copyBtn').onclick = () => {
@@ -617,11 +685,7 @@ function renderGrid() {
 }
 
 function clueText(p) {
-  const c = pz.payload.c || 'tr';
-  let t = p.src.clue || p.src.translation;
-  if (c === 'pos' && p.src.pos) t += ` [${p.src.pos}]`;
-  if (c === 'first') t += ` — ${p.w[0]}…`;
-  return `${t} (${p.w.length})`;
+  return clueOf(p, pz.payload.c || 'tr');
 }
 
 function renderClues() {
@@ -798,6 +862,7 @@ function finish() {
   s.classList.add('win');
   s.textContent = `${T('solved')} ${fmt(elapsed)}.`;
   saveState('won');
+  stat('solved');
   if (LEADER_URL) {
     submitResult()
       .then(j => { if (j && j.rank) s.textContent += ` ${T('myPlace')}: ${j.rank}.`; })
@@ -816,6 +881,7 @@ function beginGame() {
   fitGrid();
   startTimer();
   saveState();
+  stat('started');
   refreshLB();
   const first = pz.placed.find(p => p.num === 1);
   if (first) move(first.keys[0], first.d);
@@ -842,7 +908,9 @@ $('checkBtn').onclick = () => {
 $('hintBtn').onclick = () => {
   if (!pz || finished || !active.k) return;
   const el = cellMap.get(active.k);
-  el.querySelector('input').value = pz.cells.get(active.k);
+  const answer = pz.cells.get(active.k);
+  if (el.querySelector('input').value === answer) return;   // буква уже верная: подсказывать нечего
+  el.querySelector('input').value = answer;
   el.classList.remove('ok', 'bad');
   const { wrong, empty } = checkAll(false);
   if (!wrong && !empty) return finish();
@@ -945,8 +1013,35 @@ function posHtml(pos) {
 
 const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong></div><div class="tr">${esc(w.transcription)}</div><div class="tx">${esc(w.translation)}</div><div class="wf">${posHtml(w.pos)}<span class="voices"><button class="spk" data-w="${esc(w.word)}" data-acc="uk" title="${esc(T('ukTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('ukLabel'))}</b></button><button class="spk" data-w="${esc(w.word)}" data-acc="us" title="${esc(T('usTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('usLabel'))}</b></button></span></div></article>`;
 
-function renderDict() {
+// Слова всех учебников для поиска (загружаются один раз)
+let ALLW = null;
+async function loadAllBooks() {
+  if (ALLW) return ALLW;
+  ALLW = await Promise.all(BOOKS.map(async b => {
+    const words = b.id === BOOK.id ? WORDS : await (await fetch(b.file)).json();
+    words.forEach(w => { w.module = w.module || ('Module ' + moduleOf(w.section)); });
+    return { book: b, words };
+  }));
+  return ALLW;
+}
+
+async function renderDict() {
   const q = $('search').value.trim().toLowerCase();
+  const all = $('allBooks').checked;
+  $('chips').hidden = all;
+  if (all) {
+    const lists = await loadAllBooks();
+    const hit = w => !q || w.word.toLowerCase().includes(q) || w.translation.toLowerCase().includes(q);
+    let total = 0;
+    const html = lists.map(({ book, words }) => {
+      const rows = words.filter(hit);
+      total += rows.length;
+      return rows.length ? `<section class="dm"><h3>${esc(book.title)}<span>${rows.length} ${T('words')}</span></h3><div class="cards">${rows.map(card).join('')}</div></section>` : '';
+    }).join('');
+    $('dictCount').textContent = `${total} ${T('words')}`;
+    $('dictBody').innerHTML = html || `<p class="mut">${esc(T('dictEmpty'))}</p>`;
+    return;
+  }
   const rows = WORDS.filter(w => (!dictMod || w.module === dictMod) &&
     (!q || w.word.toLowerCase().includes(q) || w.translation.toLowerCase().includes(q)));
   $('dictCount').textContent = `${BOOK.title} · ${rows.length} ${T('words')}`;
@@ -1053,6 +1148,7 @@ $('chips').addEventListener('click', e => {
   }
 });
 $('search').addEventListener('input', renderDict);
+$('allBooks').addEventListener('change', renderDict);
 
 document.querySelectorAll('.tab').forEach(b => b.onclick = () => {
   if (b.dataset.tab === 'library') history.replaceState(null, '', location.pathname);
@@ -1072,7 +1168,23 @@ document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => {
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setMode);
 window.addEventListener('hashchange', route);
 
+// Установка на телефон: Android/ПК через кнопку, iPhone — подсказка
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; $('installBtn').hidden = false; });
+window.addEventListener('appinstalled', () => { $('installBtn').hidden = true; });
+$('installBtn').onclick = async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  $('installBtn').hidden = true;
+};
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+if (isIOS && !isStandalone) $('iosHint').hidden = false;
+
 async function init() {
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { });
   document.addEventListener('touchstart', () => {}, { passive: true });
   setMode();
   if ('speechSynthesis' in window) {
@@ -1081,10 +1193,10 @@ async function init() {
   }
   if (localStorage.getItem('collapsed') === '1') $('app').classList.add('collapsed');
   try { BOOKS.push(...await (await fetch('data/books.json')).json()); }
-  catch (e) { console.error(e); alert('Не удалось загрузить data/books.json\n\n' + e.message); return; }
+  catch (e) { console.error(e); alert(T('errBooks')); return; }
   applyLang();
   try { await route(); }
-  catch (e) { console.error(e); alert('Не удалось загрузить учебник\n\n' + e.message); showTab('library'); }
+  catch (e) { console.error(e); alert(T('errBook')); showTab('library'); }
 }
 
 init();
