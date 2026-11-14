@@ -483,8 +483,8 @@ $('printBtn').onclick = () => {
   if (!lastPayload) return;
   const lay = buildFromPayload(lastPayload);
   if (!lay) return;
-  // Клетка по ширине листа (182 мм) или по высоте (165 мм), что меньше
-  const cell = Math.min(182 / lay.W, 165 / lay.H).toFixed(2);
+  // Клетка по ширине листа (182 мм) или по высоте (140 мм), что меньше
+  const cell = Math.min(182 / lay.W, 140 / lay.H).toFixed(2);
   const rows = [];
   for (let y = lay.minY; y < lay.minY + lay.H; y++) {
     let tr = '';
@@ -500,7 +500,7 @@ $('printBtn').onclick = () => {
     .map(p => `<li><b>${p.num}.</b> ${esc(clueOf(p, lastPayload.c))}</li>`).join('');
   $('printArea').innerHTML =
     `<div class="phead"><h1>${esc(BOOK.title)}</h1>` +
-    `<p class="pname">${esc(T('printName'))}: ______________________________ &nbsp; ${esc(T('printDate'))}: ____________</p></div>` +
+    `<div class="pname"><span>${esc(T('printName'))}: ${'_'.repeat(44)}</span><span>${esc(T('printDate'))}: ${'_'.repeat(18)}</span></div></div>` +
     `<table class="pgrid" style="--cell:${cell}mm;width:${(cell * lay.W).toFixed(1)}mm">${rows.join('')}</table>` +
     `<div class="pclues"><div><h3>${esc(T('across'))}</h3><ul>${list('a')}</ul></div>` +
     `<div><h3>${esc(T('down'))}</h3><ul>${list('d')}</ul></div></div>` +
@@ -512,7 +512,9 @@ $('printBtn').onclick = () => {
 $('csvBtn').onclick = () => {
   if (!lbCache || !lbCache.length) return;
   const lines = [T('csvHead').split(';').join(';')];
-  lbCache.forEach((r, i) => lines.push([i + 1, `"${String(r.name).replace(/"/g, '""')}"`, fmt(r.sec)].join(';')));
+  // Защита от формул в Excel: имя, которое начинается с = + - @, превращается в текст
+  const safe = s => { let t = String(s).replace(/"/g, '""'); if (/^[=+\-@\t\r]/.test(t)) t = "'" + t; return `"${t}"`; };
+  lbCache.forEach((r, i) => lines.push([i + 1, safe(r.name), fmt(r.sec)].join(';')));
   const blob = new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
