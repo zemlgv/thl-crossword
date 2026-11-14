@@ -263,9 +263,9 @@ tbody tr.me{background:var(--hl);font-weight:600}
 .pos[data-p=interjection]{--c:#EAB308}
 .pos[data-p=phrasal-verb]{--c:#E11D48}
 .pos[data-p=prepositional-phrase]{--c:#065F46}
-.pos[data-p=phrase]{--c:#475569}
+.pos[data-p=phrase]{--c:#92400E}
 [data-mode=dark] .pos[data-p=noun]{--c:#a3a3a3}
-[data-mode=dark] .pos[data-p=phrase]{--c:#94a3b8}
+[data-mode=dark] .pos[data-p=phrase]{--c:#d6a06a}
 .wf .posrow{margin-top:0}
 
 /* Нажатие: видно сразу, на телефоне и мышью. Без синей вспышки браузера */
@@ -279,23 +279,50 @@ button:not(:disabled):active{transform:scale(.96);filter:brightness(.92)}
 .chip:active{transform:scale(.95)}
 .cell input:active{background:var(--hl)}
 
-/* Установка, галочка поиска, печать */
-.install{width:100%;background:var(--side2);border-color:var(--side2);color:var(--sidetxt)}
-.iosHint{margin:0;font-size:12px;line-height:1.4;color:var(--sidemut)}
+/* Галочка поиска */
 .ck{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--mut);cursor:pointer;white-space:nowrap}
 .ck input{accent-color:var(--ac2)}
+
+/* Блок ссылки: поле на всю ширину, кнопки сеткой; на телефоне QR сверху */
+.result{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:start}
+.res-l{display:flex;flex-direction:column;gap:12px;min-width:0}
+#linkBox{width:100%;min-width:0;font-size:13px;text-overflow:ellipsis}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.acts .wide{grid-column:1/-1}
+.res-r{display:flex;flex-direction:column;align-items:center;gap:10px}
+.qrbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+@media (max-width:860px){
+  .result{grid-template-columns:1fr;gap:20px}
+  .res-r{order:-1}
+  #qr canvas,#qr img{width:200px;height:200px}
+}
+
+/* Выделение текста: в интерфейсе выключено, в тексте словаря и подсказках оставлено */
+button,.chip,.tab,.tocbtn,.bk,.seg,.spk,.timer,.num,.cell,.clues,.clues li,.pos,.tools,.bar,label,.ck,.overlay,#qr,.lbl-list li,.side{
+  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
+
+/* Статистика под таблицей лидеров: мелко и без рамки */
+.stat{margin:18px 0 0;font-size:12px;color:var(--mut);text-align:center}
+
+/* Печать: лист A4, сетка на всю ширину, поля для ФИО и даты */
 #printArea{display:none}
 @page{size:A4;margin:14mm}
 @media print{
   body>*:not(#printArea){display:none!important}
-  #printArea{display:block!important;color:#000;background:#fff}
-  #printArea h1{font-size:20pt;margin:0 0 8mm}
-  .pgrid{border-collapse:collapse;margin-bottom:8mm}
-  .pgrid td{width:7mm;height:7mm;border:1px solid #000;position:relative;padding:0}
-  .pgrid td.e{border-color:transparent}
-  .pgrid td i{position:absolute;top:0;left:.8mm;font-size:6.5pt;font-style:normal}
-  .pclues{display:grid;grid-template-columns:1fr 1fr;gap:8mm;font-size:10pt}
-  .pclues h3{font-size:11pt;margin:0 0 2mm}
+  #printArea{display:block!important;color:#000;background:#fff;font-family:"Segoe UI",Arial,sans-serif}
+  .phead h1{font-size:18pt;margin:0 0 3mm}
+  .pname{font-size:10pt;margin:0 0 6mm}
+  .pgrid{border-collapse:collapse;margin:0 auto 8mm;table-layout:fixed}
+  .pgrid td{width:var(--cell);height:var(--cell);padding:0;position:relative;border:0}
+  .pgrid td.b{border:1px solid #000}
+  .pgrid td i{position:absolute;top:.3mm;left:.7mm;font-size:calc(var(--cell) * .3);font-style:normal;line-height:1}
+  .pclues{display:grid;grid-template-columns:1fr 1fr;gap:8mm;font-size:9.5pt}
+  .pclues h3{font-size:11pt;margin:0 0 2mm;border-bottom:1px solid #000;padding-bottom:1mm}
   .pclues ul{list-style:none;padding:0;margin:0}
-  .pclues li{margin:0 0 1.5mm}
+  .pclues li{margin:0 0 1.1mm;break-inside:avoid}
+  .pfoot{margin-top:6mm;font-size:8pt;color:#555;text-align:center}
 }
+
+/* Кнопка CSV под таблицей лидеров */
+#csvBtn{margin-top:12px}
