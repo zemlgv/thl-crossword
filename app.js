@@ -46,7 +46,7 @@ ru: {
   lbEmpty:'Пока никто не решил этот кроссворд.',
   lbErr:'Не удалось загрузить лидеров. Проверьте интернет.',
   lbSendErr:'Не удалось отправить результат в лидеры.',
-  pageTitle:'Кроссворд по словарю · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', csvHead:'Место;Имя;Время', allBooks:'во всех учебниках', statsTitle:'Статистика', statsLine:'Создано: {c} · начато: {s} · решено: {v}', installBtn:'Установить приложение', iosHint:'Чтобы установить: «Поделиться» → «На экран «Домой»».', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
+  pageTitle:'Кроссворд по словарю · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', csvHead:'Место;Имя;Время', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', printName:'Фамилия, имя', printDate:'Дата', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
   partialFit:'Подходящих слов: {p}, а вы указали {n}. Выберите больше разделов или уменьшите число слов.', placeFail:'Не удалось вставить {n} слов в сетку: мало пересечений. Выберите больше разделов или уменьшите число слов. Вошло: {p}.', qrFail:'QR-код не загрузился, нужен интернет.', lbNote:'Результаты общие для класса и хранятся 15 минут после последнего прохождения.',
   
 },
@@ -97,7 +97,7 @@ en: {
   lbEmpty:'Nobody has solved this crossword yet.',
   lbErr:'Could not load the leaderboard. Check your connection.',
   lbSendErr:'Could not send the result to the leaderboard.',
-  pageTitle:'Vocabulary crossword · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', csvHead:'Place;Name;Time', allBooks:'all textbooks', statsTitle:'Statistics', statsLine:'Created: {c} · started: {s} · solved: {v}', installBtn:'Install app', iosHint:'To install: Share → Add to Home Screen.', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
+  pageTitle:'Vocabulary crossword · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', csvHead:'Place;Name;Time', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', printName:'Name', printDate:'Date', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
   partialFit:'Suitable words: {p}, but you asked for {n}. Choose more sections or reduce the number of words.', placeFail:'Could not fit {n} words into the grid: too few crossings. Choose more sections or reduce the number of words. Fitted: {p}.', qrFail:'QR code did not load, internet needed.', lbNote:'Results are shared within the class and kept for 15 minutes after the last solve.',
   
 }
@@ -332,7 +332,7 @@ function renderHome() {
 
 function showTab(n) {
   cur = n;
-  if (n === 'teacher') showStats();
+  if (n === 'board') showStats();
   document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== n);
   document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b.dataset.tab === n));
   $('bookNav').hidden = n === 'library' || !BOOK;
@@ -428,13 +428,13 @@ function stat(ev) {
 }
 
 async function showStats() {
-  const box = $('statsBox');
-  box.hidden = !(STATS_ON && LEADER_URL);
-  if (box.hidden) return;
+  const line = $('statsLine');
+  line.hidden = !(STATS_ON && LEADER_URL);
+  if (line.hidden) return;
   try {
     const j = await (await fetch(LEADER_URL + '?action=stats', { cache: 'no-store' })).json();
-    $('statsLine').textContent = T('statsLine').replace('{c}', j.created).replace('{s}', j.started).replace('{v}', j.solved);
-  } catch (e) { $('statsLine').textContent = ''; }
+    line.textContent = T('statsLine').replace('{c}', j.created).replace('{s}', j.started).replace('{v}', j.solved);
+  } catch (e) { line.hidden = true; }
 }
 
 let lastPayload = null;
@@ -483,6 +483,8 @@ $('printBtn').onclick = () => {
   if (!lastPayload) return;
   const lay = buildFromPayload(lastPayload);
   if (!lay) return;
+  // Клетка по ширине листа (182 мм) или по высоте (165 мм), что меньше
+  const cell = Math.min(182 / lay.W, 165 / lay.H).toFixed(2);
   const rows = [];
   for (let y = lay.minY; y < lay.minY + lay.H; y++) {
     let tr = '';
@@ -490,15 +492,19 @@ $('printBtn').onclick = () => {
       const k = key(x, y);
       if (!lay.cells.has(k)) { tr += '<td class="e"></td>'; continue; }
       const n = lay.numAt.get(k);
-      tr += `<td>${n ? `<i>${n}</i>` : ''}</td>`;
+      tr += `<td class="b">${n ? `<i>${n}</i>` : ''}</td>`;
     }
     rows.push(`<tr>${tr}</tr>`);
   }
   const list = d => lay.placed.filter(p => p.d === d).sort((a, b) => a.num - b.num)
     .map(p => `<li><b>${p.num}.</b> ${esc(clueOf(p, lastPayload.c))}</li>`).join('');
-  $('printArea').innerHTML = `<h1>${esc(BOOK.title)}</h1><table class="pgrid">${rows.join('')}</table>` +
+  $('printArea').innerHTML =
+    `<div class="phead"><h1>${esc(BOOK.title)}</h1>` +
+    `<p class="pname">${esc(T('printName'))}: ______________________________ &nbsp; ${esc(T('printDate'))}: ____________</p></div>` +
+    `<table class="pgrid" style="--cell:${cell}mm;width:${(cell * lay.W).toFixed(1)}mm">${rows.join('')}</table>` +
     `<div class="pclues"><div><h3>${esc(T('across'))}</h3><ul>${list('a')}</ul></div>` +
-    `<div><h3>${esc(T('down'))}</h3><ul>${list('d')}</ul></div></div>`;
+    `<div><h3>${esc(T('down'))}</h3><ul>${list('d')}</ul></div></div>` +
+    `<div class="pfoot">${esc(location.host + location.pathname)}</div>`;
   window.print();
 };
 
@@ -1167,21 +1173,6 @@ document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => {
 });
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setMode);
 window.addEventListener('hashchange', route);
-
-// Установка на телефон: Android/ПК через кнопку, iPhone — подсказка
-let deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; $('installBtn').hidden = false; });
-window.addEventListener('appinstalled', () => { $('installBtn').hidden = true; });
-$('installBtn').onclick = async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
-  deferredPrompt = null;
-  $('installBtn').hidden = true;
-};
-const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-const isStandalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
-if (isIOS && !isStandalone) $('iosHint').hidden = false;
 
 async function init() {
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { });
