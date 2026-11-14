@@ -37,8 +37,6 @@
       <button class="tab" data-tab="board" data-i18n="tabBoard"></button>
     </nav>
   </div>
-  <button class="install" id="installBtn" hidden data-i18n="installBtn"></button>
-  <p class="iosHint" id="iosHint" hidden data-i18n="iosHint"></p>
   <div class="sfoot">
     <div class="seg" id="themeSeg" style="--n:3">
       <i class="thumb"></i>
@@ -90,7 +88,6 @@
     </section>
 
     <section id="teacher" class="panel" hidden>
-      <div id="statsBox" class="card" hidden><h3 data-i18n="statsTitle"></h3><p id="statsLine" class="mut"></p></div>
       <header class="ph"><h2 data-i18n="tabTeacher"></h2><p data-i18n="genHint"></p></header>
       <div class="quick"><button id="selAll" data-i18n="selAll"></button><button id="selNone" data-i18n="selNone"></button></div>
       <div id="tree" class="tree"></div>
@@ -111,13 +108,18 @@
       <div id="result" class="card result" hidden>
         <div class="res-l">
           <p class="lbl" data-i18n="linkLabel"></p>
-          <div class="row"><input id="linkBox" readonly><button id="copyBtn" data-i18n="copy"></button><button id="shareBtn" data-i18n="share"></button></div>
-          <div class="row"><button id="openBtn" class="primary" data-i18n="openGame"></button><button id="printBtn" data-i18n="printBtn"></button></div>
+          <input id="linkBox" readonly>
+          <div class="acts">
+            <button id="copyBtn" data-i18n="copy"></button>
+            <button id="shareBtn" data-i18n="share"></button>
+            <button id="openBtn" class="primary wide" data-i18n="openGame"></button>
+            <button id="printBtn" class="wide" data-i18n="printBtn"></button>
+          </div>
           <p class="mut" data-i18n="qrHint"></p>
         </div>
         <div class="res-r">
           <div id="qr"></div>
-          <div class="row qrbtns"><button id="qrCopy" data-i18n="qrCopy"></button><button id="qrFull" data-i18n="qrFull"></button></div>
+          <div class="qrbtns"><button id="qrCopy" data-i18n="qrCopy"></button><button id="qrFull" data-i18n="qrFull"></button></div>
         </div>
       </div>
     </section>
@@ -169,6 +171,7 @@
       </table></div>
       <div class="row"><button id="csvBtn" data-i18n="csvBtn"></button></div>
       <p id="boardMsg" class="mut" hidden></p>
+      <p id="statsLine" class="stat" hidden></p>
     </section>
 
   </main>
