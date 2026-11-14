@@ -278,3 +278,24 @@ button:not(:disabled):active{transform:scale(.96);filter:brightness(.92)}
 .spk:active{transform:scale(.93);background:var(--hl)}
 .chip:active{transform:scale(.95)}
 .cell input:active{background:var(--hl)}
+
+/* Установка, галочка поиска, печать */
+.install{width:100%;background:var(--side2);border-color:var(--side2);color:var(--sidetxt)}
+.iosHint{margin:0;font-size:12px;line-height:1.4;color:var(--sidemut)}
+.ck{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--mut);cursor:pointer;white-space:nowrap}
+.ck input{accent-color:var(--ac2)}
+#printArea{display:none}
+@page{size:A4;margin:14mm}
+@media print{
+  body>*:not(#printArea){display:none!important}
+  #printArea{display:block!important;color:#000;background:#fff}
+  #printArea h1{font-size:20pt;margin:0 0 8mm}
+  .pgrid{border-collapse:collapse;margin-bottom:8mm}
+  .pgrid td{width:7mm;height:7mm;border:1px solid #000;position:relative;padding:0}
+  .pgrid td.e{border-color:transparent}
+  .pgrid td i{position:absolute;top:0;left:.8mm;font-size:6.5pt;font-style:normal}
+  .pclues{display:grid;grid-template-columns:1fr 1fr;gap:8mm;font-size:10pt}
+  .pclues h3{font-size:11pt;margin:0 0 2mm}
+  .pclues ul{list-style:none;padding:0;margin:0}
+  .pclues li{margin:0 0 1.5mm}
+}
