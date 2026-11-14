@@ -518,12 +518,13 @@ $('csvBtn').onclick = () => {
   const blob = new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  // Имя файла: leaderboard-<учебник>-<дата>-<число слов>.csv
+  // Имя файла: leaderboard-<учебник>-<дата>-<время>-<число слов>.csv
   const d = new Date();
   const date = [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), String(d.getDate()).padStart(2, '0')].join('-');
   const words = curCode ? JSON.parse(atob(curCode)).i.length : '';
   const title = BOOK.title.replace(/[\\/:*?"<>|\s]+/g, '-');
-  a.download = `leaderboard-${title}-${date}${words ? `-${words}-${T('words')}` : ''}.csv`;
+  const time = [d.getHours(), d.getMinutes(), d.getSeconds()].map(v => String(v).padStart(2, '0')).join('-');
+  a.download = `leaderboard-${title}-${date}-${time}${words ? `-${words}` : ''}.csv`;
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 };
