@@ -307,22 +307,37 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 
 /* Печать: лист A4, сетка на всю ширину, поля для ФИО и даты */
 #printArea{display:none}
-@page{size:A4;margin:14mm}
+@page{size:A4;margin:12mm}
 @media print{
   body>*:not(#printArea){display:none!important}
   #printArea{display:block!important;color:#000;background:#fff;font-family:"Segoe UI",Arial,sans-serif}
   .phead h1{font-size:18pt;margin:0 0 3mm}
-  .pname{font-size:10pt;margin:0 0 6mm}
+  .pname{display:flex;justify-content:space-between;font-size:10pt;margin:0 0 5mm;white-space:nowrap}
   .pgrid{border-collapse:collapse;margin:0 auto 8mm;table-layout:fixed}
   .pgrid td{width:var(--cell);height:var(--cell);padding:0;position:relative;border:0}
   .pgrid td.b{border:1px solid #000}
   .pgrid td i{position:absolute;top:.3mm;left:.7mm;font-size:calc(var(--cell) * .3);font-style:normal;line-height:1}
-  .pclues{display:grid;grid-template-columns:1fr 1fr;gap:8mm;font-size:9.5pt}
+  .pclues{display:grid;grid-template-columns:1fr 1fr;gap:6mm;font-size:8.5pt}
   .pclues h3{font-size:11pt;margin:0 0 2mm;border-bottom:1px solid #000;padding-bottom:1mm}
   .pclues ul{list-style:none;padding:0;margin:0}
-  .pclues li{margin:0 0 1.1mm;break-inside:avoid}
+  .pclues li{margin:0 0 .8mm;break-inside:avoid}
   .pfoot{margin-top:6mm;font-size:8pt;color:#555;text-align:center}
 }
 
 /* Кнопка CSV под таблицей лидеров */
 #csvBtn{margin-top:12px}
+
+/* Телефон в альбомной ориентации: кроссворд и подсказки рядом, блоки компактнее.
+   Портрет и ПК не затрагиваются. */
+@media (orientation:landscape) and (max-height:500px) and (max-width:1000px){
+  .main{padding:14px 16px 20px}
+  .ph{margin-bottom:10px}
+  .ph h2{font-size:20px}
+  .game{grid-template-columns:minmax(0,1fr) minmax(170px,240px);gap:14px}
+  .clues{max-height:calc(100vh - 110px);overflow:auto;padding:2px 12px 10px}
+  .clues h3{margin:10px 0 4px}
+  .bar{margin-bottom:8px}
+  .hero{padding:16px;gap:20px}
+  .hero h1{font-size:22px}
+  .card{padding:14px}
+}
