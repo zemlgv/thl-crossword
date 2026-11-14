@@ -157,11 +157,6 @@ input[type=number]{width:90px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .tr{color:var(--mut);font-size:13px}
 .tx{margin:4px 0 8px}
-.pos{align-self:flex-start;margin-top:auto;font-size:11px;padding:2px 8px;border-radius:5px;background:var(--acs);color:var(--ac)}
-.pos[data-p=verb]{background:#d9f1f4;color:#0b6b7a}
-.pos[data-p=adjective]{background:#fdeccd;color:#9a5a05}
-[data-mode=dark] .pos[data-p=verb]{background:#12404a;color:#7fd6e4}
-[data-mode=dark] .pos[data-p=adjective]{background:#4a3410;color:#f2c571}
 
 .avail{font-size:15px;line-height:1.6}
 .avail b{font-weight:600}
@@ -247,3 +242,32 @@ tbody tr.me{background:var(--hl);font-weight:600}
 /* Учебник в боковой панели */
 .bookNav{display:flex;flex-direction:column;gap:8px}
 .bookName{color:var(--sidetxt);font-weight:600;font-size:14px;padding:0 14px;border-left:3px solid var(--ac2);line-height:1.3}
+
+/* Части речи: каждая свой цвет, одинаковый в светлой и тёмной теме */
+.posrow{display:inline-flex;gap:4px;flex-wrap:wrap;align-self:flex-start;margin-top:auto}
+.pos{font-size:11px;font-weight:600;line-height:1.4;padding:2px 8px;border-radius:5px;background:#475569;color:#fff;white-space:nowrap}
+.pos[data-p=noun]{background:#222222}
+.pos[data-p=adjective]{background:#1D4ED8}
+.pos[data-p=numeral]{background:#3B82F6}
+.pos[data-p=verb]{background:#DC2626}
+.pos[data-p=verb-irregular]{background:#991B1B}
+.pos[data-p=adverb]{background:#F97316;color:#1a1a1a}
+.pos[data-p=pronoun]{background:#7E22CE}
+.pos[data-p=preposition]{background:#16A34A}
+.pos[data-p=conjunction]{background:#F472B6;color:#1a1a1a}
+.pos[data-p=interjection]{background:#EAB308;color:#1a1a1a}
+.pos[data-p=phrasal-verb]{background:#E11D48}
+.pos[data-p=prepositional-phrase]{background:#065F46}
+.pos[data-p=phrase]{background:#475569}
+.wf .posrow{margin-top:0}
+
+/* Нажатие: видно сразу, на телефоне и мышью. Без синей вспышки браузера */
+button:not(:disabled):active{transform:scale(.96);filter:brightness(.92)}
+.tab,.clues li,.bk,.seg button{transition:transform .08s,background .08s,filter .08s}
+.tab:active{transform:scale(.97);background:var(--side2)}
+.seg button:active{transform:scale(.94);background:var(--ac2)}
+.clues li:active{transform:scale(.99);background:var(--hl)}
+.bk:active{transform:scale(.97);border-color:var(--bk)}
+.spk:active{transform:scale(.93);background:var(--hl)}
+.chip:active{transform:scale(.95)}
+.cell input:active{background:var(--hl)}
