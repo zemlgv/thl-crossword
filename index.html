@@ -6,12 +6,23 @@
 <title>Кроссворд по словарю · Технологический лицей</title>
 <link rel="icon" id="favicon" href="img/logo-ru.png" type="image/png">
 <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<meta name="theme-color" content="#0a1f44">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Кроссворд">
+<meta property="og:title" content="Кроссворд по словарю · Технологический лицей">
+<meta property="og:description" content="Словарь учебника с озвучкой и кроссворды для класса">
+<meta property="og:image" content="https://zemlgv.github.io/thl-crossword/img/icon-512.png">
+<meta property="og:url" content="https://zemlgv.github.io/thl-crossword/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
 </head>
 <body>
 <div class="app" id="app">
 
 <aside class="side" id="side">
-  <button class="icon sx" id="sideClose" aria-label="Меню"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+  <button class="icon sx" id="sideClose" data-i18n-aria="menuLabel"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
   <div class="brand"><div class="logo"><img id="logoImg" src="img/logo-ru.png" alt="ТхЛ" onerror="this.replaceWith('ТхЛ')"></div><span data-i18n="appTitle"></span></div>
   <nav class="nav">
     <button class="tab" data-tab="library" data-i18n="tabLibrary"></button>
@@ -26,6 +37,8 @@
       <button class="tab" data-tab="board" data-i18n="tabBoard"></button>
     </nav>
   </div>
+  <button class="install" id="installBtn" hidden data-i18n="installBtn"></button>
+  <p class="iosHint" id="iosHint" hidden data-i18n="iosHint"></p>
   <div class="sfoot">
     <div class="seg" id="themeSeg" style="--n:3">
       <i class="thumb"></i>
@@ -42,7 +55,7 @@
 </aside>
 <div class="scrim" id="scrim"></div>
 
-<button class="icon" id="menuBtn" aria-label="Меню"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+<button class="icon" id="menuBtn" data-i18n-aria="menuLabel"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
 <div class="shell">
   <main class="main">
 
@@ -77,6 +90,7 @@
     </section>
 
     <section id="teacher" class="panel" hidden>
+      <div id="statsBox" class="card" hidden><h3 data-i18n="statsTitle"></h3><p id="statsLine" class="mut"></p></div>
       <header class="ph"><h2 data-i18n="tabTeacher"></h2><p data-i18n="genHint"></p></header>
       <div class="quick"><button id="selAll" data-i18n="selAll"></button><button id="selNone" data-i18n="selNone"></button></div>
       <div id="tree" class="tree"></div>
@@ -98,7 +112,7 @@
         <div class="res-l">
           <p class="lbl" data-i18n="linkLabel"></p>
           <div class="row"><input id="linkBox" readonly><button id="copyBtn" data-i18n="copy"></button><button id="shareBtn" data-i18n="share"></button></div>
-          <div class="row"><button id="openBtn" class="primary" data-i18n="openGame"></button></div>
+          <div class="row"><button id="openBtn" class="primary" data-i18n="openGame"></button><button id="printBtn" data-i18n="printBtn"></button></div>
           <p class="mut" data-i18n="qrHint"></p>
         </div>
         <div class="res-r">
@@ -143,7 +157,7 @@
 
     <section id="dict" class="panel" hidden>
       <header class="ph"><h2 data-i18n="tabDict"></h2><p id="dictCount"></p></header>
-      <div class="tools"><input id="search" data-i18n-ph="searchPh"><div id="chips" class="chips"></div></div>
+      <div class="tools"><input id="search" data-i18n-ph="searchPh"><label class="ck"><input type="checkbox" id="allBooks"><span data-i18n="allBooks"></span></label><div id="chips" class="chips"></div></div>
       <div id="dictBody"></div>
     </section>
 
@@ -153,6 +167,7 @@
         <thead><tr><th>#</th><th data-i18n="colName"></th><th data-i18n="colTime"></th></tr></thead>
         <tbody id="boardBody"></tbody>
       </table></div>
+      <div class="row"><button id="csvBtn" data-i18n="csvBtn"></button></div>
       <p id="boardMsg" class="mut" hidden></p>
     </section>
 
@@ -169,5 +184,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="config.js"></script>
 <script src="app.js"></script>
+<div id="printArea"></div>
 </body>
 </html>
