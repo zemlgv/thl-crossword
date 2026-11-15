@@ -46,7 +46,7 @@ ru: {
   lbEmpty:'Пока никто не решил этот кроссворд.',
   lbErr:'Не удалось загрузить лидеров. Проверьте интернет.',
   lbSendErr:'Не удалось отправить результат в лидеры.',
-  pageTitle:'Кроссворд по словарю · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
+  pageTitle:'Кроссворд по словарю · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', expandCard:'Показать полностью', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
   partialFit:'Подходящих слов: {p}, а вы указали {n}. Выберите больше разделов или уменьшите число слов.', placeFail:'Не удалось вставить {n} слов в сетку: мало пересечений. Выберите больше разделов или уменьшите число слов. Вошло: {p}.', qrFail:'QR-код не загрузился, нужен интернет.', lbNote:'Результаты общие для класса и хранятся 15 минут после последнего прохождения.',
   
 },
@@ -97,7 +97,7 @@ en: {
   lbEmpty:'Nobody has solved this crossword yet.',
   lbErr:'Could not load the leaderboard. Check your connection.',
   lbSendErr:'Could not send the result to the leaderboard.',
-  pageTitle:'Vocabulary crossword · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
+  pageTitle:'Vocabulary crossword · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', expandCard:'Show full text', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
   partialFit:'Suitable words: {p}, but you asked for {n}. Choose more sections or reduce the number of words.', placeFail:'Could not fit {n} words into the grid: too few crossings. Choose more sections or reduce the number of words. Fitted: {p}.', qrFail:'QR code did not load, internet needed.', lbNote:'Results are shared within the class and kept for 15 minutes after the last solve.',
   
 }
@@ -116,11 +116,11 @@ const moduleOf = s => { const m = String(s).match(/^(\d+)/); return m ? m[1] : S
 const sortNat = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
 const secKey = w => w.module + '||' + w.section;
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
-// При изменении ширины карточки переносятся по-другому: подгоняем заново
+// При изменении ширины карточки переносятся по-другому: раскладываем заново
 let fitTimer = null;
 window.addEventListener('resize', () => {
   clearTimeout(fitTimer);
-  fitTimer = setTimeout(() => dictLoaded.forEach(i => fitCard(dictSlots[i].firstElementChild)), 150);
+  fitTimer = setTimeout(() => dictLoaded.forEach(i => layoutCard(dictSlots[i])), 150);
 });
 
 // Видимая часть окна (без скрытой адресной строки): боковое меню совпадает с ней по высоте
@@ -1061,7 +1061,7 @@ function posHtml(pos) {
   return chips.length ? `<span class="posrow">${chips.join('')}</span>` : '';
 }
 
-const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong>${posHtml(w.pos)}</div><div class="wf"><span class="tr">${esc(w.transcription)}</span><span class="voices"><button class="spk" data-w="${esc(w.word)}" data-acc="uk" title="${esc(T('ukTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('ukLabel'))}</b></button><button class="spk" data-w="${esc(w.word)}" data-acc="us" title="${esc(T('usTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('usLabel'))}</b></button></span></div><div class="tx">${esc(w.translation)}</div></article>`;
+const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong></div><div class="tr">${esc(w.transcription)}</div><div class="tx">${esc(w.translation)}</div><div class="wf">${posHtml(w.pos)}<span class="voices"><button class="spk" data-w="${esc(w.word)}" data-acc="uk" title="${esc(T('ukTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('ukLabel'))}</b></button><button class="spk" data-w="${esc(w.word)}" data-acc="us" title="${esc(T('usTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('usLabel'))}</b></button></span></div><button class="exp" type="button" title="${esc(T('expandCard'))}" aria-label="${esc(T('expandCard'))}"></button></article>`;
 
 // Слова всех учебников для поиска (загружаются один раз)
 let ALLW = null;
@@ -1084,27 +1084,39 @@ function slotsHtml(rows) {
   return rows.map(w => `<div class="slot" data-i="${dictWords.push(w) - 1}"></div>`).join('');
 }
 
-// Длинное слово или перевод: уменьшается шрифт только в этой карточке, текст целиком остаётся на месте
-function fitCard(art) {
+// Раскладка карточки: если текст не помещается, перевод обрывается многоточием,
+// а кнопка в углу раскрывает карточку (занимает несколько строк сетки), чтобы показать всё
+let dictOpen = new Set();
+const DICT_ROW = 150, DICT_GAP = 10;
+function layoutCard(slot) {
+  const art = slot.firstElementChild;
   if (!art) return;
-  const slot = art.parentElement;
-  const fits = () => art.scrollHeight <= art.clientHeight + 1;
-  const els = [art.querySelector('.tx'), art.querySelector('.wh strong'), art.querySelector('.tr')].filter(Boolean);
-  els.forEach(el => { el.style.fontSize = ''; });
-  slot.classList.remove('long');
+  const tx = art.querySelector('.tx');
+  const open = dictOpen.has(+slot.dataset.i);
   slot.style.gridRowEnd = '';
-  for (const el of els) {
-    let fs = parseFloat(getComputedStyle(el).fontSize);
-    while (!fits() && fs > 12) { fs -= 0.5; el.style.fontSize = fs + 'px'; }
-    if (fits()) return;
-  }
-  // Совсем длинный текст: карточка занимает столько строк сетки, сколько нужно, шрифт остаётся обычным
-  els.forEach(el => { el.style.fontSize = ''; });
-  slot.classList.add('long');
-  art.style.height = 'auto';
-  const need = art.offsetHeight;
   art.style.height = '';
-  slot.style.gridRowEnd = 'span ' + Math.min(4, Math.max(2, Math.ceil((need + 10) / 150)));
+  tx.style.removeProperty('--clamp');
+  tx.style.maxHeight = '';
+  art.classList.remove('ovf');
+  slot.classList.toggle('open', open);
+  // естественная высота карточки без ограничений
+  art.classList.add('full');
+  art.style.height = 'auto';
+  const natural = art.offsetHeight;
+  art.style.height = '';
+  art.classList.toggle('full', open);
+  if (open) {
+    slot.style.gridRowEnd = 'span ' + Math.max(1, Math.ceil((natural + DICT_GAP) / (DICT_ROW + DICT_GAP)));
+    art.classList.add('ovf');
+    return;
+  }
+  if (natural > art.clientHeight + 1) {
+    art.classList.add('ovf');
+    const lh = parseFloat(getComputedStyle(tx).lineHeight) || 18;
+    const lines = Math.max(1, Math.floor(tx.clientHeight / lh));
+    tx.style.setProperty('--clamp', lines);
+    tx.style.maxHeight = (lines * lh) + 'px';   // чтобы не проглядывала обрезанная строка
+  }
 }
 
 function syncDict() {
@@ -1112,9 +1124,9 @@ function syncDict() {
   let min = Infinity, max = -Infinity;
   dictVisible.forEach(i => { if (i < min) min = i; if (i > max) max = i; });
   const lo = Math.max(0, min - DICT_PAD), hi = Math.min(dictWords.length - 1, max + DICT_PAD);
-  dictLoaded.forEach(i => { if (i < lo || i > hi) { dictSlots[i].innerHTML = ''; dictSlots[i].classList.remove('long'); dictSlots[i].style.gridRowEnd = ''; dictLoaded.delete(i); } });
+  dictLoaded.forEach(i => { if (i < lo || i > hi) { dictSlots[i].innerHTML = ''; dictSlots[i].classList.remove('open'); dictSlots[i].style.gridRowEnd = ''; dictLoaded.delete(i); } });
   for (let i = lo; i <= hi; i++) {
-    if (!dictLoaded.has(i)) { dictSlots[i].innerHTML = card(dictWords[i]); fitCard(dictSlots[i].firstElementChild); dictLoaded.add(i); }
+    if (!dictLoaded.has(i)) { dictSlots[i].innerHTML = card(dictWords[i]); layoutCard(dictSlots[i]); dictLoaded.add(i); }
   }
 }
 
@@ -1237,6 +1249,13 @@ function speak(w, acc, btn) {
 }
 
 $('dictBody').addEventListener('click', e => {
+  const ex = e.target.closest('.exp');
+  if (ex) {
+    const i = +ex.closest('.slot').dataset.i;
+    dictOpen.has(i) ? dictOpen.delete(i) : dictOpen.add(i);
+    layoutCard(dictSlots[i]);
+    return;
+  }
   const jump = e.target.closest('.tocbtn');
   if (jump) {
     document.getElementById(jump.dataset.jump)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
