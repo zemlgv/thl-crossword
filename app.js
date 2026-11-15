@@ -46,7 +46,7 @@ ru: {
   lbEmpty:'Пока никто не решил этот кроссворд.',
   lbErr:'Не удалось загрузить лидеров. Проверьте интернет.',
   lbSendErr:'Не удалось отправить результат в лидеры.',
-  pageTitle:'Кроссворд по словарю · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', csvHead:'Место;Имя;Время', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', printName:'Фамилия, имя', printDate:'Дата', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
+  pageTitle:'Кроссворд по словарю · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
   partialFit:'Подходящих слов: {p}, а вы указали {n}. Выберите больше разделов или уменьшите число слов.', placeFail:'Не удалось вставить {n} слов в сетку: мало пересечений. Выберите больше разделов или уменьшите число слов. Вошло: {p}.', qrFail:'QR-код не загрузился, нужен интернет.', lbNote:'Результаты общие для класса и хранятся 15 минут после последнего прохождения.',
   
 },
@@ -97,7 +97,7 @@ en: {
   lbEmpty:'Nobody has solved this crossword yet.',
   lbErr:'Could not load the leaderboard. Check your connection.',
   lbSendErr:'Could not send the result to the leaderboard.',
-  pageTitle:'Vocabulary crossword · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', csvHead:'Place;Name;Time', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', printName:'Name', printDate:'Date', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
+  pageTitle:'Vocabulary crossword · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
   partialFit:'Suitable words: {p}, but you asked for {n}. Choose more sections or reduce the number of words.', placeFail:'Could not fit {n} words into the grid: too few crossings. Choose more sections or reduce the number of words. Fitted: {p}.', qrFail:'QR code did not load, internet needed.', lbNote:'Results are shared within the class and kept for 15 minutes after the last solve.',
   
 }
@@ -310,6 +310,7 @@ function applyLang() {
   $('logoImg').src = logo;
   $('favicon').href = logo;
   renderLibrary();
+  renderStats();
   if (WORDS.length) {
     buildTree();
     buildDict();
@@ -427,13 +428,19 @@ function stat(ev) {
   fetch(LEADER_URL + '?action=stat&ev=' + ev, { cache: 'no-store' }).catch(() => { });
 }
 
+let statsData = null;
+function renderStats() {
+  const line = $('statsLine');
+  if (!statsData) return;
+  line.textContent = T('statsLine').replace('{c}', statsData.created).replace('{s}', statsData.started).replace('{v}', statsData.solved);
+}
 async function showStats() {
   const line = $('statsLine');
   line.hidden = !(STATS_ON && LEADER_URL);
   if (line.hidden) return;
   try {
-    const j = await (await fetch(LEADER_URL + '?action=stats', { cache: 'no-store' })).json();
-    line.textContent = T('statsLine').replace('{c}', j.created).replace('{s}', j.started).replace('{v}', j.solved);
+    statsData = await (await fetch(LEADER_URL + '?action=stats', { cache: 'no-store' })).json();
+    renderStats();
   } catch (e) { line.hidden = true; }
 }
 
@@ -478,13 +485,23 @@ function clueOf(p, mode) {
   return `${t} (${p.w.length})`;
 }
 
+// Имя файла: <префикс>-<учебник>-<дата>-<время>-<число слов>, без расширения
+function fileName(prefix, words) {
+  const d = new Date();
+  const p = n => String(n).padStart(2, '0');
+  const date = [d.getFullYear(), p(d.getMonth() + 1), p(d.getDate())].join('-');
+  const time = [d.getHours(), d.getMinutes(), d.getSeconds()].map(p).join('-');
+  const title = BOOK.title.replace(/[\\/:*?"<>|\s]+/g, '-');
+  return `${prefix}-${title}-${date}-${time}${words ? `-${words}` : ''}`;
+}
+
 // Печать: сетка с номерами и подсказки, без букв. Печатается только блок #printArea
 $('printBtn').onclick = () => {
   if (!lastPayload) return;
   const lay = buildFromPayload(lastPayload);
   if (!lay) return;
-  // Клетка по ширине листа (182 мм) или по высоте (140 мм), что меньше
-  const cell = Math.min(182 / lay.W, 140 / lay.H).toFixed(2);
+  // Клетка по ширине листа (182 мм) или по высоте (130 мм), что меньше
+  const cell = Math.min(182 / lay.W, 130 / lay.H).toFixed(2);
   const rows = [];
   for (let y = lay.minY; y < lay.minY + lay.H; y++) {
     let tr = '';
@@ -500,31 +517,29 @@ $('printBtn').onclick = () => {
     .map(p => `<li><b>${p.num}.</b> ${esc(clueOf(p, lastPayload.c))}</li>`).join('');
   $('printArea').innerHTML =
     `<div class="phead"><h1>${esc(BOOK.title)}</h1>` +
-    `<div class="pname"><span>${esc(T('printName'))}: ${'_'.repeat(44)}</span><span>${esc(T('printDate'))}: ${'_'.repeat(18)}</span></div></div>` +
+    `<div class="pname"><span>Name: ${'_'.repeat(44)}</span><span>Date: ${'_'.repeat(18)}</span></div></div>` +
     `<table class="pgrid" style="--cell:${cell}mm;width:${(cell * lay.W).toFixed(1)}mm">${rows.join('')}</table>` +
-    `<div class="pclues"><div><h3>${esc(T('across'))}</h3><ul>${list('a')}</ul></div>` +
-    `<div><h3>${esc(T('down'))}</h3><ul>${list('d')}</ul></div></div>` +
+    `<div class="pclues"><div><h3>Across</h3><ul>${list('a')}</ul></div>` +
+    `<div><h3>Down</h3><ul>${list('d')}</ul></div></div>` +
     `<div class="pfoot">${esc(location.host + location.pathname)}</div>`;
+  // Chrome и Edge берут имя PDF из заголовка страницы: на время печати ставим имя файла
+  const oldTitle = document.title;
+  document.title = fileName('crossword', lastPayload.i.length);
+  window.addEventListener('afterprint', () => { document.title = oldTitle; }, { once: true });
   window.print();
 };
 
 // Экспорт результатов текущего кроссворда в CSV (открывается в Excel)
 $('csvBtn').onclick = () => {
   if (!lbCache || !lbCache.length) return;
-  const lines = [T('csvHead').split(';').join(';')];
+  const lines = ['Место;Имя;Время'];
   // Защита от формул в Excel: имя, которое начинается с = + - @, превращается в текст
   const safe = s => { let t = String(s).replace(/"/g, '""'); if (/^[=+\-@\t\r]/.test(t)) t = "'" + t; return `"${t}"`; };
   lbCache.forEach((r, i) => lines.push([i + 1, safe(r.name), fmt(r.sec)].join(';')));
   const blob = new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  // Имя файла: leaderboard-<учебник>-<дата>-<время>-<число слов>.csv
-  const d = new Date();
-  const date = [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), String(d.getDate()).padStart(2, '0')].join('-');
-  const words = curCode ? JSON.parse(atob(curCode)).i.length : '';
-  const title = BOOK.title.replace(/[\\/:*?"<>|\s]+/g, '-');
-  const time = [d.getHours(), d.getMinutes(), d.getSeconds()].map(v => String(v).padStart(2, '0')).join('-');
-  a.download = `leaderboard-${title}-${date}-${time}${words ? `-${words}` : ''}.csv`;
+  a.download = fileName('leaderboard', curCode ? JSON.parse(atob(curCode)).i.length : '') + '.csv';
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 };
@@ -1039,6 +1054,22 @@ async function loadAllBooks() {
   return ALLW;
 }
 
+// Карточки словаря добавляются порциями по кадрам: вкладка открывается сразу, слова появляются постепенно
+let dictGen = 0;
+function fillDict(boxes, lists) {
+  const gen = ++dictGen;
+  const queue = [];
+  lists.forEach((words, i) => words.forEach(w => queue.push([boxes[i], w])));
+  let k = 0;
+  const frame = () => {
+    if (gen !== dictGen) return;
+    const end = Math.min(k + 60, queue.length);
+    for (; k < end; k++) queue[k][0].insertAdjacentHTML('beforeend', card(queue[k][1]));
+    if (k < queue.length) requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+
 async function renderDict() {
   const q = $('search').value.trim().toLowerCase();
   const all = $('allBooks').checked;
@@ -1046,14 +1077,14 @@ async function renderDict() {
   if (all) {
     const lists = await loadAllBooks();
     const hit = w => !q || w.word.toLowerCase().includes(q) || w.translation.toLowerCase().includes(q);
-    let total = 0;
-    const html = lists.map(({ book, words }) => {
-      const rows = words.filter(hit);
-      total += rows.length;
-      return rows.length ? `<section class="dm"><h3>${esc(book.title)}<span>${rows.length} ${T('words')}</span></h3><div class="cards">${rows.map(card).join('')}</div></section>` : '';
-    }).join('');
+    const found = lists.map(({ book, words }) => ({ book, rows: words.filter(hit) }));
+    const shown = found.filter(f => f.rows.length);
+    const total = shown.reduce((t, f) => t + f.rows.length, 0);
     $('dictCount').textContent = `${total} ${T('words')}`;
-    $('dictBody').innerHTML = html || `<p class="mut">${esc(T('dictEmpty'))}</p>`;
+    $('dictBody').innerHTML = shown.length ? shown.map(f =>
+      `<section class="dm"><h3>${esc(f.book.title)}<span>${f.rows.length} ${T('words')}</span></h3><div class="cards"></div></section>`).join('')
+      : `<p class="mut">${esc(T('dictEmpty'))}</p>`;
+    fillDict([...$('dictBody').querySelectorAll('.cards')], shown.map(f => f.rows));
     return;
   }
   const rows = WORDS.filter(w => (!dictMod || w.module === dictMod) &&
@@ -1066,15 +1097,17 @@ async function renderDict() {
     if (!s.has(w.section)) s.set(w.section, []);
     s.get(w.section).push(w);
   });
+  const lists = [];
   $('dictBody').innerHTML = rows.length ? [...g.keys()].map((m, mi) => {
     const secs = [...g.get(m)];
     const n = secs.reduce((t, s) => t + s[1].length, 0);
     const toc = `<nav class="toc">${secs.map(([s, l], si) =>
       `<button class="tocbtn" data-jump="sec-${mi}-${si}"><b>${esc(s)}</b><em>${l.length}</em></button>`).join('')}</nav>`;
     return `<section class="dm"><h3>${esc(modLabel(m))}<span>${n} ${T('words')}</span></h3>${toc}` +
-      secs.map(([s, l], si) => `<div class="ds" id="sec-${mi}-${si}"><h4><b>${esc(s)}</b><span>${l.length}</span></h4><div class="cards">${l.map(card).join('')}</div></div>`).join('') +
+      secs.map(([s, l], si) => { lists.push(l); return `<div class="ds" id="sec-${mi}-${si}"><h4><b>${esc(s)}</b><span>${l.length}</span></h4><div class="cards"></div></div>`; }).join('') +
       '</section>';
   }).join('') : `<p class="mut">${esc(T('dictEmpty'))}</p>`;
+  fillDict([...$('dictBody').querySelectorAll('.cards')], lists);
 }
 
 function stopSpeech() {
