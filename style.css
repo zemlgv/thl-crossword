@@ -465,3 +465,18 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 .tile span{color:rgba(255,255,255,.9)}
 .tile::after{content:'\2192';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:20px;line-height:1}
 @media (hover:hover){.tile:hover{border-color:transparent;filter:brightness(1.08)}}
+
+/* Страница учебника: большая обложка слева, справа класс, название, статистика и кнопки разделов */
+.bookhead{grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:40px;padding:32px;align-items:center}
+.bookhead .cover{width:100%;margin:0}
+.bookinfo h1{margin:4px 0 10px;font-size:40px}
+.bookinfo .meta{margin:0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:28px}
+.tile{display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 18px;margin:0;border-radius:12px;background:var(--bk);color:#fff;border:0;font-size:16px;font-weight:600;cursor:pointer;box-shadow:0 10px 20px -14px var(--bk)}
+.tile::after{content:none}
+@media (hover:hover){.tile:hover{filter:brightness(1.08)}}
+@media (max-width:560px){
+  .bookhead{grid-template-columns:1fr;gap:20px;padding:20px}
+  .bookhead .cover{width:200px}
+  .bookinfo h1{font-size:30px}
+}
