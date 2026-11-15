@@ -116,7 +116,8 @@ const moduleOf = s => { const m = String(s).match(/^(\d+)/); return m ? m[1] : S
 const sortNat = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
 const secKey = w => w.module + '||' + w.section;
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
-const isMobile = () => matchMedia('(max-width: 860px)').matches;
+const NARROW_Q = '(max-width: 860px), (pointer: coarse) and (max-width: 1280px)';
+const isMobile = () => matchMedia(NARROW_Q).matches;
 const modLabel = m => /^\d+$/.test(m) ? `${T('module')} ${m}` : m;
 const medal = i => ['🥇', '🥈', '🥉'][i] || String(i + 1);
 
@@ -1054,20 +1055,36 @@ async function loadAllBooks() {
   return ALLW;
 }
 
-// Карточки словаря добавляются порциями по кадрам: вкладка открывается сразу, слова появляются постепенно
-let dictGen = 0;
-function fillDict(boxes, lists) {
-  const gen = ++dictGen;
-  const queue = [];
-  lists.forEach((words, i) => words.forEach(w => queue.push([boxes[i], w])));
+// Словарь: сначала 50 слов, дальше подгружаются при прокрутке к концу списка
+let dictQueue = [], dictPos = 0, dictIO = null;
+const DICT_BATCH = 50;
+function pushCards(n) {
   let k = 0;
-  const frame = () => {
-    if (gen !== dictGen) return;
-    const end = Math.min(k + 60, queue.length);
-    for (; k < end; k++) queue[k][0].insertAdjacentHTML('beforeend', card(queue[k][1]));
-    if (k < queue.length) requestAnimationFrame(frame);
-  };
-  requestAnimationFrame(frame);
+  while (dictPos < dictQueue.length && k < n) {
+    const [box, w] = dictQueue[dictPos++];
+    box.insertAdjacentHTML('beforeend', card(w));
+    k++;
+  }
+}
+function moreCards() {
+  pushCards(DICT_BATCH);
+  if (dictPos >= dictQueue.length) { if (dictIO) dictIO.disconnect(); return; }
+  // пока конец списка близко к экрану и вкладка открыта, добавляем ещё порцию
+  if (!$('dict').hidden && $('dictMore').getBoundingClientRect().top < innerHeight + 600) requestAnimationFrame(moreCards);
+}
+function fillDict(boxes, lists) {
+  dictQueue = []; dictPos = 0;
+  lists.forEach((words, i) => words.forEach(w => dictQueue.push([boxes[i], w])));
+  if (!dictIO) dictIO = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) moreCards(); }, { rootMargin: '600px 0px' });
+  dictIO.disconnect();
+  dictIO.observe($('dictMore'));
+  moreCards();
+}
+// Переход по оглавлению: подгружаем слова до конца нужного раздела
+function loadThrough(box) {
+  let last = -1;
+  dictQueue.forEach((q, i) => { if (q[0] === box) last = i; });
+  if (last >= dictPos) pushCards(last + 1 - dictPos);
 }
 
 async function renderDict() {
@@ -1180,7 +1197,9 @@ function speak(w, acc, btn) {
 $('dictBody').addEventListener('click', e => {
   const jump = e.target.closest('.tocbtn');
   if (jump) {
-    document.getElementById(jump.dataset.jump)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const sec = document.getElementById(jump.dataset.jump);
+    if (sec) loadThrough(sec.querySelector('.cards'));
+    sec?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     return;
   }
   const b = e.target.closest('.spk');
