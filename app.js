@@ -1,1293 +1,406 @@
-const I18N = {
-ru: {
-  appTitle:'Кроссворд по словарю', 
-  
-  f1t:'Словарь с озвучкой', f1d:'Слова по модулям и разделам: перевод, транскрипция и произношение британского или американского варианта.',
-  f2t:'Кроссворд за минуту', f2d:'Учитель выбирает модули и разделы, сайт собирает сетку, ссылку и QR-код.',
-  f3t:'Результаты класса', f3d:'Каждый ученик видит своё место в таблице лидеров кроссворда.',
-  
-  
-  
-  check:'Проверить (+10 с)', reveal:'Показать ответы · без зачёта',
-  revealConfirm:'Показать ответы? Кроссворд закроется, результат не засчитается и не попадёт в таблицу лидеров.',
-  tabHome:'Главная', tabTeacher:'Генератор', tabPlay:'Кроссворд', tabDict:'Словарь', tabBoard:'Лидеры',
-  heroTitle:'Словарь и кроссворды к учебнику {b}',
-  heroText:'Слова из учебника с переводом и произношением. Учитель собирает кроссворд за минуту из нужных модулей и разделов, ученики решают его со своих телефонов.',
-  meta:'Модулей: {m} · Разделов: {s} · Слов: {w}',
-  studentNote:'Ученикам: откройте ссылку или отсканируйте QR-код, который дал учитель.',
-  authorLine:'Автор: Георгий Земляков, ученик 9Б класса. Совместно с учителем английского языка Долбешкиной Еленой Германовной.',
-  heroBtn:'Открыть словарь', heroBtn2:'Создать кроссворд',
-  
-  
-  
-  
-  
-  footer:'Технологический лицей · Сыктывкар',
-  genHint:'Отметьте модули и разделы, из слов которых собрать кроссворд.',
-  module:'Модуль', wordCount:'Слов в кроссворде (5–25)', available:'Подходит для кроссворда', outOf:'из',
-  availDetail:'Не подходят: {s} (фразы, слова с дефисом или короче 3 букв). Повторы: {d}, в кроссворд попадает одно из одинаковых слов.',
-  ukLabel:'UK', usLabel:'US', ukTitle:'Британское произношение', usTitle:'Американское произношение',
-  generate:'Создать кроссворд', linkLabel:'Ссылка для учеников', copy:'Копировать', copied:'Скопировано',
-  share:'Поделиться', qrCopy:'Скопировать QR', qrCopied:'QR скопирован', qrSaved:'QR сохранён',
-  openGame:'Открыть кроссворд', qrFull:'QR на весь экран', closeQr:'Закрыть',
-  qrHint:'Ученики открывают ссылку или сканируют QR-код телефоном.',
-  selAll:'Выбрать всё', selNone:'Снять всё',
-  clueMode:'Подсказки', cmTr:'Перевод', cmPos:'Перевод и часть речи', cmFirst:'Перевод и первая буква',
-  playHint:'Введите имя и нажмите «Начать». Таймер запустится сразу.', yourName:'Ваше имя', start:'Начать',
-  enterName:'Введите имя', hint:'Открыть букву (+15 с)',
-  across:'По горизонтали', down:'По вертикали', solved:'Решено за', myPlace:'Ваше место',
-  revealedNote:'Ответы показаны, результат не засчитан.', wrongCount:'Ошибок', emptyCount:'Пустых клеток',
-  noPuzzle:'Кроссворд не выбран. Создайте его в генераторе или откройте ссылку учителя.',
-  tooFew:'Мало подходящих слов: нужно минимум 5 слов из латинских букв.',
-  searchPh:'Слово или перевод', all:'Все', dictEmpty:'Ничего не найдено', words:'слов',
-  colName:'Имя', colTime:'Время', lbTitle:'Лидеры этого кроссворда',
-  lbOpenFirst:'Откройте или создайте кроссворд, чтобы увидеть лидеров.',
-  lbOff:'Общие лидеры не подключены. См. README.txt.',
-  lbEmpty:'Пока никто не решил этот кроссворд.',
-  lbErr:'Не удалось загрузить лидеров. Проверьте интернет.',
-  lbSendErr:'Не удалось отправить результат в лидеры.',
-  pageTitle:'Кроссворд по словарю · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
-  partialFit:'Подходящих слов: {p}, а вы указали {n}. Выберите больше разделов или уменьшите число слов.', placeFail:'Не удалось вставить {n} слов в сетку: мало пересечений. Выберите больше разделов или уменьшите число слов. Вошло: {p}.', qrFail:'QR-код не загрузился, нужен интернет.', lbNote:'Результаты общие для класса и хранятся 15 минут после последнего прохождения.',
-  
-},
-en: {
-  appTitle:'Vocabulary Crossword', 
-  
-  f1t:'Dictionary with audio', f1d:'Words by module and section: translation, transcription and British or American pronunciation.',
-  f2t:'A crossword in a minute', f2d:'The teacher picks modules and sections, the site builds the grid, the link and the QR code.',
-  f3t:'Class results', f3d:'Each student sees their place in the crossword leaderboard.',
-  
-  
-  
-  check:'Check (+10 s)', reveal:'Show answers · not counted',
-  revealConfirm:'Show answers? The crossword will close, the result will not be counted and will not go to the leaderboard.',
-  tabHome:'Home', tabTeacher:'Generator', tabPlay:'Crossword', tabDict:'Dictionary', tabBoard:'Leaderboard',
-  heroTitle:'Vocabulary and crosswords for {b}',
-  heroText:'Textbook words with translation and pronunciation. A teacher builds a crossword in a minute from chosen modules and sections, and students solve it on their phones.',
-  meta:'Modules: {m} · Sections: {s} · Words: {w}',
-  studentNote:'Students: open the link or scan the QR code from your teacher.',
-  authorLine:'Project by Georgiy Zemlyakov, grade 9B, together with the English teacher Dolbeshkina Elena Germanovna.',
-  heroBtn:'Open dictionary', heroBtn2:'Create crossword',
-  
-  
-  
-  
-  
-  footer:'Technological Lyceum · Syktyvkar',
-  genHint:'Tick the modules and sections to build the crossword from.',
-  module:'Module', wordCount:'Words in crossword (5–25)', available:'Fits the crossword', outOf:'of',
-  availDetail:'Not suitable: {s} (phrases, hyphenated or shorter than 3 letters). Duplicates: {d}, only one of identical words goes into the crossword.',
-  ukLabel:'UK', usLabel:'US', ukTitle:'British pronunciation', usTitle:'American pronunciation',
-  generate:'Create crossword', linkLabel:'Link for students', copy:'Copy', copied:'Copied',
-  share:'Share', qrCopy:'Copy QR', qrCopied:'QR copied', qrSaved:'QR saved',
-  openGame:'Open crossword', qrFull:'QR full screen', closeQr:'Close',
-  qrHint:'Students open the link or scan the QR code with a phone.',
-  selAll:'Select all', selNone:'Clear all',
-  clueMode:'Clues', cmTr:'Translation', cmPos:'Translation + part of speech', cmFirst:'Translation + first letter',
-  playHint:'Enter your name and press Start. The timer begins at once.', yourName:'Your name', start:'Start',
-  enterName:'Enter your name', hint:'Reveal letter (+15 s)',
-  across:'Across', down:'Down', solved:'Solved in', myPlace:'Your place',
-  revealedNote:'Answers shown, result not counted.', wrongCount:'Errors', emptyCount:'Empty cells',
-  noPuzzle:'No crossword selected. Create one in the generator or open the teacher’s link.',
-  tooFew:'Not enough words: at least 5 Latin-letter words are needed.',
-  searchPh:'Word or translation', all:'All', dictEmpty:'Nothing found', words:'words',
-  colName:'Name', colTime:'Time', lbTitle:'Leaderboard of this crossword',
-  lbOpenFirst:'Open or create a crossword to see the leaderboard.',
-  lbOff:'Shared leaderboard is not connected. See README.txt.',
-  lbEmpty:'Nobody has solved this crossword yet.',
-  lbErr:'Could not load the leaderboard. Check your connection.',
-  lbSendErr:'Could not send the result to the leaderboard.',
-  pageTitle:'Vocabulary crossword · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
-  partialFit:'Suitable words: {p}, but you asked for {n}. Choose more sections or reduce the number of words.', placeFail:'Could not fit {n} words into the grid: too few crossings. Choose more sections or reduce the number of words. Fitted: {p}.', qrFail:'QR code did not load, internet needed.', lbNote:'Results are shared within the class and kept for 15 minutes after the last solve.',
-  
+:root{--bg:#eef2f8;--sf:#ffffff;--ink:#0e1c34;--mut:#5d6b84;--ln:#d6dfec;--ac:#1f56d6;--ac2:#1f56d6;--acs:#e6eeff;--side:#0a1f44;--side2:#12306a;--sidetxt:#dbe6fa;--sidemut:#a9bbdb;--ok:#c7ecd6;--bad:#f9cdd0;--hl:#dce8ff;--cur:#ffe58a;--bk:#1f56d6;--cell:34px;--sw:264px}
+[data-mode=dark]{--bg:#0a1322;--sf:#111d33;--ink:#e5ecf7;--mut:#8fa0bd;--ln:#23324e;--ac:#5b8cff;--ac2:#5b8cff;--acs:#192b52;--side:#060f1f;--side2:#0f2247;--sidetxt:#dbe6fa;--sidemut:#a9bbdb;--ok:#1d5238;--bad:#6a2a33;--hl:#1e3566;--cur:#8a6d12;--bk:#5b8cff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+body{margin:0;font:15px/1.5 "Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink);transition:background .2s,color .2s;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none;display:block}
+
+/* Боковое меню: фиксированное, сдвигается трансформацией, контент не переформатируется */
+.side{position:fixed;left:0;top:0;bottom:0;width:var(--sw);height:100vh;height:100dvh;height:var(--vvh,100dvh);top:var(--vvt,0px);overflow:hidden;background:var(--side);color:var(--sidetxt);padding:22px 18px;display:flex;flex-direction:column;gap:22px;z-index:40;transition:transform .25s ease;overflow:hidden}
+.side .sx{position:absolute;top:12px;right:12px;width:36px;height:36px;padding:0;display:grid;place-items:center;background:var(--side2);border-color:var(--side2);color:var(--sidetxt);border-radius:9px}
+.side .sx svg{width:18px;height:18px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;line-height:1.25;padding-right:44px;min-width:0}
+.logo{width:44px;height:44px;flex:none;display:block}
+.logo img{width:100%;height:100%;display:block}
+.nav{display:flex;flex-direction:column;gap:2px}
+.tab{background:none;border:0;border-left:3px solid transparent;border-radius:0 8px 8px 0;text-align:left;padding:10px 14px;color:var(--sidemut);font-size:15px;cursor:pointer}
+@media (hover:hover){.tab:hover{background:var(--side2);color:#fff}}
+.tab.on{background:var(--side2);color:#fff;font-weight:600}
+.sfoot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.seg{--i:0;position:relative;display:grid;grid-template-columns:repeat(var(--n),1fr);background:var(--side2);border-radius:9px;padding:3px}
+.seg .thumb{position:absolute;left:3px;top:3px;bottom:3px;width:calc((100% - 6px)/var(--n));background:var(--ac2);border-radius:7px;transform:translateX(calc(var(--i)*100%));transition:transform .25s ease}
+.seg button{position:relative;z-index:1;background:none;border:0;color:var(--sidetxt);padding:7px 0;display:grid;place-items:center;font-weight:600;font-size:13px;cursor:pointer;border-radius:7px}
+@media (hover:hover){.seg button:hover{border:0}}
+.seg button svg{width:16px;height:16px}
+.scrim{display:none}
+
+/* Рабочая область: контент по центру, отступ под меню на широком экране */
+.shell{margin-left:var(--sw);min-width:0;display:flex;flex-direction:column;min-height:100vh}
+.app.collapsed .side{transform:translateX(-100%)}
+.app.collapsed .shell{margin-left:0}
+#menuBtn{position:fixed;top:14px;left:14px;z-index:35;display:grid}
+.app:not(.collapsed) #menuBtn{display:none}
+.icon{width:40px;height:40px;padding:0;display:grid;place-items:center;border-radius:10px;border:1px solid var(--ln);background:var(--sf);cursor:pointer}
+.icon svg{width:20px;height:20px}
+.main{width:100%;max-width:1120px;margin:0 auto;padding:40px 32px 56px}
+.panel{animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+button{padding:9px 16px;border:1px solid var(--ln);background:var(--sf);border-radius:9px;cursor:pointer;transition:background .15s,border-color .15s,transform .1s,box-shadow .15s}
+@media (hover:hover){button:hover{border-color:var(--ac)}}
+button:focus-visible{outline:2px solid var(--ac2);outline-offset:2px}
+input:focus,select:focus{outline:none;border-color:var(--ac2)}
+button.primary{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600;padding:11px 22px}
+@media (hover:hover){button.primary:hover{filter:brightness(1.08)}}
+input,select{padding:9px 12px;border:1px solid var(--ln);border-radius:9px;background:var(--sf);min-width:0}
+input[type=checkbox]{width:16px;height:16px;padding:0;margin:0;accent-color:var(--ac2);flex:none}
+input[type=number]{width:90px}
+
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:center;padding:44px;margin-top:8px;background:var(--sf);border:1px solid var(--ln);border-radius:20px;box-shadow:0 1px 2px rgba(14,28,52,.05),0 16px 36px -22px rgba(14,28,52,.22)}
+.hero-text{min-width:0}
+.cover{margin:0;justify-self:end;max-width:100%}
+.cover img{display:block;width:auto;height:auto;max-height:340px;max-width:100%;border-radius:10px;border:1px solid var(--ln)}
+.hero h1{margin:0 0 16px;font-size:clamp(28px,3.4vw,42px);line-height:1.1;letter-spacing:-.03em;font-weight:700}
+.lead{margin:0 0 28px;color:var(--mut);font-size:17px;max-width:500px}
+.hero .row{display:flex;gap:10px;flex-wrap:wrap}
+.meta{margin:20px 0 0;color:var(--mut);font-size:13px}
+.feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.feat{background:var(--sf);border:1px solid var(--ln);border-radius:16px;padding:22px}
+.feat h3{margin:0 0 8px;font-size:16px;font-weight:600}
+.feat p{margin:0;color:var(--mut);font-size:14px}
+.about{padding:28px 4px 0}
+.about p{margin:0 0 8px;color:var(--mut);font-size:14px}
+.about p:first-child{color:var(--ink);font-size:15px}
+.pagefoot{margin-top:40px;padding-top:18px;border-top:1px solid var(--ln);color:var(--mut);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+.ph{margin-bottom:22px}
+.ph h2{margin:0;font-size:28px;letter-spacing:-.02em}
+.ph p{margin:4px 0 0;color:var(--mut)}
+.mut{color:var(--mut)}
+.err{color:#d6394a;margin:6px 0 0;min-height:1.2em}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:20px}
+.field{display:flex;flex-direction:column;gap:5px;font-size:13px}
+.field span{color:var(--mut);font-size:13px}
+.lbl{margin:0 0 6px;color:var(--mut);font-size:13px}
+
+.quick{display:flex;gap:8px;margin-bottom:12px}
+.quick button{font-size:13px;padding:6px 12px}
+.tree{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:18px}
+.mod{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:14px 16px}
+.mh,.sec{display:flex;align-items:center;gap:8px;cursor:pointer}
+.mh{font-weight:700;padding-bottom:8px;margin-bottom:4px;border-bottom:1px solid var(--ln)}
+.sec{padding:5px 0}
+.sec span{flex:1}
+.sec em{font-style:normal;font-size:12px;background:var(--acs);color:var(--ac);padding:1px 8px;border-radius:999px}
+.params{display:flex;flex-direction:column;gap:18px;align-items:stretch}
+.pf{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pf .field{min-width:0}
+.pf input,.pf select{width:100%}
+#available{text-align:center}
+#genBtn{width:100%;padding:12px 22px}
+
+.result{margin-top:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:36px;align-items:center}
+.res-l{display:flex;flex-direction:column;gap:12px;min-width:0}
+.res-r{display:flex;flex-direction:column;align-items:center;gap:12px}
+#linkBox{flex:1;min-width:0}
+#qr{padding:12px;background:#fff;border-radius:14px;border:1px solid var(--ln);line-height:0}
+#qr canvas,#qr img{width:240px;height:240px}
+.qrbtns{justify-content:center}
+
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.bar-l,.bar-r{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bar button{height:40px;padding:0 14px;white-space:nowrap}
+.timer{font:700 24px/1 "Segoe UI",sans-serif;font-variant-numeric:tabular-nums;background:var(--side);color:#fff;padding:10px 16px;border-radius:10px}
+#who{font-weight:600;color:var(--ac)}
+.msg{min-height:1.4em;margin:0 0 12px}
+.msg.win{background:var(--ac);color:#fff;padding:12px 16px;border-radius:10px;font-weight:600}
+.game{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start}
+.gridwrap{overflow:auto;max-width:100%;padding:16px;background:var(--sf);border:1px solid var(--ln);border-radius:14px}
+.grid{display:grid;gap:2px;width:max-content}
+.blk{width:var(--cell);height:var(--cell)}
+.cell{position:relative;width:var(--cell);height:var(--cell);background:var(--sf);border:1.5px solid var(--mut);border-radius:4px;overflow:hidden}
+.cell input{width:100%;height:100%;border:0;border-radius:0;background:transparent;text-align:center;font-size:calc(var(--cell)*.5);font-weight:700;text-transform:uppercase;padding:calc(var(--cell)*.12) 0 0;color:var(--ink)}
+.cell input:focus{outline:none}
+.cell.hl{background:var(--hl)}
+.cell.act{background:var(--cur);border-color:var(--ink)}
+.cell.ok{background:var(--ok)}
+.cell.bad{background:var(--bad)}
+.num{position:absolute;top:1px;left:3px;font-size:clamp(8px,calc(var(--cell)*.27),11px);font-weight:700;color:var(--mut);pointer-events:none}
+.clues{min-width:0;background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:4px 20px 16px}
+.clues h3{margin:16px 0 6px;font-size:14px;font-weight:600;color:var(--ac)}
+.clues ol{padding-left:26px;margin:0}
+.clues li{cursor:pointer;padding:5px 8px;border-radius:7px}
+@media (hover:hover){.clues li:hover{background:var(--bg)}}
+.clues li.cur{background:var(--hl);font-weight:600}
+
+.lb{margin-top:18px}
+.lbt{margin:0 0 10px;font-size:15px}
+.lbl-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.lbl-list li{display:grid;grid-template-columns:32px 1fr auto;gap:8px;padding:7px 10px;border-radius:8px}
+.lbl-list li.me{background:var(--hl);font-weight:600}
+.lbl-list .pt{font-variant-numeric:tabular-nums;color:var(--mut)}
+
+.tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:10;background:var(--bg);padding:14px 0 14px;margin:0}
+#search{width:280px;max-width:100%;height:38px;padding:6px 12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border-radius:999px;padding:6px 14px;font-size:13px}
+.chip.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.dm{margin-top:30px}
+.dm>h3{display:flex;align-items:baseline;gap:12px;margin:0 0 6px;font-size:22px;letter-spacing:-.01em;padding-bottom:10px;border-bottom:2px solid var(--bk)}
+.dm>h3 span,.ds h4 span{font-size:13px;font-weight:400;color:var(--mut)}
+.ds{margin-top:18px}
+.ds h4{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:14px}
+.ds h4 b{background:var(--acs);color:var(--ac);padding:2px 10px;border-radius:7px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.wc{background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.wh{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap}
+.wh strong{font-size:17px}
+.spk{height:28px;padding:0 9px 0 7px;display:inline-flex;align-items:center;gap:4px;border-radius:999px;color:var(--ac);font-size:12px;flex:none}
+.spk svg{width:14px;height:14px}
+.spk b{font-weight:700}
+.spk .i-load{display:none}
+.spk.loading .i-spk{display:none}
+.spk.loading .i-load{display:block;animation:spin .8s linear infinite}
+.spk.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tr{color:var(--mut);font-size:13px;min-width:0}
+.tx{margin:0;line-height:1.35;flex:1 1 auto}
+
+.avail{font-size:15px;line-height:1.6}
+.avail b{font-weight:600}
+.info{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;border:1px solid var(--mut);color:var(--mut);font-size:11px;font-weight:700;cursor:help;margin-left:4px}
+.mh em{margin-left:auto;font-style:normal;font-size:12px;font-weight:600;background:var(--acs);color:var(--ac);padding:1px 8px;border-radius:999px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.tocbtn{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;font-size:13px;background:var(--sf)}
+.tocbtn em{font-style:normal;font-size:12px;background:var(--acs);color:var(--ac);padding:1px 8px;border-radius:999px}
+.ds{scroll-margin-top:140px}
+.wf{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap}
+.voices{display:inline-flex;flex-wrap:wrap;gap:6px}
+.wf .pos{margin-top:0}
+.tbl{padding:0;overflow:auto;max-height:65vh}
+table{border-collapse:collapse;width:100%}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--ln)}
+th{position:sticky;top:0;background:var(--sf);color:var(--mut);font-size:13px;font-weight:600}
+@media (hover:hover){tbody tr:hover{background:var(--bg)}}
+tbody tr.me{background:var(--hl);font-weight:600}
+
+.overlay{position:fixed;inset:0;z-index:60;background:rgba(6,14,32,.86);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:20px}
+#qrBig{background:#fff;padding:18px;border-radius:18px;line-height:0;max-width:92vw}
+#qrBig canvas,#qrBig img{max-width:86vw;max-height:70vh;width:auto!important;height:auto!important}
+.ovtext{color:#c9d7f2;font-size:13px;word-break:break-all;margin:0;text-align:center;max-width:90vw}
+.overlay button{background:#fff;color:#0e1c34;border:0;font-weight:600;padding:12px 26px;border-radius:10px}
+
+@media (max-width:1100px){
+  .hero{grid-template-columns:1fr;gap:28px;padding:32px}
+  .cover{justify-self:start}
+}
+@media (max-width:1000px){
+  .game{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:860px), (pointer:coarse) and (max-width:1280px){
+  .side{transform:translateX(-102%);width:284px;max-width:84vw}
+  .app.open .side{transform:none;box-shadow:0 0 40px rgba(0,0,0,.4)}
+  .shell,.app.collapsed .shell{margin-left:0}
+  .app:not(.collapsed) #menuBtn{display:grid}
+  .app.open #menuBtn{display:none}
+  .app.open .scrim{display:block;position:fixed;inset:0;background:rgba(5,12,28,.45);z-index:30}
+  .main{padding:18px 16px 44px}
+  .ph{padding-left:52px}
+  .ph h2{font-size:24px}
+  .feats{grid-template-columns:1fr;gap:12px}
+  .tools{padding-left:52px}
+  #search{width:100%;max-width:360px;height:38px;padding:6px 12px}
+  .side{height:100vh;height:100dvh;padding:16px;gap:14px;overflow:hidden}
+  .side .brand{order:1}
+  .side .sfoot{order:2;margin-top:0;flex-direction:row}
+  .side .sfoot .seg{flex:1}
+  .side .nav{order:4;gap:0}
+  .side .bookNav{order:5}
+  .side .tab{padding:9px 14px}
+  .side .sx{top:10px;right:10px}
+  .overlay button{width:100%}
+}
+@media (max-width:560px){
+  .hero{padding:24px 20px}
+  .hero h1{font-size:26px}
+  .cover img{max-height:220px}
+  .bar-r{width:100%}
+  .bar-r button{flex:1}
+  .bar-r #revealBtn{flex:0 0 auto}
+  .pf{grid-template-columns:1fr}
+  .result{grid-template-columns:1fr}
+  .res-r{order:-1}
+  #qr canvas,#qr img{width:200px;height:200px}
+  .timer{font-size:20px}
+}
+#dictBody{scroll-margin-top:110px}
+
+/* Меню учебников */
+.books{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+@media (max-width:1100px){.books{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.books{grid-template-columns:1fr}}
+.bk{display:flex;flex-direction:column;gap:10px;padding:16px;background:var(--sf);border:1px solid var(--ln);border-top:6px solid var(--bk);border-radius:18px;color:var(--ink);text-decoration:none;transition:transform .15s,box-shadow .15s,border-color .15s}
+@media (hover:hover){.bk:hover{transform:translateY(-2px);border-color:var(--bk);box-shadow:0 14px 28px -18px var(--bk)}}
+.bk img,.ph-cover{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px;border:1px solid var(--ln)}
+.ph-cover{display:grid;place-items:center;padding:16px;background:var(--bk);color:#fff;font-weight:700;font-size:20px;text-align:center;line-height:1.2}
+.bk h3{margin:4px 0 0;font-size:17px}
+.bk span{color:var(--mut);font-size:13px}
+
+/* Учебник в боковой панели */
+.bookNav{display:flex;flex-direction:column;gap:8px}
+.bookName{color:var(--sidetxt);font-weight:600;font-size:14px;padding:0 14px;border-left:3px solid var(--ac2);line-height:1.3}
+
+/* Части речи: пастельный фон, текст того же оттенка, темнее. Без обводки. Одна переменная --c на часть речи */
+.posrow{display:inline-flex;gap:4px;flex-wrap:wrap;align-self:flex-start;margin-top:auto}
+.pos{--c:#475569;font-size:11px;font-weight:600;line-height:1.4;padding:2px 8px;border-radius:5px;white-space:nowrap;
+  background:color-mix(in srgb,var(--c) 16%,white);
+  color:color-mix(in srgb,var(--c) 75%,black)}
+[data-mode=dark] .pos{
+  background:color-mix(in srgb,var(--c) 26%,transparent);
+  color:color-mix(in srgb,var(--c) 45%,white)}
+.pos[data-p=noun]{--c:#737373}
+.pos[data-p=adjective]{--c:#1D4ED8}
+.pos[data-p=numeral]{--c:#3B82F6}
+.pos[data-p=verb]{--c:#DC2626}
+.pos[data-p=verb-irregular]{--c:#991B1B}
+.pos[data-p=adverb]{--c:#F97316}
+.pos[data-p=pronoun]{--c:#7E22CE}
+.pos[data-p=preposition]{--c:#16A34A}
+.pos[data-p=conjunction]{--c:#F472B6}
+.pos[data-p=interjection]{--c:#EAB308}
+.pos[data-p=phrasal-verb]{--c:#E11D48}
+.pos[data-p=prepositional-phrase]{--c:#065F46}
+.pos[data-p=phrase]{--c:#92400E}
+[data-mode=dark] .pos[data-p=noun]{--c:#a3a3a3}
+[data-mode=dark] .pos[data-p=phrase]{--c:#d6a06a}
+.wf .posrow{margin-top:0}
+
+/* Нажатие: видно сразу, на телефоне и мышью. Без синей вспышки браузера */
+button:not(:disabled):active{transform:scale(.96);filter:brightness(.92)}
+.tab,.clues li,.bk,.seg button{transition:transform .08s,background .08s,filter .08s}
+.tab:active{transform:scale(.97);background:var(--side2)}
+.seg button:active{transform:scale(.94);background:var(--ac2)}
+.clues li:active{transform:scale(.99);background:var(--hl)}
+.bk:active{transform:scale(.97);border-color:var(--bk)}
+.spk:active{transform:scale(.93);background:var(--hl)}
+.chip:active{transform:scale(.95)}
+.cell input:active{background:var(--hl)}
+
+/* Галочка поиска */
+.ck{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--mut);cursor:pointer;white-space:nowrap}
+.ck input{accent-color:var(--ac2)}
+
+/* Блок ссылки: поле на всю ширину, кнопки сеткой; на телефоне QR сверху */
+.result{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:start}
+.res-l{display:flex;flex-direction:column;gap:12px;min-width:0}
+#linkBox{width:100%;min-width:0;font-size:13px;text-overflow:ellipsis}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.acts .wide{grid-column:1/-1}
+.res-r{display:flex;flex-direction:column;align-items:center;gap:10px}
+.qrbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+@media (max-width:860px), (pointer:coarse) and (max-width:1280px){
+  .result{grid-template-columns:1fr;gap:20px}
+  .res-r{order:-1}
+  #qr canvas,#qr img{width:200px;height:200px}
+}
+
+/* Выделение текста: в интерфейсе выключено, в тексте словаря и подсказках оставлено */
+button,.chip,.tab,.tocbtn,.bk,.seg,.spk,.timer,.num,.cell,.clues,.clues li,.pos,.tools,.bar,label,.ck,.overlay,#qr,.lbl-list li,.side{
+  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
+
+/* Статистика под таблицей лидеров: мелко и без рамки */
+.stat{margin:18px 0 0;font-size:12px;color:var(--mut);text-align:center}
+
+/* Печать: лист A4, сетка на всю ширину, поля для ФИО и даты */
+#printArea{display:none}
+@page{size:A4;margin:12mm}
+@media print{
+  body>*:not(#printArea){display:none!important}
+  #printArea{display:block!important;color:#000;background:#fff;font-family:"Segoe UI",Arial,sans-serif}
+  .phead h1{font-size:18pt;margin:0 0 3mm}
+  .pname{display:flex;justify-content:space-between;font-size:10pt;margin:0 0 5mm;white-space:nowrap}
+  .pgrid{border-collapse:collapse;margin:0 auto 8mm;table-layout:fixed}
+  .pgrid td{width:var(--cell);height:var(--cell);padding:0;position:relative;border:0}
+  .pgrid td.b{border:1px solid #000}
+  .pgrid td i{position:absolute;top:.3mm;left:.7mm;font-size:calc(var(--cell) * .3);font-style:normal;line-height:1}
+  .pclues{display:grid;grid-template-columns:1fr 1fr;gap:6mm;font-size:9pt}
+  .pclues h3{font-size:11pt;margin:0 0 2mm;border-bottom:1px solid #000;padding-bottom:1mm}
+  .pclues ul{list-style:none;padding:0;margin:0}
+  .pclues li{margin:0 0 .6mm;break-inside:avoid}
+  .pfoot{margin-top:6mm;font-size:8pt;color:#555;text-align:center}
+}
+
+/* Кнопка CSV под таблицей лидеров */
+#csvBtn{margin-top:12px}
+
+/* Телефон в альбомной ориентации: кроссворд и подсказки рядом, блоки компактнее.
+   Портрет и ПК не затрагиваются. */
+@media (orientation:landscape) and (max-height:500px) and (max-width:1000px){
+  .main{padding:14px 16px 20px}
+  .ph{margin-bottom:10px}
+  .ph h2{font-size:20px}
+  .game{grid-template-columns:minmax(0,1fr) minmax(170px,240px);gap:14px}
+  .clues{max-height:calc(100vh - 110px);overflow:auto;padding:2px 12px 10px}
+  .clues h3{margin:10px 0 4px}
+  .bar{margin-bottom:8px}
+  .hero{padding:16px;gap:20px}
+  .hero h1{font-size:22px}
+  .card{padding:14px}
+}
+
+/* Альбомная ориентация телефона: меню, поиск и блоки компактнее, всё помещается по высоте без прокрутки */
+@media (orientation:landscape) and (max-height:600px){
+  .side{padding:10px 14px;gap:8px}
+  .side .sx{top:8px;right:8px;width:30px;height:30px}
+  .brand{padding-right:40px;gap:10px;font-size:14px;line-height:1.2}
+  .logo{width:34px;height:34px}
+  .nav{gap:0}
+  .tab{padding:5px 12px;font-size:14px}
+  .bookNav{gap:4px}
+  .bookName{font-size:13px}
+  .side .sfoot{flex-direction:row;gap:6px;margin-top:0}
+  .side .sfoot .seg{flex:1}
+  .seg button{padding:5px 0}
+  .tools{padding:8px 0;gap:8px}
+  #search{height:34px;width:100%;max-width:300px}
+  .main{padding:14px 16px 20px}
+}
+
+/* Сетка по центру, если она меньше отведённого места */
+.gridwrap>.grid{margin-left:auto;margin-right:auto}
+
+/* Карточки словаря появляются плавно (при «меньше движения» — сразу) */
+.wc{animation:fade .35s ease both}
+@media (prefers-reduced-motion:reduce){.wc{animation:none}}
+
+/* Словарь: места для слов фиксированной высоты, чтобы страница не менялась при подгрузке */
+.cards{grid-auto-rows:140px}
+.slot{min-width:0}
+.wc{height:100%;overflow:hidden;min-width:0}
+.cards{grid-auto-flow:row dense}
+.slot.long .wc{overflow:visible}
+.wh{min-width:0}
+.wh strong,.tx,.tr{overflow-wrap:anywhere;min-width:0}
+.wf{row-gap:4px}
+
+/* Касание (планшет, телефон) в портрете: кнопки крупнее */
+@media (pointer:coarse) and (orientation:portrait){
+  button,.tab,.tocbtn,.seg button,.chip{min-height:44px}
+  .tab{font-size:16px}
+}
+
+/* Низкий экран в портрете: меню компактнее, чтобы не прокручивалось */
+@media (orientation:portrait) and (max-height:700px){
+  .side{padding:14px;gap:12px}
+  .tab{padding:7px 12px}
+  .bookNav{gap:4px}
+}
+
+/* Учебники: на телефоне и в альбомной ориентации карточки горизонтальные */
+@media (max-width:560px){.books{grid-template-columns:1fr;gap:10px}}
+@media (orientation:landscape) and (max-height:600px){.books{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+@media (max-width:560px),(orientation:landscape) and (max-height:600px){
+  .bk{flex-direction:row;align-items:center;gap:14px;padding:10px 12px;border-top-width:1px;border-left:6px solid var(--bk)}
+  .bk img,.ph-cover{width:60px;flex:none;font-size:10px;padding:6px}
+  .bk h3{margin:0;font-size:15px}
+  .bk span{font-size:12px}
+}
+
+/* Альбомная ориентация телефона и планшета: поля по краям, словарь в несколько колонок */
+@media (orientation:landscape) and (max-height:800px) and (pointer:coarse){
+  .main{padding-left:max(24px,7vw);padding-right:max(24px,7vw)}
+  .cards{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
 }
-};
-
-let lang = localStorage.getItem('lang') || 'ru';
-let theme = localStorage.getItem('theme') || 'light';
-const T = k => (I18N[lang][k] ?? I18N.ru[k] ?? k);
-const $ = id => document.getElementById(id);
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const key = (x, y) => x + ',' + y;
-const parseKey = k => k.split(',').map(Number);
-const isLatin = w => /^[A-Za-z]{3,}$/.test(w);
-const clue = t => String(t).trim();
-const moduleOf = s => { const m = String(s).match(/^(\d+)/); return m ? m[1] : String(s).replace(/\s*\d+$/, '').trim(); };
-const sortNat = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
-const secKey = w => w.module + '||' + w.section;
-const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
-// При изменении ширины карточки переносятся по-другому: подгоняем заново
-let fitTimer = null;
-window.addEventListener('resize', () => {
-  clearTimeout(fitTimer);
-  fitTimer = setTimeout(() => dictLoaded.forEach(i => fitCard(dictSlots[i].firstElementChild)), 150);
-});
-
-// Видимая часть окна (без скрытой адресной строки): боковое меню совпадает с ней по высоте
-function syncViewport() {
-  const vv = window.visualViewport;
-  const st = document.documentElement.style;
-  st.setProperty('--vvh', (vv ? vv.height : innerHeight) + 'px');
-  st.setProperty('--vvt', (vv ? vv.offsetTop : 0) + 'px');
-}
-if (window.visualViewport) { visualViewport.addEventListener('resize', syncViewport); visualViewport.addEventListener('scroll', syncViewport); }
-window.addEventListener('resize', syncViewport);
-// Прокрутка страницы скрывает и показывает адресную строку браузера, высота меню должна следовать за этим
-window.addEventListener('scroll', syncViewport, { passive: true });
-syncViewport();
-
-const NARROW_Q = '(max-width: 860px), (pointer: coarse) and (max-width: 1280px)';
-const isMobile = () => matchMedia(NARROW_Q).matches;
-const modLabel = m => /^\d+$/.test(m) ? `${T('module')} ${m}` : m;
-const medal = i => ['🥇', '🥈', '🥉'][i] || String(i + 1);
-
-const BOOKS = [];
-let BOOK = null, WORDS = [];
-const BYID = new Map();
-let dictMod = '';
-let pz = null, active = { k: null, dir: 'a' }, cellMap = new Map();
-let finished = false, player = '', elapsed = 0, startTime = 0, timerId = null;
-let curCode = null, pzId = null, myT = null;
-let cur = 'library', au = null;
-
-const ICON_SPK = '<svg class="i-spk" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
-const ICON_LOAD = '<svg class="i-load" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg>';
-
-function rng(seed) {
-  let a = seed >>> 0;
-  return () => {
-    a = (a + 0x6D2B79F5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-function layout(words, seed) {
-  if (!words.length) return null;
-  const r = rng(seed);
-  const cells = new Map(), kind = new Map(), placed = [];
-
-  const place = (src, x, y, d) => {
-    const w = src.word.toUpperCase(), dx = d === 'a' ? 1 : 0, dy = d === 'd' ? 1 : 0;
-    const keys = [];
-    for (let i = 0; i < w.length; i++) {
-      const k = key(x + dx * i, y + dy * i);
-      keys.push(k);
-      if (cells.has(k)) kind.set(k, kind.get(k) + d);
-      else { cells.set(k, w[i]); kind.set(k, d); }
-    }
-    placed.push({ src, w, x, y, d, keys });
-  };
-
-  const fits = (w, x, y, d) => {
-    const dx = d === 'a' ? 1 : 0, dy = d === 'd' ? 1 : 0;
-    if (cells.has(key(x - dx, y - dy)) || cells.has(key(x + dx * w.length, y + dy * w.length))) return false;
-    let cross = 0;
-    for (let i = 0; i < w.length; i++) {
-      const cx = x + dx * i, cy = y + dy * i, k = key(cx, cy);
-      if (cells.has(k)) {
-        if (cells.get(k) !== w[i] || kind.get(k).includes(d)) return false;
-        cross++;
-      } else if (cells.has(key(cx + dy, cy + dx)) || cells.has(key(cx - dy, cy - dx))) {
-        return false;
-      }
-    }
-    return cross > 0;
-  };
-
-  const list = [...words].sort((a, b) => b.word.length - a.word.length);
-  place(list[0], 0, 0, 'a');
-
-  for (const src of list.slice(1)) {
-    const w = src.word.toUpperCase();
-    const cands = [];
-    for (const [k, ch] of cells) {
-      const [cx, cy] = parseKey(k);
-      for (let i = 0; i < w.length; i++) {
-        if (w[i] !== ch) continue;
-        for (const d of ['a', 'd']) {
-          const x = cx - (d === 'a' ? i : 0), y = cy - (d === 'd' ? i : 0);
-          if (fits(w, x, y, d)) cands.push([x, y, d]);
-        }
-      }
-    }
-    if (cands.length) {
-      const [x, y, d] = cands[Math.floor(r() * cands.length)];
-      place(src, x, y, d);
-    }
-  }
-
-  if (placed.length < 4) return null;
-
-  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-  for (const k of cells.keys()) {
-    const [x, y] = parseKey(k);
-    minX = Math.min(minX, x); maxX = Math.max(maxX, x);
-    minY = Math.min(minY, y); maxY = Math.max(maxY, y);
-  }
-
-  const sorted = [...placed].sort((a, b) => a.y - b.y || a.x - b.x || (a.d === 'a' ? -1 : 1));
-  const numAt = new Map();
-  for (const p of sorted) {
-    const k = key(p.x, p.y);
-    if (!numAt.has(k)) numAt.set(k, numAt.size + 1);
-    p.num = numAt.get(k);
-  }
-
-  const at = new Map();
-  for (const p of placed) for (const k of p.keys) {
-    if (!at.has(k)) at.set(k, []);
-    at.get(k).push(p);
-  }
-
-  return { cells, placed, at, numAt, minX, minY, W: maxX - minX + 1, H: maxY - minY + 1 };
-}
-
-function buildFromPayload(p) {
-  const words = p.i.map(id => BYID.get(id)).filter(Boolean);
-  return layout(words, p.s);
-}
-
-// Короткий детерминированный идентификатор кроссворда: одинаков на всех устройствах
-function puzzleHash(s) {
-  let h1 = 0x811c9dc5, h2 = 5381;
-  for (let i = 0; i < s.length; i++) {
-    const c = s.charCodeAt(i);
-    h1 = Math.imul(h1 ^ c, 0x01000193);
-    h2 = ((h2 << 5) + h2 + c) | 0;
-  }
-  return (h1 >>> 0).toString(16).padStart(8, '0') + (h2 >>> 0).toString(16).padStart(8, '0');
-}
-
-function setCurrent(code) {
-  curCode = code;
-  pzId = puzzleHash(code);
-  myT = null;
-}
-
-// Цвета интерфейса считаются из цвета учебника (светлая и тёмная тема); без учебника действуют базовые из style.css
-const PAL_VARS = ['--ac', '--ac2', '--side', '--side2', '--acs', '--hl', '--cur', '--bk'];
-function hexToHsl(hex) {
-  const n = parseInt(hex.replace('#', ''), 16);
-  const r = (n >> 16) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255;
-  const max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
-  let h = 0, s = 0; const l = (max + min) / 2;
-  if (d) {
-    s = d / (1 - Math.abs(2 * l - 1));
-    if (max === r) h = ((g - b) / d) % 6;
-    else if (max === g) h = (b - r) / d + 2;
-    else h = (r - g) / d + 4;
-    h = Math.round(h * 60); if (h < 0) h += 360;
-  }
-  return [h, Math.round(s * 100), Math.round(l * 100)];
-}
-function applyPalette() {
-  const st = document.documentElement.style;
-  // В библиотеке учебник не выбран: действуют базовые цвета из style.css
-  if (!BOOK || !BOOK.color || cur === 'library') { PAL_VARS.forEach(v => st.removeProperty(v)); return; }
-  const [h, s0, l0] = hexToHsl(BOOK.color);
-  const dark = document.documentElement.dataset.mode === 'dark';
-  const c = (sat, l) => `hsl(${h} ${Math.round(Math.min(100, Math.max(0, sat)))}% ${Math.round(Math.min(100, Math.max(0, l)))}%)`;
-  const p = dark ? {
-    '--ac': c(s0, Math.min(Math.max(l0, 45), 60)),   // кнопки и текст-акцент
-    '--ac2': c(s0, 66),                              // фокус, ползунок переключателя
-    '--side': c(Math.max(s0, 70), 7),                // боковая панель: почти как базовая, темнее
-    '--side2': c(Math.max(s0, 60), 16),              // активный пункт меню
-    '--acs': c(s0 * 0.5, 18),                        // мягкий фон значков
-    '--hl': c(s0 * 0.6, 27),                         // подсветка слова
-    '--cur': c(s0 * 0.7, 36),                        // текущая клетка
-  } : {
-    '--ac': l0 <= 50 ? BOOK.color : c(s0, 40),       // кнопки и текст-акцент: цвет учебника
-    '--ac2': c(s0, (l0 <= 50 ? l0 : 40) + 12),       // фокус, ползунок переключателя: светлее
-    '--side': c(Math.max(s0, 70), 13),               // боковая панель: почти как базовая, чуть темнее
-    '--side2': c(Math.max(s0, 60), 24),              // активный пункт меню
-    '--acs': c(s0 * 0.6, 94),                        // мягкий фон значков
-    '--hl': c(s0 * 0.8, 86),                         // подсветка слова
-    '--cur': c(s0 * 0.9, 74),                        // текущая клетка
-  };
-  Object.entries(p).forEach(([k, v]) => st.setProperty(k, v));
-  st.setProperty('--bk', BOOK.color);
-}
-
-function setSeg(s, i) { s.style.setProperty('--i', i); }
-
-function setMode() {
-  const m = theme === 'system' ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme;
-  document.documentElement.dataset.mode = m;
-  setSeg($('themeSeg'), ['light', 'dark', 'system'].indexOf(theme));
-  applyPalette();
-}
-
-
-function applyLang() {
-  document.documentElement.lang = lang;
-  document.title = T('pageTitle');
-  document.querySelectorAll('[data-i18n-aria]').forEach(el => el.setAttribute('aria-label', T(el.dataset.i18nAria)));
-  document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = T(el.dataset.i18n));
-  document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = T(el.dataset.i18nPh));
-  setSeg($('langSeg'), lang === 'ru' ? 0 : 1);
-  const logo = lang === 'ru' ? 'img/logo-ru.png' : 'img/logo-en.png';
-  $('logoImg').src = logo;
-  $('favicon').href = logo;
-  renderLibrary();
-  renderStats();
-  if (WORDS.length) {
-    buildTree();
-    buildDict();
-    renderHome();
-    if (pz) renderClues();
-    renderLB(lbCache);
-  }
-}
-
-function renderHome() {
-  const m = new Set(WORDS.map(w => w.module)).size;
-  const sec = new Set(WORDS.map(secKey)).size;
-  $('homeMeta').textContent = T('meta').replace('{m}', m).replace('{s}', sec).replace('{w}', WORDS.length);
-  $('footBook').textContent = BOOK.title;
-  $('heroTitle').textContent = T('heroTitle').replace('{b}', BOOK.title.replace(/ (\d+)$/, '\u00A0$1'));
-  const box = $('coverBox');
-  if (BOOK.cover) { $('coverImg').src = BOOK.cover; box.hidden = false; }
-  else { box.hidden = true; }
-}
-
-function showTab(n) {
-  cur = n;
-  if (n === 'board') showStats();
-  document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== n);
-  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b.dataset.tab === n));
-  $('bookNav').hidden = n === 'library' || !BOOK;
-  applyPalette();
-  if (n === 'teacher') buildTree();
-  if (n === 'play') fitGrid();
-  if (n === 'play' || n === 'board') refreshLB();
-  $('app').classList.remove('open');
-  scrollTo({ top: 0 });
-}
-
-const selSecs = () => [...document.querySelectorAll('input[data-sec]:checked')].map(c => c.dataset.sec);
-
-function candidates(secs) {
-  const seen = new Set();
-  return WORDS.filter(w => {
-    const k = w.word.toLowerCase();
-    if (!secs.includes(secKey(w)) || !isLatin(w.word) || seen.has(k)) return false;
-    seen.add(k);
-    return true;
-  });
-}
-
-function buildTree() {
-  const on = new Set(selSecs()), mods = new Map();
-  WORDS.forEach(w => {
-    if (!mods.has(w.module)) mods.set(w.module, new Map());
-    const secs = mods.get(w.module), k = secKey(w);
-    if (!secs.has(k)) secs.set(k, { name: w.section, n: 0 });
-    secs.get(k).n++;
-  });
-  $('tree').innerHTML = [...mods].map(([m, secs]) => {
-    const total = [...secs.values()].reduce((t, v) => t + v.n, 0);
-    return `<div class="mod"><label class="mh"><input type="checkbox" data-mod="${esc(m)}"><span>${esc(modLabel(m))}</span><em>${total}</em></label>` +
-    [...secs].map(([k, v]) =>
-      `<label class="sec"><input type="checkbox" data-sec="${esc(k)}"${on.has(k) ? ' checked' : ''}><span>${esc(v.name)}</span><em>${v.n}</em></label>`
-    ).join('') + '</div>';
-  }).join('');
-  updateAvailable();
-}
-
-function poolStats(secs) {
-  const sel = WORDS.filter(w => secs.includes(secKey(w)));
-  const seen = new Set();
-  let ok = 0, skip = 0, dup = 0;
-  sel.forEach(w => {
-    if (!isLatin(w.word)) { skip++; return; }
-    const k = w.word.toLowerCase();
-    if (seen.has(k)) { dup++; return; }
-    seen.add(k);
-    ok++;
-  });
-  return { total: sel.length, ok, skip, dup };
-}
-
-function updateAvailable() {
-  document.querySelectorAll('.mod').forEach(g => {
-    const c = [...g.querySelectorAll('input[data-sec]')];
-    g.querySelector('input[data-mod]').checked = c.length > 0 && c.every(x => x.checked);
-  });
-  const st = poolStats(selSecs());
-  const detail = T('availDetail').replace('{s}', st.skip).replace('{d}', st.dup);
-  $('available').innerHTML = `<b>${T('available')}: ${st.ok}</b> ${T('outOf')} ${st.total}<span class="info" title="${esc(detail)}">?</span>`;
-}
-
-$('tree').addEventListener('change', e => {
-  if (e.target.dataset.mod !== undefined)
-    e.target.closest('.mod').querySelectorAll('input[data-sec]').forEach(c => c.checked = e.target.checked);
-  updateAvailable();
-});
-const setAll = v => { document.querySelectorAll('input[data-sec]').forEach(c => c.checked = v); updateAvailable(); };
-$('selAll').onclick = () => setAll(true);
-$('selNone').onclick = () => setAll(false);
-
-function makeQR(el, text, size) {
-  el.innerHTML = '';
-  try { new QRCode(el, { text, width: size, height: size }); }
-  catch (e) { el.textContent = T('qrFail'); }
-}
-
-function flash(btn, msg) {
-  const old = btn.dataset.label || btn.textContent;
-  btn.dataset.label = old;
-  btn.textContent = msg;
-  clearTimeout(btn._t);
-  btn._t = setTimeout(() => { btn.textContent = old; }, 1600);
-}
-
-// Статистика: отправляет событие на сервер, если включена в config.js (см. README)
-function stat(ev) {
-  if (!STATS_ON || !LEADER_URL) return;
-  fetch(LEADER_URL + '?action=stat&ev=' + ev, { cache: 'no-store' }).catch(() => { });
-}
-
-let statsData = null;
-function renderStats() {
-  const line = $('statsLine');
-  if (!statsData) return;
-  line.textContent = T('statsLine').replace('{c}', statsData.created).replace('{s}', statsData.started).replace('{v}', statsData.solved);
-}
-async function showStats() {
-  const line = $('statsLine');
-  line.hidden = !(STATS_ON && LEADER_URL);
-  if (line.hidden) return;
-  try {
-    statsData = await (await fetch(LEADER_URL + '?action=stats', { cache: 'no-store' })).json();
-    renderStats();
-  } catch (e) { line.hidden = true; }
-}
-
-let lastPayload = null;
-
-$('genBtn').onclick = () => {
-  const pool = candidates(selSecs());
-  const want = Math.min(25, Math.max(5, parseInt($('wordCount').value, 10) || 12));
-  if (pool.length < 5) return alert(T('tooFew'));
-  if (pool.length < want) return alert(T('partialFit').replace('{p}', pool.length).replace('{n}', want));
-  // Несколько попыток: случайный набор слов и seed. Берём раскладку, куда вошло больше слов
-  let best = null;
-  for (let attempt = 0; attempt < 60; attempt++) {
-    const seed = Math.floor(Math.random() * 2147483646) + 1, r = rng(seed);
-    const chosen = pool.map(w => [r(), w]).sort((a, b) => a[0] - b[0]).slice(0, want).map(x => x[1]);
-    const lay = layout(chosen, seed);
-    if (lay && (!best || lay.placed.length > best.placed)) best = { placed: lay.placed.length, chosen, seed };
-    if (best && best.placed >= want) break;
-  }
-  if (!best || best.placed < want) return alert(T('placeFail').replace('{p}', best ? best.placed : 0).replace('{n}', want));
-  const payload = { b: BOOK.id, i: best.chosen.map(w => w.id), s: best.seed, c: $('clueMode').value };
-  lastPayload = payload;
-  stat('created');
-  const code = btoa(JSON.stringify(payload));
-  const link = location.href.split('#')[0] + '#game=' + code;
-  setCurrent(code);
-  $('linkBox').value = link;
-  $('result').hidden = false;
-  makeQR($('qr'), link, 240);
-  $('openBtn').onclick = () => {
-    const h = '#game=' + code;
-    if (location.hash === h) route(); else location.hash = h;
-  };
-  refreshLB();
-};
-
-// Текст подсказки: общая функция для игры и для печати
-function clueOf(p, mode) {
-  let t = p.src.clue || p.src.translation;
-  if (mode === 'pos' && p.src.pos) t += ` [${p.src.pos}]`;
-  if (mode === 'first') t += ` — ${p.w[0]}…`;
-  return `${t} (${p.w.length})`;
-}
-
-// Имя файла: <префикс>-<учебник>-<дата>-<время>-<число слов>, без расширения
-function fileName(prefix, words) {
-  const d = new Date();
-  const p = n => String(n).padStart(2, '0');
-  const date = [d.getFullYear(), p(d.getMonth() + 1), p(d.getDate())].join('-');
-  const time = [d.getHours(), d.getMinutes(), d.getSeconds()].map(p).join('-');
-  const title = BOOK.title.replace(/[\\/:*?"<>|\s]+/g, '-');
-  return `${prefix}-${title}-${date}-${time}${words ? `-${words}` : ''}`;
-}
-
-// Печать: сетка с номерами и подсказки, без букв. Печатается только блок #printArea
-$('printBtn').onclick = () => {
-  if (!lastPayload) return;
-  const lay = buildFromPayload(lastPayload);
-  if (!lay) return;
-  // Клетка по ширине листа (182 мм) или по высоте (130 мм), что меньше
-  const cell = Math.min(182 / lay.W, 130 / lay.H).toFixed(2);
-  const rows = [];
-  for (let y = lay.minY; y < lay.minY + lay.H; y++) {
-    let tr = '';
-    for (let x = lay.minX; x < lay.minX + lay.W; x++) {
-      const k = key(x, y);
-      if (!lay.cells.has(k)) { tr += '<td class="e"></td>'; continue; }
-      const n = lay.numAt.get(k);
-      tr += `<td class="b">${n ? `<i>${n}</i>` : ''}</td>`;
-    }
-    rows.push(`<tr>${tr}</tr>`);
-  }
-  const list = d => lay.placed.filter(p => p.d === d).sort((a, b) => a.num - b.num)
-    .map(p => `<li><b>${p.num}.</b> ${esc(clueOf(p, lastPayload.c))}</li>`).join('');
-  $('printArea').innerHTML =
-    `<div class="phead"><h1>${esc(BOOK.title)}</h1>` +
-    `<div class="pname"><span>Name: ${'_'.repeat(44)}</span><span>Date: ${'_'.repeat(18)}</span></div></div>` +
-    `<table class="pgrid" style="--cell:${cell}mm;width:${(cell * lay.W).toFixed(1)}mm">${rows.join('')}</table>` +
-    `<div class="pclues"><div><h3>Across</h3><ul>${list('a')}</ul></div>` +
-    `<div><h3>Down</h3><ul>${list('d')}</ul></div></div>` +
-    `<div class="pfoot">${esc(location.host + location.pathname)}</div>`;
-  // Chrome и Edge берут имя PDF из заголовка страницы: на время печати ставим имя файла
-  const oldTitle = document.title;
-  document.title = fileName('crossword', lastPayload.i.length);
-  window.addEventListener('afterprint', () => { document.title = oldTitle; }, { once: true });
-  window.print();
-};
-
-// Экспорт результатов текущего кроссворда в CSV (открывается в Excel)
-$('csvBtn').onclick = () => {
-  if (!lbCache || !lbCache.length) return;
-  const lines = ['Место;Имя;Время'];
-  // Защита от формул в Excel: имя, которое начинается с = + - @, превращается в текст
-  const safe = s => { let t = String(s).replace(/"/g, '""'); if (/^[=+\-@\t\r]/.test(t)) t = "'" + t; return `"${t}"`; };
-  lbCache.forEach((r, i) => lines.push([i + 1, safe(r.name), fmt(r.sec)].join(';')));
-  const blob = new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = fileName('leaderboard', curCode ? JSON.parse(atob(curCode)).i.length : '') + '.csv';
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-};
-
-$('copyBtn').onclick = () => {
-  navigator.clipboard?.writeText($('linkBox').value);
-  flash($('copyBtn'), T('copied'));
-};
-
-$('shareBtn').onclick = async () => {
-  const url = $('linkBox').value;
-  if (navigator.share) {
-    try { await navigator.share({ title: BOOK.title, text: T('appTitle'), url }); return; }
-    catch (e) { if (e.name === 'AbortError') return; }
-  }
-  navigator.clipboard?.writeText(url);
-  flash($('shareBtn'), T('copied'));
-};
-
-$('qrCopy').onclick = () => {
-  const src = document.querySelector('#qr canvas');
-  const btn = $('qrCopy');
-  if (!src) return;
-  src.toBlob(async blob => {
-    if (!blob) return;
-    try {
-      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-      flash(btn, T('qrCopied'));
-    } catch (e) {
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'thl-qr.png';
-      a.click();
-      flash(btn, T('qrSaved'));
-    }
-  }, 'image/png');
-};
-
-function openQR(link) {
-  const size = Math.max(200, Math.min(640, Math.min(innerWidth, innerHeight) - 160));
-  makeQR($('qrBig'), link, size);
-  $('qrLink').textContent = link;
-  $('qrOverlay').hidden = false;
-}
-const closeQR = () => { $('qrOverlay').hidden = true; };
-$('qrFull').onclick = () => openQR($('linkBox').value);
-$('qrClose').onclick = closeQR;
-$('qrOverlay').addEventListener('click', e => { if (e.target.id === 'qrOverlay') closeQR(); });
-
-function toggleSide() {
-  if (isMobile()) $('app').classList.toggle('open');
-  else {
-    const c = $('app').classList.toggle('collapsed');
-    localStorage.setItem('collapsed', c ? '1' : '0');
-  }
-}
-$('menuBtn').onclick = toggleSide;
-$('sideClose').onclick = toggleSide;
-$('scrim').onclick = () => $('app').classList.remove('open');
-addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeQR(); $('app').classList.remove('open'); }
-});
-
-// Библиотека учебников: список карточек, каждая ведёт на #book=<id>
-function renderLibrary() {
-  $('books').innerHTML = [...BOOKS].sort((a, b) => a.grade - b.grade).map(b => {
-    const cover = b.cover ? `<img src="${esc(b.cover)}" alt="">` : `<div class="ph-cover">${esc(b.title)}</div>`;
-    return `<a class="bk" href="#book=${encodeURIComponent(b.id)}" style="--bk:${esc(b.color || '#393186')}">${cover}<h3>${esc(b.title)}</h3><span>${esc(T('grade').replace('{g}', b.grade))}</span></a>`;
-  }).join('');
-}
-
-// Адрес определяет экран: #game=... решение кроссворда, #book=... меню учебника, иначе библиотека
-async function route() {
-  const h = location.hash;
-  if (h.startsWith('#game=')) {
-    const code = h.slice(6);
-    let p = null;
-    try { p = JSON.parse(atob(code)); } catch (e) { }
-    if (p && p.b && (!BOOK || p.b !== BOOK.id)) await loadBook(p.b);
-    setCurrent(code);
-    loadPuzzle(p);
-    showTab('play');
-    return;
-  }
-  if (h.startsWith('#book=')) {
-    const id = decodeURIComponent(h.slice(6));
-    if (!BOOK || BOOK.id !== id) {
-      if (!BOOKS.some(b => b.id === id)) return showTab('library');
-      await loadBook(id);
-    }
-    showTab('home');
-    return;
-  }
-  showTab('library');
-}
-
-async function loadBook(id) {
-  BOOK = BOOKS.find(b => b.id === id);
-  if (!BOOK) return;
-  curCode = null;
-  document.documentElement.style.setProperty('--bk', BOOK.color || '#393186');
-  $('bookName').textContent = BOOK.title;
-  WORDS = await (await fetch(BOOK.file)).json();
-  BYID.clear();
-  WORDS.forEach(w => { w.module = w.module || ('Module ' + moduleOf(w.section)); w.clue = clue(w.translation); BYID.set(w.id, w); });
-  dictMod = '';
-  loadPuzzle(null);
-  applyLang();
-}
-
-function loadPuzzle(p) {
-  stopTimer();
-  const built = p ? buildFromPayload(p) : null;
-  pz = built ? { ...built, payload: p } : null;
-  finished = false; elapsed = 0; player = ''; startTime = 0;
-  $('timer').textContent = '00:00';
-  $('status').textContent = '';
-  $('status').classList.remove('win');
-  $('nameErr').textContent = '';
-  $('who').textContent = '';
-  $('noPuzzle').hidden = !!pz;
-  $('startBox').hidden = !pz;
-  $('gameArea').hidden = true;
-  if (pz) { $('playerName').value = ''; renderGrid(); renderClues(); restoreState(); }
-}
-
-function fitGrid() {
-  if (!pz) return;
-  const wrap = document.querySelector('#game .gridwrap');
-  if (!wrap || !wrap.clientWidth) return;
-  // ширина рамки прокрутки минус её внутренние отступы (по 16 px с каждой стороны)
-  const avail = wrap.clientWidth - 32;
-  const size = Math.max(22, Math.min(46, Math.floor((avail - 2 * (pz.W - 1)) / pz.W)));
-  $('grid').style.setProperty('--cell', size + 'px');
-}
-addEventListener('resize', fitGrid);
-
-function renderGrid() {
-  const g = $('grid');
-  g.innerHTML = '';
-  cellMap = new Map();
-  g.style.gridTemplateColumns = `repeat(${pz.W}, var(--cell))`;
-  for (let y = pz.minY; y < pz.minY + pz.H; y++) {
-    for (let x = pz.minX; x < pz.minX + pz.W; x++) {
-      const k = key(x, y), div = document.createElement('div');
-      if (!pz.cells.has(k)) { div.className = 'blk'; g.appendChild(div); continue; }
-      div.className = 'cell';
-      if (pz.numAt.has(k)) {
-        const s = document.createElement('span');
-        s.className = 'num';
-        s.textContent = pz.numAt.get(k);
-        div.appendChild(s);
-      }
-      const inp = document.createElement('input');
-      inp.autocomplete = 'off';
-      inp.lang = 'en';
-      inp.spellcheck = false;
-      inp.autocapitalize = 'characters';
-      inp.setAttribute('autocorrect', 'off');
-      inp.setAttribute('enterkeyhint', 'next');
-      let wasActive = false;
-      inp.addEventListener('pointerdown', () => { wasActive = active.k === k; });
-      inp.addEventListener('focus', () => { pick(k, false); inp.select(); });
-      inp.addEventListener('click', () => pick(k, wasActive));
-      inp.addEventListener('input', () => onInput(k, inp));
-      inp.addEventListener('keydown', e => onKey(e, k, inp));
-      div.appendChild(inp);
-      g.appendChild(div);
-      cellMap.set(k, div);
-    }
-  }
-}
-
-function clueText(p) {
-  return clueOf(p, pz.payload.c || 'tr');
-}
-
-function renderClues() {
-  const fill = (ol, dir) => {
-    ol.innerHTML = '';
-    pz.placed.filter(p => p.d === dir).sort((a, b) => a.num - b.num).forEach(p => {
-      const li = document.createElement('li');
-      li.value = p.num;
-      li.textContent = clueText(p);
-      li.onclick = () => move(p.keys[0], p.d);
-      p.li = li;
-      ol.appendChild(li);
-    });
-  };
-  fill($('acrossList'), 'a');
-  fill($('downList'), 'd');
-}
-
-function neighbor(k, dir, delta) {
-  const [x, y] = parseKey(k);
-  const nk = dir === 'a' ? key(x + delta, y) : key(x, y + delta);
-  return pz.cells.has(nk) ? nk : null;
-}
-
-function pick(k, toggle) {
-  const list = pz.at.get(k);
-  if (!list) return;
-  const has = d => list.some(p => p.d === d);
-  let dir = active.dir;
-  if (toggle && has('a') && has('d')) dir = dir === 'a' ? 'd' : 'a';
-  if (!has(dir)) dir = has('a') ? 'a' : 'd';
-  active = { k, dir };
-  highlight();
-}
-
-function move(k, dir) {
-  active.dir = dir;
-  pick(k, false);
-  cellMap.get(k)?.querySelector('input')?.focus();
-}
-
-function highlight() {
-  cellMap.forEach(el => el.classList.remove('hl', 'act'));
-  pz.placed.forEach(p => p.li?.classList.remove('cur'));
-  (pz.at.get(active.k) || []).forEach(p => {
-    p.keys.forEach(k => cellMap.get(k)?.classList.add('hl'));
-    p.li?.classList.add('cur');
-  });
-  cellMap.get(active.k)?.classList.add('act');
-}
-
-function onInput(k, inp) {
-  const v = inp.value.replace(/[^a-zA-Z]/g, '').slice(-1).toUpperCase();
-  inp.value = v;
-  cellMap.get(k).classList.remove('ok', 'bad');
-  if (v) {
-    const nk = neighbor(k, active.dir, 1);
-    if (nk) move(nk, active.dir);
-  }
-  saveState();
-  const { wrong, empty } = checkAll(false);
-  if (!wrong && !empty) finish();
-}
-
-function onKey(e, k, inp) {
-  if (finished) { e.preventDefault(); return; }
-  const arrows = { ArrowRight: ['a', 1], ArrowLeft: ['a', -1], ArrowDown: ['d', 1], ArrowUp: ['d', -1] };
-  if (arrows[e.key]) {
-    e.preventDefault();
-    const [d, s] = arrows[e.key];
-    const nk = neighbor(k, d, s);
-    if (nk) move(nk, d);
-  } else if (e.key === 'Backspace' && !inp.value) {
-    e.preventDefault();
-    const pk = neighbor(k, active.dir, -1);
-    if (pk) {
-      const el = cellMap.get(pk);
-      el.querySelector('input').value = '';
-      el.classList.remove('ok', 'bad');
-      move(pk, active.dir);
-    }
-  }
-}
-
-function checkAll(paint = true) {
-  let wrong = 0, empty = 0;
-  pz.cells.forEach((ch, k) => {
-    const el = cellMap.get(k), v = el.querySelector('input').value;
-    if (paint) el.classList.remove('ok', 'bad');
-    if (!v) empty++;
-    else if (v === ch) { if (paint) el.classList.add('ok'); }
-    else { if (paint) el.classList.add('bad'); wrong++; }
-  });
-  return { wrong, empty };
-}
-
-function lockGrid() {
-  document.querySelectorAll('#grid input').forEach(i => i.disabled = true);
-}
-
-function startTimer() {
-  if (timerId) return;
-  if (!startTime) startTime = Date.now();
-  timerId = setInterval(() => {
-    elapsed = Math.floor((Date.now() - startTime) / 1000);
-    $('timer').textContent = fmt(elapsed);
-  }, 250);
-}
-
-function stopTimer() {
-  clearInterval(timerId);
-  timerId = null;
-}
-
-// Фиксирует время в момент окончания игры
-function freezeTimer() {
-  if (startTime) elapsed = Math.floor((Date.now() - startTime) / 1000);
-  stopTimer();
-}
-
-// Сохраняет игру в браузере: при перезагрузке таймер не сбрасывается, а решённый кроссворд нельзя решить заново
-function saveState(state = 'playing') {
-  if (!pzId || !pz || !player || !startTime) return;
-  const vals = [];
-  cellMap.forEach((el, k) => { const v = el.querySelector('input').value; if (v) vals.push([k, v]); });
-  try {
-    localStorage.setItem('game_' + pzId, JSON.stringify({ name: player, startTime, elapsed, state, vals }));
-  } catch (e) { }
-}
-
-function restoreState() {
-  let s = null;
-  try { s = JSON.parse(localStorage.getItem('game_' + pzId) || 'null'); } catch (e) { }
-  if (!s || !s.name || !s.startTime) return false;
-  player = s.name;
-  startTime = s.startTime;
-  $('who').textContent = player;
-  $('startBox').hidden = true;
-  $('gameArea').hidden = false;
-  (s.vals || []).forEach(([k, v]) => {
-    const inp = cellMap.get(k)?.querySelector('input');
-    if (inp) inp.value = v;
-  });
-  fitGrid();
-  if (s.state === 'won' || s.state === 'revealed') {
-    finished = true;
-    elapsed = s.elapsed || 0;
-    $('timer').textContent = fmt(elapsed);
-    checkAll(true);
-    lockGrid();
-    const st = $('status');
-    if (s.state === 'won') {
-      st.classList.add('win');
-      st.textContent = `${T('solved')} ${fmt(elapsed)}.`;
-    } else {
-      st.textContent = T('revealedNote');
-    }
-  } else {
-    elapsed = Math.floor((Date.now() - startTime) / 1000);
-    $('timer').textContent = fmt(elapsed);
-    startTimer();
-  }
-  refreshLB();
-  return true;
-}
-
-function finish() {
-  if (finished) return;
-  finished = true;
-  freezeTimer();
-  checkAll(true);
-  lockGrid();
-  const s = $('status');
-  s.classList.add('win');
-  s.textContent = `${T('solved')} ${fmt(elapsed)}.`;
-  saveState('won');
-  stat('solved');
-  if (LEADER_URL) {
-    submitResult()
-      .then(j => { if (j && j.rank) s.textContent += ` ${T('myPlace')}: ${j.rank}.`; })
-      .catch(() => { s.textContent += ' ' + T('lbSendErr'); });
-  }
-}
-
-function beginGame() {
-  const name = $('playerName').value.trim();
-  if (!name) { $('nameErr').textContent = T('enterName'); return; }
-  $('nameErr').textContent = '';
-  player = name;
-  $('who').textContent = name;
-  $('startBox').hidden = true;
-  $('gameArea').hidden = false;
-  fitGrid();
-  startTimer();
-  saveState();
-  stat('started');
-  refreshLB();
-  const first = pz.placed.find(p => p.num === 1);
-  if (first) move(first.keys[0], first.d);
-}
-$('startBtn').onclick = beginGame;
-$('playerName').addEventListener('keydown', e => { if (e.key === 'Enter') beginGame(); });
-
-function addPenalty(sec) {
-  if (!timerId) return;
-  startTime -= sec * 1000;
-  elapsed += sec;
-  $('timer').textContent = fmt(elapsed);
-}
-
-$('checkBtn').onclick = () => {
-  if (!pz || finished) return;
-  const { wrong, empty } = checkAll(true);
-  if (!wrong && !empty) return finish();
-  addPenalty(10);
-  $('status').textContent = `${T('wrongCount')}: ${wrong}, ${T('emptyCount')}: ${empty}`;
-  saveState();
-};
-
-$('hintBtn').onclick = () => {
-  if (!pz || finished || !active.k) return;
-  const el = cellMap.get(active.k);
-  const answer = pz.cells.get(active.k);
-  if (el.querySelector('input').value === answer) return;   // буква уже верная: подсказывать нечего
-  el.querySelector('input').value = answer;
-  el.classList.remove('ok', 'bad');
-  const { wrong, empty } = checkAll(false);
-  if (!wrong && !empty) return finish();
-  addPenalty(15);
-  saveState();
-};
-
-$('revealBtn').onclick = () => {
-  if (!pz || finished) return;
-  if (!confirm(T('revealConfirm'))) return;
-  finished = true;
-  freezeTimer();
-  pz.cells.forEach((ch, k) => {
-    const el = cellMap.get(k);
-    el.querySelector('input').value = ch;
-    el.classList.remove('bad');
-    el.classList.add('ok');
-  });
-  lockGrid();
-  $('status').textContent = T('revealedNote');
-  saveState('revealed');
-};
-
-// ---------- Общие лидеры ----------
-
-let lbCache = null, lbError = false;
-
-async function lbCall(params = {}) {
-  const q = new URLSearchParams({ id: pzId, ...params });
-  const r = await fetch(LEADER_URL + '?' + q.toString(), { cache: 'no-store' });
-  const j = await r.json();
-  if (j.error) throw new Error(j.error);
-  return j;
-}
-
-async function submitResult() {
-  const j = await lbCall({ action: 'submit', name: player, sec: String(elapsed) });
-  myT = j.me;
-  lbCache = j.list;
-  renderLB(lbCache);
-  return j;
-}
-
-async function refreshLB() {
-  if (!curCode) { lbCache = null; renderLB(null); return; }
-  if (!LEADER_URL) { renderLB(null); return; }
-  try {
-    const j = await lbCall();
-    lbError = false;
-    lbCache = j.list;
-  } catch (e) {
-    lbError = true;
-  }
-  renderLB(lbCache);
-}
-
-function renderLB(list) {
-  let msg = '';
-  if (!curCode) msg = T('lbOpenFirst');
-  else if (!LEADER_URL) msg = T('lbOff');
-  else if (lbError) msg = T('lbErr');
-  else if (!list || !list.length) msg = T('lbEmpty');
-
-  const rows = list || [];
-  const play = rows.slice(0, 10).map((r, i) =>
-    `<li class="${r.t === myT ? 'me' : ''}"><span>${i + 1}</span><span>${esc(r.name)}</span><span class="pt">${fmt(r.sec)}</span></li>`).join('');
-  $('lbPlayList').innerHTML = play;
-  $('lbPlayMsg').textContent = msg;
-  $('lbPlayMsg').hidden = !msg;
-
-  $('boardBody').innerHTML = rows.map((r, i) =>
-    `<tr class="${r.t === myT ? 'me' : ''}"><td>${medal(i)}</td><td>${esc(r.name)}</td><td>${fmt(r.sec)}</td></tr>`).join('');
-  $('boardMsg').textContent = msg || T('lbNote');
-  $('boardMsg').hidden = false;
-  $('boardInfo').textContent = pz ? `${BOOK.title} · ${pz.placed.length} ${T('words')}` : (BOOK ? BOOK.title : '');
-}
-
-setInterval(() => { if (cur === 'play' || cur === 'board') refreshLB(); }, 10000);
-
-// ---------- Словарь ----------
-
-function buildDict() {
-  const mods = [...new Set(WORDS.map(w => w.module))];
-  $('chips').innerHTML = [['', T('all')], ...mods.map(m => [m, modLabel(m)])]
-    .map(([v, l]) => `<button class="chip${v === dictMod ? ' on' : ''}" data-m="${esc(v)}">${esc(l)}</button>`).join('');
-  renderDict();
-}
-
-// Часть речи -> отдельные бейджи: "adjective, adverb" дают два бейджа, "noun (plural)" и "phrase (idiom)" - один цвет основной части речи
-function posHtml(pos) {
-  const parts = String(pos || '').split(',').map(x => x.trim()).filter(Boolean);
-  const chips = parts.map(label => {
-    const base = label.toLowerCase();
-    const key = /irregular/.test(base) ? 'verb-irregular'
-      : base.replace(/\s*\(.*\)/, '').trim().replace(/\s+/g, '-');
-    return `<span class="pos" data-p="${esc(key)}">${esc(label)}</span>`;
-  });
-  return chips.length ? `<span class="posrow">${chips.join('')}</span>` : '';
-}
-
-const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong>${posHtml(w.pos)}</div><div class="wf"><span class="tr">${esc(w.transcription)}</span><span class="voices"><button class="spk" data-w="${esc(w.word)}" data-acc="uk" title="${esc(T('ukTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('ukLabel'))}</b></button><button class="spk" data-w="${esc(w.word)}" data-acc="us" title="${esc(T('usTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('usLabel'))}</b></button></span></div><div class="tx">${esc(w.translation)}</div></article>`;
-
-// Слова всех учебников для поиска (загружаются один раз)
-let ALLW = null;
-async function loadAllBooks() {
-  if (ALLW) return ALLW;
-  ALLW = await Promise.all(BOOKS.map(async b => {
-    const words = b.id === BOOK.id ? WORDS : await (await fetch(b.file)).json();
-    words.forEach(w => { w.module = w.module || ('Module ' + moduleOf(w.section)); });
-    return { book: b, words };
-  }));
-  return ALLW;
-}
-
-// Словарь: все места создаются сразу фиксированной высоты, карточки заполняются только в окне просмотра
-// (видимые слова плюс по 25 до и после). Ушедшие за окно слова снова становятся пустыми местами.
-let dictWords = [], dictSlots = [], dictLoaded = new Set(), dictVisible = new Set(), dictIO = null;
-const DICT_PAD = 25;
-
-function slotsHtml(rows) {
-  return rows.map(w => `<div class="slot" data-i="${dictWords.push(w) - 1}"></div>`).join('');
-}
-
-// Длинное слово или перевод: уменьшается шрифт только в этой карточке, текст целиком остаётся на месте
-function fitCard(art) {
-  if (!art) return;
-  const slot = art.parentElement;
-  const fits = () => art.scrollHeight <= art.clientHeight + 1;
-  const els = [art.querySelector('.tx'), art.querySelector('.wh strong'), art.querySelector('.tr')].filter(Boolean);
-  els.forEach(el => { el.style.fontSize = ''; });
-  slot.classList.remove('long');
-  slot.style.gridRowEnd = '';
-  for (const el of els) {
-    let fs = parseFloat(getComputedStyle(el).fontSize);
-    while (!fits() && fs > 12) { fs -= 0.5; el.style.fontSize = fs + 'px'; }
-    if (fits()) return;
-  }
-  // Совсем длинный текст: карточка занимает столько строк сетки, сколько нужно, шрифт остаётся обычным
-  els.forEach(el => { el.style.fontSize = ''; });
-  slot.classList.add('long');
-  art.style.height = 'auto';
-  const need = art.offsetHeight;
-  art.style.height = '';
-  slot.style.gridRowEnd = 'span ' + Math.min(4, Math.max(2, Math.ceil((need + 10) / 150)));
-}
-
-function syncDict() {
-  if (!dictVisible.size) return;
-  let min = Infinity, max = -Infinity;
-  dictVisible.forEach(i => { if (i < min) min = i; if (i > max) max = i; });
-  const lo = Math.max(0, min - DICT_PAD), hi = Math.min(dictWords.length - 1, max + DICT_PAD);
-  dictLoaded.forEach(i => { if (i < lo || i > hi) { dictSlots[i].innerHTML = ''; dictSlots[i].classList.remove('long'); dictSlots[i].style.gridRowEnd = ''; dictLoaded.delete(i); } });
-  for (let i = lo; i <= hi; i++) {
-    if (!dictLoaded.has(i)) { dictSlots[i].innerHTML = card(dictWords[i]); fitCard(dictSlots[i].firstElementChild); dictLoaded.add(i); }
-  }
-}
-
-function bindDict() {
-  dictLoaded = new Set();
-  dictVisible = new Set();
-  dictSlots = [...$('dictBody').querySelectorAll('.slot')];
-  if (dictIO) dictIO.disconnect();
-  dictIO = new IntersectionObserver(es => {
-    es.forEach(x => { const i = +x.target.dataset.i; if (x.isIntersecting) dictVisible.add(i); else dictVisible.delete(i); });
-    syncDict();
-  }, { rootMargin: '400px 0px' });
-  dictSlots.forEach(sl => dictIO.observe(sl));
-}
-
-async function renderDict() {
-  const q = $('search').value.trim().toLowerCase();
-  const all = $('allBooks').checked;
-  $('chips').hidden = all;
-  dictWords = [];
-  if (all) {
-    const lists = await loadAllBooks();
-    const hit = w => !q || w.word.toLowerCase().includes(q) || w.translation.toLowerCase().includes(q);
-    const shown = lists.map(({ book, words }) => ({ book, rows: words.filter(hit) })).filter(f => f.rows.length);
-    const total = shown.reduce((t, f) => t + f.rows.length, 0);
-    $('dictCount').textContent = `${total} ${T('words')}`;
-    $('dictBody').innerHTML = shown.length ? shown.map(f =>
-      `<section class="dm"><h3>${esc(f.book.title)}<span>${f.rows.length} ${T('words')}</span></h3><div class="cards">${slotsHtml(f.rows)}</div></section>`).join('')
-      : `<p class="mut">${esc(T('dictEmpty'))}</p>`;
-    bindDict();
-    return;
-  }
-  const rows = WORDS.filter(w => (!dictMod || w.module === dictMod) &&
-    (!q || w.word.toLowerCase().includes(q) || w.translation.toLowerCase().includes(q)));
-  $('dictCount').textContent = `${BOOK.title} · ${rows.length} ${T('words')}`;
-  const g = new Map();
-  rows.forEach(w => {
-    if (!g.has(w.module)) g.set(w.module, new Map());
-    const s = g.get(w.module);
-    if (!s.has(w.section)) s.set(w.section, []);
-    s.get(w.section).push(w);
-  });
-  $('dictBody').innerHTML = rows.length ? [...g.keys()].map((m, mi) => {
-    const secs = [...g.get(m)];
-    const n = secs.reduce((t, s) => t + s[1].length, 0);
-    const toc = `<nav class="toc">${secs.map(([s, l], si) =>
-      `<button class="tocbtn" data-jump="sec-${mi}-${si}"><b>${esc(s)}</b><em>${l.length}</em></button>`).join('')}</nav>`;
-    return `<section class="dm"><h3>${esc(modLabel(m))}<span>${n} ${T('words')}</span></h3>${toc}` +
-      secs.map(([s, l], si) => `<div class="ds" id="sec-${mi}-${si}"><h4><b>${esc(s)}</b><span>${l.length}</span></h4><div class="cards">${slotsHtml(l)}</div></div>`).join('') +
-      '</section>';
-  }).join('') : `<p class="mut">${esc(T('dictEmpty'))}</p>`;
-  bindDict();
-}
-
-function stopSpeech() {
-  if (au) { au.pause(); au = null; }
-  if ('speechSynthesis' in window) speechSynthesis.cancel();
-  document.querySelectorAll('.spk.on,.spk.loading').forEach(b => b.classList.remove('on', 'loading'));
-}
-
-const ACC = {
-  uk: { path: 'En-uk-', lang: 'en-GB' },
-  us: { path: 'En-us-', lang: 'en-US' }
-};
-
-function getVoicesSoon(timeout = 1500) {
-  return new Promise(resolve => {
-    const list = speechSynthesis.getVoices();
-    if (list.length) return resolve(list);
-    const t = setTimeout(() => resolve(speechSynthesis.getVoices()), timeout);
-    speechSynthesis.addEventListener('voiceschanged', () => {
-      clearTimeout(t);
-      resolve(speechSynthesis.getVoices());
-    }, { once: true });
-  });
-}
-
-async function ttsFallback(w, acc, btn) {
-  if (!('speechSynthesis' in window)) { btn.classList.remove('loading'); return; }
-  const voices = await getVoicesSoon();
-  const u = new SpeechSynthesisUtterance(w);
-  u.lang = ACC[acc].lang;
-  const v = voices.find(x => x.lang.replace('_', '-') === ACC[acc].lang);
-  if (v) u.voice = v;
-  u.onstart = () => { btn.classList.remove('loading'); btn.classList.add('on'); };
-  u.onend = u.onerror = () => btn.classList.remove('loading', 'on');
-  speechSynthesis.speak(u);
-}
-
-function speak(w, acc, btn) {
-  stopSpeech();
-  btn.classList.add('loading');
-  // Имя файла = слово из словаря, без учёта регистра; пробелы заменяются на _
-  const name = w.trim().toLowerCase().replace(/ /g, '_');
-  const a = new Audio();
-  au = a;
-  let settled = false, timer = null;
-  const fail = () => {
-    if (settled || au !== a) return;
-    settled = true;
-    clearTimeout(timer);
-    a.pause();
-    au = null;
-    ttsFallback(w, acc, btn);
-  };
-  timer = setTimeout(fail, 6000);
-  a.addEventListener('canplay', () => {
-    if (settled || au !== a) return;
-    settled = true;
-    clearTimeout(timer);
-    btn.classList.remove('loading');
-    btn.classList.add('on');
-    a.play().catch(() => btn.classList.remove('on'));
-  }, { once: true });
-  a.onended = () => btn.classList.remove('on');
-  a.onerror = fail;
-  a.preload = 'auto';
-  a.src = `https://commons.wikimedia.org/wiki/Special:FilePath/${ACC[acc].path}${encodeURIComponent(name)}.ogg`;
-  a.load();
-}
-
-$('dictBody').addEventListener('click', e => {
-  const jump = e.target.closest('.tocbtn');
-  if (jump) {
-    document.getElementById(jump.dataset.jump)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    return;
-  }
-  const b = e.target.closest('.spk');
-  if (b) speak(b.dataset.w, b.dataset.acc, b);
-});
-$('chips').addEventListener('click', e => {
-  const b = e.target.closest('.chip');
-  if (b) {
-    dictMod = b.dataset.m;
-    buildDict();
-    $('dictBody').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-});
-$('search').addEventListener('input', renderDict);
-$('allBooks').addEventListener('change', renderDict);
-
-document.querySelectorAll('.tab').forEach(b => b.onclick = () => {
-  if (b.dataset.tab === 'library') history.replaceState(null, '', location.pathname);
-  showTab(b.dataset.tab);
-});
-document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => showTab(b.dataset.go));
-document.querySelectorAll('[data-th]').forEach(b => b.onclick = () => {
-  theme = b.dataset.th;
-  localStorage.setItem('theme', theme);
-  setMode();
-});
-document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => {
-  lang = b.dataset.lang;
-  localStorage.setItem('lang', lang);
-  applyLang();
-});
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setMode);
-window.addEventListener('hashchange', route);
-
-async function init() {
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { });
-  document.addEventListener('touchstart', () => {}, { passive: true });
-  setMode();
-  if ('speechSynthesis' in window) {
-    speechSynthesis.getVoices();
-    speechSynthesis.addEventListener('voiceschanged', () => speechSynthesis.getVoices());
-  }
-  if (localStorage.getItem('collapsed') === '1') $('app').classList.add('collapsed');
-  try { BOOKS.push(...await (await fetch('data/books.json')).json()); }
-  catch (e) { console.error(e); alert(T('errBooks')); return; }
-  applyLang();
-  try { await route(); }
-  catch (e) { console.error(e); alert(T('errBook')); showTab('library'); }
-}
-
-init();
