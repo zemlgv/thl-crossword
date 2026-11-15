@@ -7,7 +7,7 @@ button,input,select{font:inherit;color:inherit}
 svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none;display:block}
 
 /* Боковое меню: фиксированное, сдвигается трансформацией, контент не переформатируется */
-.side{position:fixed;left:0;top:0;bottom:0;width:var(--sw);height:100vh;background:var(--side);color:var(--sidetxt);padding:22px 18px;display:flex;flex-direction:column;gap:22px;z-index:40;transition:transform .25s ease;overflow:hidden}
+.side{position:fixed;left:0;top:0;bottom:0;width:var(--sw);height:100vh;height:100dvh;overflow:hidden;background:var(--side);color:var(--sidetxt);padding:22px 18px;display:flex;flex-direction:column;gap:22px;z-index:40;transition:transform .25s ease;overflow:hidden}
 .side .sx{position:absolute;top:12px;right:12px;width:36px;height:36px;padding:0;display:grid;place-items:center;background:var(--side2);border-color:var(--side2);color:var(--sidetxt);border-radius:9px}
 .side .sx svg{width:18px;height:18px}
 .brand{display:flex;align-items:center;gap:12px;font-weight:600;line-height:1.25;padding-right:44px;min-width:0}
@@ -189,7 +189,7 @@ tbody tr.me{background:var(--hl);font-weight:600}
 @media (max-width:1000px){
   .game{grid-template-columns:minmax(0,1fr)}
 }
-@media (max-width:860px){
+@media (max-width:860px), (pointer:coarse) and (max-width:1280px){
   .side{transform:translateX(-102%);width:284px;max-width:84vw}
   .app.open .side{transform:none;box-shadow:0 0 40px rgba(0,0,0,.4)}
   .shell,.app.collapsed .shell{margin-left:0}
@@ -291,7 +291,7 @@ button:not(:disabled):active{transform:scale(.96);filter:brightness(.92)}
 .acts .wide{grid-column:1/-1}
 .res-r{display:flex;flex-direction:column;align-items:center;gap:10px}
 .qrbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-@media (max-width:860px){
+@media (max-width:860px), (pointer:coarse) and (max-width:1280px){
   .result{grid-template-columns:1fr;gap:20px}
   .res-r{order:-1}
   #qr canvas,#qr img{width:200px;height:200px}
@@ -366,3 +366,29 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 /* Карточки словаря появляются плавно (при «меньше движения» — сразу) */
 .wc{animation:fade .35s ease both}
 @media (prefers-reduced-motion:reduce){.wc{animation:none}}
+
+/* Низ словаря: сюда подгружаются следующие 50 слов */
+#dictMore{height:1px}
+
+/* Касание (планшет, телефон) в портрете: кнопки крупнее */
+@media (pointer:coarse) and (orientation:portrait){
+  button,.tab,.tocbtn,.seg button,.chip{min-height:44px}
+  .tab{font-size:16px}
+}
+
+/* Низкий экран в портрете: меню компактнее, чтобы не прокручивалось */
+@media (orientation:portrait) and (max-height:700px){
+  .side{padding:14px;gap:12px}
+  .tab{padding:7px 12px}
+  .bookNav{gap:4px}
+}
+
+/* Учебники: на телефоне и в альбомной ориентации карточки горизонтальные */
+@media (max-width:560px){.books{grid-template-columns:1fr;gap:10px}}
+@media (orientation:landscape) and (max-height:600px){.books{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+@media (max-width:560px),(orientation:landscape) and (max-height:600px){
+  .bk{flex-direction:row;align-items:center;gap:14px;padding:10px 12px;border-top-width:1px;border-left:6px solid var(--bk)}
+  .bk img,.ph-cover{width:60px;flex:none;font-size:10px;padding:6px}
+  .bk h3{margin:0;font-size:15px}
+  .bk span{font-size:12px}
+}
