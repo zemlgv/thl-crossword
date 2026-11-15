@@ -1,6 +1,6 @@
 const I18N = {
 ru: {
-  appTitle:'Кроссворд по словарю', 
+  appTitle:'Кроссворды и словари по английскому', 
   
   f1t:'Словарь с озвучкой', f1d:'Слова по модулям и разделам: перевод, транскрипция и произношение британского или американского варианта.',
   f2t:'Кроссворд за минуту', f2d:'Учитель выбирает модули и разделы, сайт собирает сетку, ссылку и QR-код.',
@@ -12,10 +12,9 @@ ru: {
   revealConfirm:'Показать ответы? Кроссворд закроется, результат не засчитается и не попадёт в таблицу лидеров.',
   tabHome:'Обзор', tabTeacher:'Генератор', tabPlay:'Кроссворд', tabDict:'Словарь', tabBoard:'Лидеры',
   heroTitle:'Словарь и кроссворды к учебнику {b}',
-  heroText:'Слова из учебника с переводом и произношением. Учитель собирает кроссворд за минуту из нужных модулей и разделов, ученики решают его со своих телефонов.',
+  heroText:'Интерактивный сайт с кроссвордами и словарями по учебникам Spotlight. Учитель может за минуту собрать кроссворд из нужных модулей и разделов, а ученики решают его со своих смартфонов.',
   meta:'Модулей: {m} · Разделов: {s} · Слов: {w}',
-  studentNote:'Ученикам: откройте ссылку или отсканируйте QR-код, который дал учитель.',
-  authorLine:'Автор: Георгий Земляков, ученик 9Б класса. Совместно с учителем английского языка Долбешкиной Еленой Германовной.',
+  authorLine:'Автор: Георгий Земляков (9 «Б»). Руководитель: Е. Г. Долбешкина.',
   heroBtn:'Открыть словарь', heroBtn2:'Создать кроссворд',
   
   
@@ -46,12 +45,12 @@ ru: {
   lbEmpty:'Пока никто не решил этот кроссворд.',
   lbErr:'Не удалось загрузить лидеров. Проверьте интернет.',
   lbSendErr:'Не удалось отправить результат в лидеры.',
-  pageTitle:'Кроссворд по словарю · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', siteTitle:'Кроссворд по словарю', tileDict:'Словарь', tileDictD:'Слова с переводом и озвучкой', tileTeacher:'Генератор', tileTeacherD:'Выбрать разделы и создать кроссворд', tilePlay:'Кроссворд', tilePlayD:'Решить кроссворд по ссылке или QR-коду', tileBoard:'Лидеры', tileBoardD:'Результаты класса и статистика', expandCard:'Показать полностью', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
+  pageTitle:'Кроссворды и словари по английскому · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', siteTitle:'Кроссворды и словари по английскому', tileDict:'Словарь', tileDictD:'Слова с переводом и озвучкой', tileTeacher:'Генератор', tileTeacherD:'Выбрать разделы и создать кроссворд', tilePlay:'Кроссворд', tilePlayD:'Решить кроссворд по ссылке или QR-коду', tileBoard:'Лидеры', tileBoardD:'Результаты класса и статистика', soon:'Скоро', soonHint:'Учебник в разработке', expandCard:'Показать полностью', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
   partialFit:'Подходящих слов: {p}, а вы указали {n}. Выберите больше разделов или уменьшите число слов.', placeFail:'Не удалось вставить {n} слов в сетку: мало пересечений. Выберите больше разделов или уменьшите число слов. Вошло: {p}.', qrFail:'QR-код не загрузился, нужен интернет.', lbNote:'Результаты общие для класса и хранятся 15 минут после последнего прохождения.',
   
 },
 en: {
-  appTitle:'Vocabulary Crossword', 
+  appTitle:'Crosswords and vocabulary for English', 
   
   f1t:'Dictionary with audio', f1d:'Words by module and section: translation, transcription and British or American pronunciation.',
   f2t:'A crossword in a minute', f2d:'The teacher picks modules and sections, the site builds the grid, the link and the QR code.',
@@ -63,10 +62,9 @@ en: {
   revealConfirm:'Show answers? The crossword will close, the result will not be counted and will not go to the leaderboard.',
   tabHome:'Overview', tabTeacher:'Generator', tabPlay:'Crossword', tabDict:'Dictionary', tabBoard:'Leaderboard',
   heroTitle:'Vocabulary and crosswords for {b}',
-  heroText:'Textbook words with translation and pronunciation. A teacher builds a crossword in a minute from chosen modules and sections, and students solve it on their phones.',
+  heroText:'Interactive site with crosswords and vocabularies for the Spotlight textbooks. A teacher can build a crossword from the chosen modules and sections in a minute, and students solve it on their smartphones.',
   meta:'Modules: {m} · Sections: {s} · Words: {w}',
-  studentNote:'Students: open the link or scan the QR code from your teacher.',
-  authorLine:'Project by Georgiy Zemlyakov, grade 9B, together with the English teacher Dolbeshkina Elena Germanovna.',
+  authorLine:'Author: Georgiy Zemlyakov (grade 9 “B”). Supervisor: E. G. Dolbeshkina.',
   heroBtn:'Open dictionary', heroBtn2:'Create crossword',
   
   
@@ -97,7 +95,7 @@ en: {
   lbEmpty:'Nobody has solved this crossword yet.',
   lbErr:'Could not load the leaderboard. Check your connection.',
   lbSendErr:'Could not send the result to the leaderboard.',
-  pageTitle:'Vocabulary crossword · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', siteTitle:'Vocabulary crossword', tileDict:'Dictionary', tileDictD:'Words with translation and audio', tileTeacher:'Generator', tileTeacherD:'Pick sections and build a crossword', tilePlay:'Crossword', tilePlayD:'Solve a crossword by link or QR code', tileBoard:'Leaders', tileBoardD:'Class results and statistics', expandCard:'Show full text', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
+  pageTitle:'Crosswords and vocabulary for English · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', siteTitle:'Crosswords and vocabulary for English', tileDict:'Dictionary', tileDictD:'Words with translation and audio', tileTeacher:'Generator', tileTeacherD:'Pick sections and build a crossword', tilePlay:'Crossword', tilePlayD:'Solve a crossword by link or QR code', tileBoard:'Leaders', tileBoardD:'Class results and statistics', soon:'Coming soon', soonHint:'Textbook in preparation', expandCard:'Show full text', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
   partialFit:'Suitable words: {p}, but you asked for {n}. Choose more sections or reduce the number of words.', placeFail:'Could not fit {n} words into the grid: too few crossings. Choose more sections or reduce the number of words. Fitted: {p}.', qrFail:'QR code did not load, internet needed.', lbNote:'Results are shared within the class and kept for 15 minutes after the last solve.',
   
 }
@@ -627,7 +625,13 @@ addEventListener('keydown', e => {
 
 // Библиотека учебников: список карточек, каждая ведёт на #book=<id>
 function renderLibrary() {
-  $('books').innerHTML = [...BOOKS].sort((a, b) => a.grade - b.grade).map(b => {
+  const real = BOOKS.map(b => ({ b, grade: b.grade }));
+  const soon = [8, 10, 11].map(grade => ({ soon: true, grade }));
+  $('books').innerHTML = [...real, ...soon].sort((x, y) => x.grade - y.grade).map(c => {
+    if (c.soon) {
+      return `<div class="bk soon" aria-disabled="true"><div class="ph-cover">${esc(T('soon'))}</div><h3>${esc(T('grade').replace('{g}', c.grade))}</h3><span>${esc(T('soonHint'))}</span></div>`;
+    }
+    const b = c.b;
     const cover = b.cover ? `<img src="${esc(b.cover)}" alt="">` : `<div class="ph-cover">${esc(b.title)}</div>`;
     return `<a class="bk" href="#book=${encodeURIComponent(b.id)}" style="--bk:${esc(b.color || '#393186')}">${cover}<h3>${esc(b.title)}</h3><span>${esc(T('grade').replace('{g}', b.grade))}</span></a>`;
   }).join('');
