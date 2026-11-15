@@ -418,20 +418,7 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 .landing h1{margin:0 0 6px;font-size:30px}
 
 /* Страница учебника: обложка, название, плитки разделов */
-.bookhead{display:grid;grid-template-columns:auto minmax(0,1fr);gap:28px;align-items:center;background:var(--sf);border:1px solid var(--ln);border-top:6px solid var(--bk);border-radius:18px;padding:24px}
-.bookhead .cover{width:170px;margin:0}
-.bookhead .cover img{width:100%;height:auto;display:block;border-radius:12px}
-.bookinfo h1{margin:4px 0 8px;font-size:34px;line-height:1.1}
-.kicker{margin:0;font-size:13px;color:var(--mut)}
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:18px}
-.tile{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;padding:18px;border-radius:14px;background:var(--sf);border:1px solid var(--ln);color:var(--ink);min-height:0;height:auto}
-.tile b{font-size:17px}
-.tile span{font-size:13px;color:var(--mut);line-height:1.35}
-@media (hover:hover){.tile:hover{border-color:var(--bk)}}
 @media (max-width:560px){
-  .bookhead{grid-template-columns:1fr;gap:16px}
-  .bookhead .cover{width:130px}
-  .bookinfo h1{font-size:26px}
   .landing{gap:14px}
   .landing-logo{width:64px;height:64px}
 }
@@ -441,7 +428,6 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
   .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 
-.bookinfo .row{margin-top:16px}
 
 /* Заглушки учебников, которые ещё не готовы */
 .bk.soon{background:#d9dde5;border-color:#c4cad5;cursor:default}
@@ -460,23 +446,67 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 .spk{min-height:0}
 
 /* Плитки разделов выглядят как кнопки: заливка цветом учебника и стрелка */
-.tile{position:relative;background:var(--bk);border:0;color:#fff;padding:18px 48px 18px 18px;border-radius:14px;cursor:pointer;text-align:left;box-shadow:0 10px 20px -14px var(--bk)}
-.tile b{color:#fff}
-.tile span{color:rgba(255,255,255,.9)}
-.tile::after{content:'\2192';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:20px;line-height:1}
-@media (hover:hover){.tile:hover{border-color:transparent;filter:brightness(1.08)}}
 
 /* Страница учебника: большая обложка слева, справа класс, название, статистика и кнопки разделов */
-.bookhead{grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:40px;padding:32px;align-items:center}
-.bookhead .cover{width:100%;margin:0}
-.bookinfo h1{margin:4px 0 10px;font-size:40px}
-.bookinfo .meta{margin:0}
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:28px}
-.tile{display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 18px;margin:0;border-radius:12px;background:var(--bk);color:#fff;border:0;font-size:16px;font-weight:600;cursor:pointer;box-shadow:0 10px 20px -14px var(--bk)}
+
+/* Страница учебника: обложка слева, справа класс, название, статистика и кнопки разделов */
+.bookhead{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(220px,320px) minmax(0,1fr);gap:44px;align-items:center;background:var(--sf);border:1px solid var(--ln);border-radius:22px;padding:36px;box-shadow:0 1px 2px rgba(14,28,52,.05),0 24px 48px -30px rgba(14,28,52,.35)}
+.bookhead::before{content:'';position:absolute;left:0;right:0;top:0;height:6px;background:var(--bk)}
+.bookhead .cover{margin:0;max-width:none;justify-self:stretch}
+.bookhead .cover img{display:block;width:100%;height:auto;max-height:none;aspect-ratio:1374/1920;object-fit:cover;border-radius:14px;border:1px solid var(--ln);box-shadow:0 18px 36px -20px rgba(14,28,52,.45)}
+.bookinfo{min-width:0}
+.bookinfo .kicker{display:inline-block;margin:0;padding:4px 12px;border-radius:999px;background:var(--acs);color:var(--ac);font-size:13px;font-weight:600}
+.bookinfo h1{margin:14px 0 12px;font-size:44px;line-height:1.05;letter-spacing:-.03em;overflow-wrap:anywhere}
+.bookinfo .meta{margin:0 0 28px;display:flex;flex-wrap:wrap;gap:8px;color:var(--mut);font-size:13px}
+.bookinfo .meta span{padding:5px 12px;border-radius:999px;border:1px solid var(--ln);background:var(--bg)}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tile{display:flex;align-items:center;justify-content:center;min-height:54px;padding:12px 18px;margin:0;border:0;border-radius:12px;background:var(--bk);color:#fff;font-size:16px;font-weight:600;cursor:pointer;box-shadow:0 10px 20px -14px var(--bk)}
 .tile::after{content:none}
 @media (hover:hover){.tile:hover{filter:brightness(1.08)}}
+@media (max-width:860px){
+  .bookhead{padding:28px;gap:32px}
+  .bookinfo h1{font-size:36px}
+}
 @media (max-width:560px){
-  .bookhead{grid-template-columns:1fr;gap:20px;padding:20px}
-  .bookhead .cover{width:200px}
+  .bookhead{grid-template-columns:1fr;gap:22px;padding:22px}
+  .bookhead .cover{width:62%;margin:0 auto}
   .bookinfo h1{font-size:30px}
+  .bookinfo .meta{margin-bottom:20px}
+}
+
+/* ===== Страница учебника ===== */
+.bookhead{display:grid;grid-template-columns:clamp(180px,24vw,260px) minmax(0,1fr);gap:clamp(20px,3.5vw,44px);align-items:center;background:var(--sf);border:1px solid var(--ln);border-top:6px solid var(--bk);border-radius:20px;padding:clamp(20px,3vw,36px);box-shadow:0 18px 40px -30px rgba(14,28,52,.35)}
+.bookhead .cover{margin:0;width:100%;aspect-ratio:1374/1920;height:auto;border-radius:14px;overflow:hidden;box-shadow:0 14px 28px -18px rgba(14,28,52,.55);background:var(--bg)}
+.bookhead .cover img{display:block;width:100%;height:100%;object-fit:cover}
+.bookinfo{min-width:0}
+.kicker{display:inline-block;margin:0;padding:4px 12px;border-radius:999px;background:var(--acs);color:var(--ac);font-size:13px;font-weight:600}
+.bookinfo h1{margin:12px 0 0;font-size:clamp(28px,3.6vw,42px);line-height:1.1;letter-spacing:-.01em;overflow-wrap:anywhere}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:22px 0 0}
+.stat{margin:0;padding:12px 14px;border-radius:14px;background:var(--bg);border:1px solid var(--ln)}
+.stat dt{margin:0;font-size:12px;color:var(--mut)}
+.stat dd{margin:4px 0 0;font-size:24px;font-weight:700;color:var(--ink);line-height:1}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:22px}
+.tile{display:flex;align-items:center;justify-content:center;min-height:50px;margin:0;padding:12px 10px;border-radius:12px;background:var(--bk);color:#fff;border:0;font-size:16px;font-weight:600;text-align:center;cursor:pointer;box-shadow:0 10px 20px -14px var(--bk)}
+.tile::after{content:none}
+@media (hover:hover){.tile:hover{filter:brightness(1.08)}}
+
+/* Телефон в портрете: обложка сверху по центру, кнопки в две колонки */
+@media (max-width:560px){
+  .bookhead{grid-template-columns:1fr;gap:20px;padding:20px;text-align:left}
+  .bookhead .cover{width:min(230px,70vw);margin:0 auto}
+  .bookinfo h1{font-size:28px}
+  .stats{gap:8px}
+  .stat{padding:10px 8px}
+  .stat dd{font-size:20px}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* Альбомная ориентация телефона: компактно, обложка слева */
+@media (orientation:landscape) and (max-height:600px){
+  .bookhead{grid-template-columns:150px minmax(0,1fr);gap:20px;padding:16px}
+  .bookinfo h1{font-size:24px;margin-top:8px}
+  .stats{margin-top:14px}
+  .stat dd{font-size:18px}
+  .tile{min-height:42px;font-size:14px}
+  .tiles{margin-top:14px}
 }
