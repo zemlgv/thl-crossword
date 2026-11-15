@@ -10,6 +10,7 @@
 <link rel="apple-touch-icon" href="img/icon-180.png">
 <meta name="theme-color" content="#0a1f44">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Кроссворды">
 <meta property="og:title" content="Кроссворды и словари по английскому · Технологический лицей">
 <meta property="og:description" content="Интерактивный сайт с кроссвордами и словарями по учебникам Spotlight.">
@@ -79,12 +80,16 @@
     </section>
 
     <section id="home" class="panel" hidden>
-      <div class="bookhead">
+      <article class="bookhead">
         <figure class="cover" id="coverBox" hidden><img id="coverImg" alt=""></figure>
         <div class="bookinfo">
-          <p class="kicker" id="bookGrade"></p>
+          <span class="kicker" id="bookGrade"></span>
           <h1 id="bookTitle"></h1>
-          <p class="meta" id="homeMeta"></p>
+          <dl class="stats">
+            <div class="stat"><dt data-i18n="statModules"></dt><dd id="statM"></dd></div>
+            <div class="stat"><dt data-i18n="statSections"></dt><dd id="statS"></dd></div>
+            <div class="stat"><dt data-i18n="statWords"></dt><dd id="statW"></dd></div>
+          </dl>
           <div class="tiles">
             <button class="tile" data-go="dict" data-i18n="tabDict"></button>
             <button class="tile" data-go="teacher" data-i18n="tabTeacher"></button>
@@ -92,7 +97,7 @@
             <button class="tile" data-go="board" data-i18n="tabBoard"></button>
           </div>
         </div>
-      </div>
+      </article>
     </section>
 
     <section id="teacher" class="panel" hidden>
