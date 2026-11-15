@@ -10,7 +10,7 @@ ru: {
   
   check:'Проверить (+10 с)', reveal:'Показать ответы · без зачёта',
   revealConfirm:'Показать ответы? Кроссворд закроется, результат не засчитается и не попадёт в таблицу лидеров.',
-  tabHome:'Главная', tabTeacher:'Генератор', tabPlay:'Кроссворд', tabDict:'Словарь', tabBoard:'Лидеры',
+  tabHome:'Обзор', tabTeacher:'Генератор', tabPlay:'Кроссворд', tabDict:'Словарь', tabBoard:'Лидеры',
   heroTitle:'Словарь и кроссворды к учебнику {b}',
   heroText:'Слова из учебника с переводом и произношением. Учитель собирает кроссворд за минуту из нужных модулей и разделов, ученики решают его со своих телефонов.',
   meta:'Модулей: {m} · Разделов: {s} · Слов: {w}',
@@ -46,7 +46,7 @@ ru: {
   lbEmpty:'Пока никто не решил этот кроссворд.',
   lbErr:'Не удалось загрузить лидеров. Проверьте интернет.',
   lbSendErr:'Не удалось отправить результат в лидеры.',
-  pageTitle:'Кроссворд по словарю · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', expandCard:'Показать полностью', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
+  pageTitle:'Кроссворд по словарю · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', siteTitle:'Кроссворд по словарю', tileDict:'Словарь', tileDictD:'Слова с переводом и озвучкой', tileTeacher:'Генератор', tileTeacherD:'Выбрать разделы и создать кроссворд', tilePlay:'Кроссворд', tilePlayD:'Решить кроссворд по ссылке или QR-коду', tileBoard:'Лидеры', tileBoardD:'Результаты класса и статистика', expandCard:'Показать полностью', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
   partialFit:'Подходящих слов: {p}, а вы указали {n}. Выберите больше разделов или уменьшите число слов.', placeFail:'Не удалось вставить {n} слов в сетку: мало пересечений. Выберите больше разделов или уменьшите число слов. Вошло: {p}.', qrFail:'QR-код не загрузился, нужен интернет.', lbNote:'Результаты общие для класса и хранятся 15 минут после последнего прохождения.',
   
 },
@@ -61,7 +61,7 @@ en: {
   
   check:'Check (+10 s)', reveal:'Show answers · not counted',
   revealConfirm:'Show answers? The crossword will close, the result will not be counted and will not go to the leaderboard.',
-  tabHome:'Home', tabTeacher:'Generator', tabPlay:'Crossword', tabDict:'Dictionary', tabBoard:'Leaderboard',
+  tabHome:'Overview', tabTeacher:'Generator', tabPlay:'Crossword', tabDict:'Dictionary', tabBoard:'Leaderboard',
   heroTitle:'Vocabulary and crosswords for {b}',
   heroText:'Textbook words with translation and pronunciation. A teacher builds a crossword in a minute from chosen modules and sections, and students solve it on their phones.',
   meta:'Modules: {m} · Sections: {s} · Words: {w}',
@@ -97,7 +97,7 @@ en: {
   lbEmpty:'Nobody has solved this crossword yet.',
   lbErr:'Could not load the leaderboard. Check your connection.',
   lbSendErr:'Could not send the result to the leaderboard.',
-  pageTitle:'Vocabulary crossword · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', expandCard:'Show full text', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
+  pageTitle:'Vocabulary crossword · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', siteTitle:'Vocabulary crossword', tileDict:'Dictionary', tileDictD:'Words with translation and audio', tileTeacher:'Generator', tileTeacherD:'Pick sections and build a crossword', tilePlay:'Crossword', tilePlayD:'Solve a crossword by link or QR code', tileBoard:'Leaders', tileBoardD:'Class results and statistics', expandCard:'Show full text', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
   partialFit:'Suitable words: {p}, but you asked for {n}. Choose more sections or reduce the number of words.', placeFail:'Could not fit {n} words into the grid: too few crossings. Choose more sections or reduce the number of words. Fitted: {p}.', qrFail:'QR code did not load, internet needed.', lbNote:'Results are shared within the class and kept for 15 minutes after the last solve.',
   
 }
@@ -329,6 +329,7 @@ function applyLang() {
   setSeg($('langSeg'), lang === 'ru' ? 0 : 1);
   const logo = lang === 'ru' ? 'img/logo-ru.png' : 'img/logo-en.png';
   $('logoImg').src = logo;
+  $('landingLogo').src = logo;
   $('favicon').href = logo;
   renderLibrary();
   renderStats();
@@ -345,8 +346,8 @@ function renderHome() {
   const m = new Set(WORDS.map(w => w.module)).size;
   const sec = new Set(WORDS.map(secKey)).size;
   $('homeMeta').textContent = T('meta').replace('{m}', m).replace('{s}', sec).replace('{w}', WORDS.length);
-  $('footBook').textContent = BOOK.title;
-  $('heroTitle').textContent = T('heroTitle').replace('{b}', BOOK.title.replace(/ (\d+)$/, '\u00A0$1'));
+  $('bookGrade').textContent = T('grade').replace('{g}', BOOK.grade);
+  $('bookTitle').textContent = BOOK.title;
   const box = $('coverBox');
   if (BOOK.cover) { $('coverImg').src = BOOK.cover; box.hidden = false; }
   else { box.hidden = true; }
