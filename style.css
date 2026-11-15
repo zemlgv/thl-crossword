@@ -367,14 +367,20 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 @media (prefers-reduced-motion:reduce){.wc{animation:none}}
 
 /* Словарь: места для слов фиксированной высоты, чтобы страница не менялась при подгрузке */
-.cards{grid-auto-rows:140px}
+.cards{grid-auto-rows:150px;gap:10px;grid-auto-flow:row dense}
 .slot{min-width:0}
-.wc{height:100%;overflow:hidden;min-width:0}
-.cards{grid-auto-flow:row dense}
-.slot.long .wc{overflow:visible}
-.wh{min-width:0}
-.wh strong,.tx,.tr{overflow-wrap:anywhere;min-width:0}
-.wf{row-gap:4px}
+.wc{height:100%;overflow:hidden;min-width:0;position:relative;padding:10px 12px;gap:2px}
+.wh{min-width:0;padding-right:24px}
+.wh strong,.tr{overflow-wrap:anywhere;min-width:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.tr{-webkit-line-clamp:1}
+.wc.full .wh strong,.wc.full .tr{display:block;overflow:visible;-webkit-line-clamp:unset}
+.tx{margin:2px 0 4px;line-height:1.35;flex:1 1 auto;min-height:0;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:var(--clamp,99);overflow-wrap:anywhere}
+.wf{row-gap:4px;flex:none}
+.exp{position:absolute;top:6px;right:6px;width:22px;height:22px;padding:0;display:none;place-items:center;border-radius:6px;background:var(--acs);color:var(--ac);border:0;font-size:16px;line-height:1;font-weight:700}
+.exp::before{content:'+'}
+.slot.open .exp::before{content:'\2212'}
+.wc.ovf .exp,.slot.open .exp{display:grid}
+.slot.open{z-index:1}
 
 /* Касание (планшет, телефон) в портрете: кнопки крупнее */
 @media (pointer:coarse) and (orientation:portrait){
