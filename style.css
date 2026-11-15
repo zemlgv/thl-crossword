@@ -442,3 +442,13 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 }
 
 .bookinfo .row{margin-top:16px}
+
+/* Заглушки учебников, которые ещё не готовы */
+.bk.soon{background:#d9dde5;border-color:#c4cad5;cursor:default}
+.bk.soon .ph-cover{background:#aeb5c2;color:#fff}
+.bk.soon h3,.bk.soon span{color:#4a5160}
+.bk.soon:hover{transform:none;box-shadow:none;border-color:#c4cad5}
+[data-mode=dark] .bk.soon{background:#262b38;border-color:#343a48}
+[data-mode=dark] .bk.soon .ph-cover{background:#3a4152;color:#d6dbe6}
+[data-mode=dark] .bk.soon h3,[data-mode=dark] .bk.soon span{color:#aab2c3}
+[data-mode=dark] .bk.soon:hover{border-color:#343a48}
