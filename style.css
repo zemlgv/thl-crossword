@@ -7,7 +7,7 @@ button,input,select{font:inherit;color:inherit}
 svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none;display:block}
 
 /* Боковое меню: фиксированное, сдвигается трансформацией, контент не переформатируется */
-.side{position:fixed;left:0;top:0;bottom:0;width:var(--sw);height:100vh;height:100dvh;overflow:hidden;background:var(--side);color:var(--sidetxt);padding:22px 18px;display:flex;flex-direction:column;gap:22px;z-index:40;transition:transform .25s ease;overflow:hidden}
+.side{position:fixed;left:0;top:0;bottom:0;width:var(--sw);height:100vh;height:100dvh;height:var(--vvh,100dvh);top:var(--vvt,0px);overflow:hidden;background:var(--side);color:var(--sidetxt);padding:22px 18px;display:flex;flex-direction:column;gap:22px;z-index:40;transition:transform .25s ease;overflow:hidden}
 .side .sx{position:absolute;top:12px;right:12px;width:36px;height:36px;padding:0;display:grid;place-items:center;background:var(--side2);border-color:var(--side2);color:var(--sidetxt);border-radius:9px}
 .side .sx svg{width:18px;height:18px}
 .brand{display:flex;align-items:center;gap:12px;font-weight:600;line-height:1.25;padding-right:44px;min-width:0}
@@ -367,8 +367,10 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 .wc{animation:fade .35s ease both}
 @media (prefers-reduced-motion:reduce){.wc{animation:none}}
 
-/* Низ словаря: сюда подгружаются следующие 50 слов */
-#dictMore{height:1px}
+/* Словарь: места для слов фиксированной высоты, чтобы страница не менялась при подгрузке */
+.cards{grid-auto-rows:140px}
+.slot{min-width:0}
+.wc{height:100%;overflow:hidden}
 
 /* Касание (планшет, телефон) в портрете: кнопки крупнее */
 @media (pointer:coarse) and (orientation:portrait){
@@ -391,4 +393,10 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
   .bk img,.ph-cover{width:60px;flex:none;font-size:10px;padding:6px}
   .bk h3{margin:0;font-size:15px}
   .bk span{font-size:12px}
+}
+
+/* Альбомная ориентация телефона и планшета: поля по краям, словарь в несколько колонок */
+@media (orientation:landscape) and (max-height:800px) and (pointer:coarse){
+  .main{padding-left:max(24px,7vw);padding-right:max(24px,7vw)}
+  .cards{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
 }
