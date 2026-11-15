@@ -116,6 +116,13 @@ const moduleOf = s => { const m = String(s).match(/^(\d+)/); return m ? m[1] : S
 const sortNat = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
 const secKey = w => w.module + '||' + w.section;
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+// При изменении ширины карточки переносятся по-другому: подгоняем заново
+let fitTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(fitTimer);
+  fitTimer = setTimeout(() => dictLoaded.forEach(i => fitCard(dictSlots[i].firstElementChild)), 150);
+});
+
 // Видимая часть окна (без скрытой адресной строки): боковое меню совпадает с ней по высоте
 function syncViewport() {
   const vv = window.visualViewport;
@@ -125,6 +132,8 @@ function syncViewport() {
 }
 if (window.visualViewport) { visualViewport.addEventListener('resize', syncViewport); visualViewport.addEventListener('scroll', syncViewport); }
 window.addEventListener('resize', syncViewport);
+// Прокрутка страницы скрывает и показывает адресную строку браузера, высота меню должна следовать за этим
+window.addEventListener('scroll', syncViewport, { passive: true });
 syncViewport();
 
 const NARROW_Q = '(max-width: 860px), (pointer: coarse) and (max-width: 1280px)';
@@ -1052,7 +1061,7 @@ function posHtml(pos) {
   return chips.length ? `<span class="posrow">${chips.join('')}</span>` : '';
 }
 
-const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong></div><div class="tr">${esc(w.transcription)}</div><div class="tx">${esc(w.translation)}</div><div class="wf">${posHtml(w.pos)}<span class="voices"><button class="spk" data-w="${esc(w.word)}" data-acc="uk" title="${esc(T('ukTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('ukLabel'))}</b></button><button class="spk" data-w="${esc(w.word)}" data-acc="us" title="${esc(T('usTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('usLabel'))}</b></button></span></div></article>`;
+const card = w => `<article class="wc"><div class="wh"><strong>${esc(w.word)}</strong>${posHtml(w.pos)}</div><div class="wf"><span class="tr">${esc(w.transcription)}</span><span class="voices"><button class="spk" data-w="${esc(w.word)}" data-acc="uk" title="${esc(T('ukTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('ukLabel'))}</b></button><button class="spk" data-w="${esc(w.word)}" data-acc="us" title="${esc(T('usTitle'))}">${ICON_SPK}${ICON_LOAD}<b>${esc(T('usLabel'))}</b></button></span></div><div class="tx">${esc(w.translation)}</div></article>`;
 
 // Слова всех учебников для поиска (загружаются один раз)
 let ALLW = null;
@@ -1075,14 +1084,37 @@ function slotsHtml(rows) {
   return rows.map(w => `<div class="slot" data-i="${dictWords.push(w) - 1}"></div>`).join('');
 }
 
+// Длинное слово или перевод: уменьшается шрифт только в этой карточке, текст целиком остаётся на месте
+function fitCard(art) {
+  if (!art) return;
+  const slot = art.parentElement;
+  const fits = () => art.scrollHeight <= art.clientHeight + 1;
+  const els = [art.querySelector('.tx'), art.querySelector('.wh strong'), art.querySelector('.tr')].filter(Boolean);
+  els.forEach(el => { el.style.fontSize = ''; });
+  slot.classList.remove('long');
+  slot.style.gridRowEnd = '';
+  for (const el of els) {
+    let fs = parseFloat(getComputedStyle(el).fontSize);
+    while (!fits() && fs > 12) { fs -= 0.5; el.style.fontSize = fs + 'px'; }
+    if (fits()) return;
+  }
+  // Совсем длинный текст: карточка занимает столько строк сетки, сколько нужно, шрифт остаётся обычным
+  els.forEach(el => { el.style.fontSize = ''; });
+  slot.classList.add('long');
+  art.style.height = 'auto';
+  const need = art.offsetHeight;
+  art.style.height = '';
+  slot.style.gridRowEnd = 'span ' + Math.min(4, Math.max(2, Math.ceil((need + 10) / 150)));
+}
+
 function syncDict() {
   if (!dictVisible.size) return;
   let min = Infinity, max = -Infinity;
   dictVisible.forEach(i => { if (i < min) min = i; if (i > max) max = i; });
   const lo = Math.max(0, min - DICT_PAD), hi = Math.min(dictWords.length - 1, max + DICT_PAD);
-  dictLoaded.forEach(i => { if (i < lo || i > hi) { dictSlots[i].innerHTML = ''; dictLoaded.delete(i); } });
+  dictLoaded.forEach(i => { if (i < lo || i > hi) { dictSlots[i].innerHTML = ''; dictSlots[i].classList.remove('long'); dictSlots[i].style.gridRowEnd = ''; dictLoaded.delete(i); } });
   for (let i = lo; i <= hi; i++) {
-    if (!dictLoaded.has(i)) { dictSlots[i].innerHTML = card(dictWords[i]); dictLoaded.add(i); }
+    if (!dictLoaded.has(i)) { dictSlots[i].innerHTML = card(dictWords[i]); fitCard(dictSlots[i].firstElementChild); dictLoaded.add(i); }
   }
 }
 
