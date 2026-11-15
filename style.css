@@ -376,10 +376,11 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 .wc.full .wh strong,.wc.full .tr{display:block;overflow:visible;-webkit-line-clamp:unset}
 .tx{margin:2px 0 4px;line-height:1.35;flex:1 1 auto;min-height:0;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:var(--clamp,99);overflow-wrap:anywhere}
 .wf{row-gap:4px;flex:none}
-.exp{position:absolute;top:6px;right:6px;width:22px;height:22px;padding:0;display:none;place-items:center;border-radius:6px;background:var(--acs);color:var(--ac);border:0;font-size:16px;line-height:1;font-weight:700}
-.exp::before{content:'+'}
-.slot.open .exp::before{content:'\2212'}
-.wc.ovf .exp,.slot.open .exp{display:grid}
+.exp{position:absolute;top:6px;right:6px;width:22px;height:22px;padding:0;display:none;border-radius:6px;background:var(--acs);color:var(--ac);border:0}
+.exp::before,.exp::after{content:'';position:absolute;left:50%;top:50%;width:10px;height:2px;margin:-1px 0 0 -5px;background:currentColor;border-radius:1px}
+.exp::after{transform:rotate(90deg)}
+.wc.ovf .exp,.slot.open .exp{display:block}
+.slot.open .exp::after{display:none}
 .slot.open{z-index:1}
 
 /* Касание (планшет, телефон) в портрете: кнопки крупнее */
@@ -410,3 +411,34 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
   .main{padding-left:max(24px,7vw);padding-right:max(24px,7vw)}
   .cards{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
 }
+
+/* Главная: вступление и список учебников */
+.landing{display:flex;align-items:center;gap:22px;margin-bottom:28px}
+.landing-logo{width:88px;height:88px;flex:none}
+.landing h1{margin:0 0 6px;font-size:30px}
+
+/* Страница учебника: обложка, название, плитки разделов */
+.bookhead{display:grid;grid-template-columns:auto minmax(0,1fr);gap:28px;align-items:center;background:var(--sf);border:1px solid var(--ln);border-top:6px solid var(--bk);border-radius:18px;padding:24px}
+.bookhead .cover{width:170px;margin:0}
+.bookhead .cover img{width:100%;height:auto;display:block;border-radius:12px}
+.bookinfo h1{margin:4px 0 8px;font-size:34px;line-height:1.1}
+.kicker{margin:0;font-size:13px;color:var(--mut)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:18px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;padding:18px;border-radius:14px;background:var(--sf);border:1px solid var(--ln);color:var(--ink);min-height:0;height:auto}
+.tile b{font-size:17px}
+.tile span{font-size:13px;color:var(--mut);line-height:1.35}
+@media (hover:hover){.tile:hover{border-color:var(--bk)}}
+@media (max-width:560px){
+  .bookhead{grid-template-columns:1fr;gap:16px}
+  .bookhead .cover{width:130px}
+  .bookinfo h1{font-size:26px}
+  .landing{gap:14px}
+  .landing-logo{width:64px;height:64px}
+}
+
+/* Планшет в портрете: словарь в три колонки */
+@media (pointer:coarse) and (orientation:portrait) and (min-width:600px){
+  .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+.bookinfo .row{margin-top:16px}
