@@ -58,23 +58,15 @@
   <main class="main">
 
     <section id="library" class="panel" hidden>
+      <div class="landing">
+        <img class="landing-logo" id="landingLogo" src="img/logo-ru.png" alt="">
+        <div>
+          <h1 data-i18n="siteTitle"></h1>
+          <p class="lead" data-i18n="heroText"></p>
+        </div>
+      </div>
       <header class="ph"><h2 data-i18n="tabLibrary"></h2><p class="mut" data-i18n="libHint"></p></header>
       <div id="books" class="books"></div>
-    </section>
-
-    <section id="home" class="panel" hidden>
-      <div class="hero">
-        <div class="hero-text">
-          <h1 id="heroTitle"></h1>
-          <p class="lead" data-i18n="heroText"></p>
-          <div class="row">
-            <button class="primary" data-go="dict" data-i18n="heroBtn"></button>
-            <button data-go="teacher" data-i18n="heroBtn2"></button>
-          </div>
-          <p class="meta" id="homeMeta"></p>
-        </div>
-        <figure class="cover" id="coverBox" hidden><img id="coverImg" alt=""></figure>
-      </div>
       <div class="feats">
         <div class="feat"><h3 data-i18n="f1t"></h3><p data-i18n="f1d"></p></div>
         <div class="feat"><h3 data-i18n="f2t"></h3><p data-i18n="f2d"></p></div>
@@ -84,7 +76,28 @@
         <p data-i18n="authorLine"></p>
         <p class="mut" data-i18n="studentNote"></p>
       </div>
-      <footer class="pagefoot"><span data-i18n="footer"></span><span id="footBook"></span></footer>
+      <footer class="pagefoot"><span data-i18n="footer"></span></footer>
+    </section>
+
+    <section id="home" class="panel" hidden>
+      <div class="bookhead">
+        <figure class="cover" id="coverBox" hidden><img id="coverImg" alt=""></figure>
+        <div class="bookinfo">
+          <p class="kicker" id="bookGrade"></p>
+          <h1 id="bookTitle"></h1>
+          <p class="meta" id="homeMeta"></p>
+          <div class="row">
+            <button class="primary" data-go="dict" data-i18n="heroBtn"></button>
+            <button data-go="teacher" data-i18n="heroBtn2"></button>
+          </div>
+        </div>
+      </div>
+      <div class="tiles">
+        <button class="tile" data-go="dict"><b data-i18n="tileDict"></b><span data-i18n="tileDictD"></span></button>
+        <button class="tile" data-go="teacher"><b data-i18n="tileTeacher"></b><span data-i18n="tileTeacherD"></span></button>
+        <button class="tile" data-go="play"><b data-i18n="tilePlay"></b><span data-i18n="tilePlayD"></span></button>
+        <button class="tile" data-go="board"><b data-i18n="tileBoard"></b><span data-i18n="tileBoardD"></span></button>
+      </div>
     </section>
 
     <section id="teacher" class="panel" hidden>
