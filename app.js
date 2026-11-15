@@ -116,6 +116,17 @@ const moduleOf = s => { const m = String(s).match(/^(\d+)/); return m ? m[1] : S
 const sortNat = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
 const secKey = w => w.module + '||' + w.section;
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+// Видимая часть окна (без скрытой адресной строки): боковое меню совпадает с ней по высоте
+function syncViewport() {
+  const vv = window.visualViewport;
+  const st = document.documentElement.style;
+  st.setProperty('--vvh', (vv ? vv.height : innerHeight) + 'px');
+  st.setProperty('--vvt', (vv ? vv.offsetTop : 0) + 'px');
+}
+if (window.visualViewport) { visualViewport.addEventListener('resize', syncViewport); visualViewport.addEventListener('scroll', syncViewport); }
+window.addEventListener('resize', syncViewport);
+syncViewport();
+
 const NARROW_Q = '(max-width: 860px), (pointer: coarse) and (max-width: 1280px)';
 const isMobile = () => matchMedia(NARROW_Q).matches;
 const modLabel = m => /^\d+$/.test(m) ? `${T('module')} ${m}` : m;
@@ -1055,53 +1066,53 @@ async function loadAllBooks() {
   return ALLW;
 }
 
-// Словарь: сначала 50 слов, дальше подгружаются при прокрутке к концу списка
-let dictQueue = [], dictPos = 0, dictIO = null;
-const DICT_BATCH = 50;
-function pushCards(n) {
-  let k = 0;
-  while (dictPos < dictQueue.length && k < n) {
-    const [box, w] = dictQueue[dictPos++];
-    box.insertAdjacentHTML('beforeend', card(w));
-    k++;
+// Словарь: все места создаются сразу фиксированной высоты, карточки заполняются только в окне просмотра
+// (видимые слова плюс по 25 до и после). Ушедшие за окно слова снова становятся пустыми местами.
+let dictWords = [], dictSlots = [], dictLoaded = new Set(), dictVisible = new Set(), dictIO = null;
+const DICT_PAD = 25;
+
+function slotsHtml(rows) {
+  return rows.map(w => `<div class="slot" data-i="${dictWords.push(w) - 1}"></div>`).join('');
+}
+
+function syncDict() {
+  if (!dictVisible.size) return;
+  let min = Infinity, max = -Infinity;
+  dictVisible.forEach(i => { if (i < min) min = i; if (i > max) max = i; });
+  const lo = Math.max(0, min - DICT_PAD), hi = Math.min(dictWords.length - 1, max + DICT_PAD);
+  dictLoaded.forEach(i => { if (i < lo || i > hi) { dictSlots[i].innerHTML = ''; dictLoaded.delete(i); } });
+  for (let i = lo; i <= hi; i++) {
+    if (!dictLoaded.has(i)) { dictSlots[i].innerHTML = card(dictWords[i]); dictLoaded.add(i); }
   }
 }
-function moreCards() {
-  pushCards(DICT_BATCH);
-  if (dictPos >= dictQueue.length) { if (dictIO) dictIO.disconnect(); return; }
-  // пока конец списка близко к экрану и вкладка открыта, добавляем ещё порцию
-  if (!$('dict').hidden && $('dictMore').getBoundingClientRect().top < innerHeight + 600) requestAnimationFrame(moreCards);
-}
-function fillDict(boxes, lists) {
-  dictQueue = []; dictPos = 0;
-  lists.forEach((words, i) => words.forEach(w => dictQueue.push([boxes[i], w])));
-  if (!dictIO) dictIO = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) moreCards(); }, { rootMargin: '600px 0px' });
-  dictIO.disconnect();
-  dictIO.observe($('dictMore'));
-  moreCards();
-}
-// Переход по оглавлению: подгружаем слова до конца нужного раздела
-function loadThrough(box) {
-  let last = -1;
-  dictQueue.forEach((q, i) => { if (q[0] === box) last = i; });
-  if (last >= dictPos) pushCards(last + 1 - dictPos);
+
+function bindDict() {
+  dictLoaded = new Set();
+  dictVisible = new Set();
+  dictSlots = [...$('dictBody').querySelectorAll('.slot')];
+  if (dictIO) dictIO.disconnect();
+  dictIO = new IntersectionObserver(es => {
+    es.forEach(x => { const i = +x.target.dataset.i; if (x.isIntersecting) dictVisible.add(i); else dictVisible.delete(i); });
+    syncDict();
+  }, { rootMargin: '400px 0px' });
+  dictSlots.forEach(sl => dictIO.observe(sl));
 }
 
 async function renderDict() {
   const q = $('search').value.trim().toLowerCase();
   const all = $('allBooks').checked;
   $('chips').hidden = all;
+  dictWords = [];
   if (all) {
     const lists = await loadAllBooks();
     const hit = w => !q || w.word.toLowerCase().includes(q) || w.translation.toLowerCase().includes(q);
-    const found = lists.map(({ book, words }) => ({ book, rows: words.filter(hit) }));
-    const shown = found.filter(f => f.rows.length);
+    const shown = lists.map(({ book, words }) => ({ book, rows: words.filter(hit) })).filter(f => f.rows.length);
     const total = shown.reduce((t, f) => t + f.rows.length, 0);
     $('dictCount').textContent = `${total} ${T('words')}`;
     $('dictBody').innerHTML = shown.length ? shown.map(f =>
-      `<section class="dm"><h3>${esc(f.book.title)}<span>${f.rows.length} ${T('words')}</span></h3><div class="cards"></div></section>`).join('')
+      `<section class="dm"><h3>${esc(f.book.title)}<span>${f.rows.length} ${T('words')}</span></h3><div class="cards">${slotsHtml(f.rows)}</div></section>`).join('')
       : `<p class="mut">${esc(T('dictEmpty'))}</p>`;
-    fillDict([...$('dictBody').querySelectorAll('.cards')], shown.map(f => f.rows));
+    bindDict();
     return;
   }
   const rows = WORDS.filter(w => (!dictMod || w.module === dictMod) &&
@@ -1114,17 +1125,16 @@ async function renderDict() {
     if (!s.has(w.section)) s.set(w.section, []);
     s.get(w.section).push(w);
   });
-  const lists = [];
   $('dictBody').innerHTML = rows.length ? [...g.keys()].map((m, mi) => {
     const secs = [...g.get(m)];
     const n = secs.reduce((t, s) => t + s[1].length, 0);
     const toc = `<nav class="toc">${secs.map(([s, l], si) =>
       `<button class="tocbtn" data-jump="sec-${mi}-${si}"><b>${esc(s)}</b><em>${l.length}</em></button>`).join('')}</nav>`;
     return `<section class="dm"><h3>${esc(modLabel(m))}<span>${n} ${T('words')}</span></h3>${toc}` +
-      secs.map(([s, l], si) => { lists.push(l); return `<div class="ds" id="sec-${mi}-${si}"><h4><b>${esc(s)}</b><span>${l.length}</span></h4><div class="cards"></div></div>`; }).join('') +
+      secs.map(([s, l], si) => `<div class="ds" id="sec-${mi}-${si}"><h4><b>${esc(s)}</b><span>${l.length}</span></h4><div class="cards">${slotsHtml(l)}</div></div>`).join('') +
       '</section>';
   }).join('') : `<p class="mut">${esc(T('dictEmpty'))}</p>`;
-  fillDict([...$('dictBody').querySelectorAll('.cards')], lists);
+  bindDict();
 }
 
 function stopSpeech() {
@@ -1197,9 +1207,7 @@ function speak(w, acc, btn) {
 $('dictBody').addEventListener('click', e => {
   const jump = e.target.closest('.tocbtn');
   if (jump) {
-    const sec = document.getElementById(jump.dataset.jump);
-    if (sec) loadThrough(sec.querySelector('.cards'));
-    sec?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById(jump.dataset.jump)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     return;
   }
   const b = e.target.closest('.spk');
