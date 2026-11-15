@@ -14,7 +14,7 @@ ru: {
   heroTitle:'Словарь и кроссворды к учебнику {b}',
   heroText:'Интерактивный сайт с кроссвордами и словарями по учебникам Spotlight. Учитель может за минуту собрать кроссворд из нужных модулей и разделов, а ученики решают его со своих смартфонов.',
   meta:'Модулей: {m} · Разделов: {s} · Слов: {w}',
-  authorLine:'Автор: Георгий Земляков (9 «Б»). Руководитель: Е. Г. Долбешкина.',
+  authorLine:'Автор проекта: Георгий Земляков (9 «Б»). Руководитель: Е. Г. Долбешкина.',
   heroBtn:'Открыть словарь', heroBtn2:'Создать кроссворд',
   
   
@@ -64,7 +64,7 @@ en: {
   heroTitle:'Vocabulary and crosswords for {b}',
   heroText:'Interactive site with crosswords and vocabularies for the Spotlight textbooks. A teacher can build a crossword from the chosen modules and sections in a minute, and students solve it on their smartphones.',
   meta:'Modules: {m} · Sections: {s} · Words: {w}',
-  authorLine:'Author: Georgiy Zemlyakov (grade 9 “B”). Supervisor: E. G. Dolbeshkina.',
+  authorLine:'Project author: Georgiy Zemlyakov (grade 9 “B”). Project Teacher: E. G. Dolbeshkina.',
   heroBtn:'Open dictionary', heroBtn2:'Create crossword',
   
   
@@ -629,7 +629,7 @@ function renderLibrary() {
   const soon = [8, 10, 11].map(grade => ({ soon: true, grade }));
   $('books').innerHTML = [...real, ...soon].sort((x, y) => x.grade - y.grade).map(c => {
     if (c.soon) {
-      return `<div class="bk soon" aria-disabled="true"><div class="ph-cover">${esc(T('soon'))}</div><h3>${esc(T('grade').replace('{g}', c.grade))}</h3><span>${esc(T('soonHint'))}</span></div>`;
+      return `<div class="bk soon" aria-disabled="true"><div class="ph-cover">${esc(T('soon'))}</div><h3>Spotlight ${c.grade}</h3><span>${esc(T('grade').replace('{g}', c.grade))}</span></div>`;
     }
     const b = c.b;
     const cover = b.cover ? `<img src="${esc(b.cover)}" alt="">` : `<div class="ph-cover">${esc(b.title)}</div>`;
@@ -1090,16 +1090,14 @@ function slotsHtml(rows) {
 }
 
 // Раскладка карточки: если текст не помещается, перевод обрывается многоточием,
-// а кнопка в углу раскрывает карточку (занимает несколько строк сетки), чтобы показать всё
+// а кнопка в углу раскрывает карточку: она растёт ровно на нужную высоту
 let dictOpen = new Set();
-const DICT_ROW = 150, DICT_GAP = 10;
+const DICT_ROW = 150;
 function layoutCard(slot) {
   const art = slot.firstElementChild;
   if (!art) return;
   const tx = art.querySelector('.tx');
   const open = dictOpen.has(+slot.dataset.i);
-  slot.style.gridRowEnd = '';
-  art.style.height = '';
   tx.style.removeProperty('--clamp');
   tx.style.maxHeight = '';
   art.classList.remove('ovf');
@@ -1110,12 +1108,8 @@ function layoutCard(slot) {
   const natural = art.offsetHeight;
   art.style.height = '';
   art.classList.toggle('full', open);
-  if (open) {
-    slot.style.gridRowEnd = 'span ' + Math.max(1, Math.ceil((natural + DICT_GAP) / (DICT_ROW + DICT_GAP)));
-    art.classList.add('ovf');
-    return;
-  }
-  if (natural > art.clientHeight + 1) {
+  if (open) { art.classList.add('ovf'); return; }
+  if (natural > DICT_ROW + 0.5) {
     art.classList.add('ovf');
     const lh = parseFloat(getComputedStyle(tx).lineHeight) || 18;
     const lines = Math.max(1, Math.floor(tx.clientHeight / lh));
@@ -1129,7 +1123,7 @@ function syncDict() {
   let min = Infinity, max = -Infinity;
   dictVisible.forEach(i => { if (i < min) min = i; if (i > max) max = i; });
   const lo = Math.max(0, min - DICT_PAD), hi = Math.min(dictWords.length - 1, max + DICT_PAD);
-  dictLoaded.forEach(i => { if (i < lo || i > hi) { dictSlots[i].innerHTML = ''; dictSlots[i].classList.remove('open'); dictSlots[i].style.gridRowEnd = ''; dictLoaded.delete(i); } });
+  dictLoaded.forEach(i => { if (i < lo || i > hi) { dictSlots[i].innerHTML = ''; dictSlots[i].classList.remove('open'); dictLoaded.delete(i); } });
   for (let i = lo; i <= hi; i++) {
     if (!dictLoaded.has(i)) { dictSlots[i].innerHTML = card(dictWords[i]); layoutCard(dictSlots[i]); dictLoaded.add(i); }
   }
