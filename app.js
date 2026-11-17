@@ -129,7 +129,7 @@ function syncViewport() {
   st.setProperty('--vvt', (vv ? vv.offsetTop : 0) + 'px');
 }
 if (window.visualViewport) { visualViewport.addEventListener('resize', syncViewport); visualViewport.addEventListener('scroll', syncViewport); }
-window.addEventListener('resize', syncViewport);
+window.addEventListener('resize', () => { syncViewport(); layoutTree(); });
 // Прокрутка страницы скрывает и показывает адресную строку браузера, высота меню должна следовать за этим
 window.addEventListener('scroll', syncViewport, { passive: true });
 syncViewport();
@@ -356,6 +356,7 @@ function renderHome() {
 function showTab(n) {
   cur = n;
   if (n === 'board') showStats();
+  if (n === 'teacher') layoutTree();
   document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== n);
   document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b.dataset.tab === n));
   $('bookNav').hidden = n === 'library' || !BOOK;
@@ -395,6 +396,19 @@ function buildTree() {
     ).join('') + '</div>';
   }).join('');
   updateAvailable();
+  layoutTree();
+}
+
+// Модули в генераторе: при 4 и больше модулях ровные ряды (чётное число — два ряда одинаковой длины),
+// но не больше колонок, чем влезает по ширине экрана
+function layoutTree() {
+  const t = $('tree');
+  const n = t.children.length;
+  const w = t.clientWidth;
+  if (n < 4 || !w) { t.style.gridTemplateColumns = ''; return; }
+  const gap = 12, min = 170;
+  const fit = Math.max(1, Math.floor((w + gap) / (min + gap)));
+  t.style.gridTemplateColumns = `repeat(${Math.min(Math.ceil(n / 2), fit)}, minmax(0,1fr))`;
 }
 
 function poolStats(secs) {
