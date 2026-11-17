@@ -34,6 +34,7 @@ svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke
 .icon{width:40px;height:40px;padding:0;display:grid;place-items:center;border-radius:10px;border:1px solid var(--ln);background:var(--sf);cursor:pointer}
 .icon svg{width:20px;height:20px}
 .main{width:100%;max-width:1120px;margin:0 auto;padding:40px 32px 56px}
+.app.collapsed .main{padding-top:76px}
 .panel{animation:fade .25s ease}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
@@ -197,6 +198,7 @@ tbody tr.me{background:var(--hl);font-weight:600}
   .app.open #menuBtn{display:none}
   .app.open .scrim{display:block;position:fixed;inset:0;background:rgba(5,12,28,.45);z-index:30}
   .main{padding:18px 16px 44px}
+  .app:not(.open) .main{padding-top:76px}
   .ph{padding-left:52px}
   .ph h2{font-size:24px}
   .feats{grid-template-columns:1fr;gap:12px}
@@ -510,3 +512,5 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
   .tile{min-height:42px;font-size:14px}
   .tiles{margin-top:14px}
 }
+
+/* Модули в генераторе: ряды ровные (при 4 модулях и больше), сколько влезает по ширине */
