@@ -514,3 +514,9 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 }
 
 /* Модули в генераторе: ряды ровные (при 4 модулях и больше), сколько влезает по ширине */
+
+/* Полоса сверху, когда видна кнопка меню: прокручиваемый контент уходит под неё, а не под кнопку */
+.app.collapsed::before{content:'';position:fixed;left:0;right:0;top:0;height:68px;background:var(--bg);z-index:34}
+@media (max-width:860px), (pointer:coarse) and (max-width:1280px){
+  .app:not(.open)::before{content:'';position:fixed;left:0;right:0;top:0;height:68px;background:var(--bg);z-index:34}
+}
