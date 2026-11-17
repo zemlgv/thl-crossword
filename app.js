@@ -114,12 +114,21 @@ const moduleOf = s => { const m = String(s).match(/^(\d+)/); return m ? m[1] : S
 const sortNat = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
 const secKey = w => w.module + '||' + w.section;
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
-// При изменении ширины карточки переносятся по-другому: раскладываем заново
-let fitTimer = null;
-window.addEventListener('resize', () => {
-  clearTimeout(fitTimer);
-  fitTimer = setTimeout(() => dictLoaded.forEach(i => layoutCard(dictSlots[i])), 150);
-});
+// Пересчёт ячеек словаря: при изменении ширины области (окно, открытие/закрытие меню)
+function relayoutDict() {
+  if ($('dict').hidden) return;
+  dictLoaded.forEach(i => layoutCard(dictSlots[i]));
+}
+let dictW = 0, dictRaf = 0;
+if ('ResizeObserver' in window) {
+  new ResizeObserver(es => {
+    const w = Math.round(es[0].contentRect.width);
+    if (w === dictW) return;
+    dictW = w;
+    cancelAnimationFrame(dictRaf);
+    dictRaf = requestAnimationFrame(relayoutDict);
+  }).observe($('dictBody'));
+}
 
 // Видимая часть окна (без скрытой адресной строки): боковое меню совпадает с ней по высоте
 function syncViewport() {
@@ -357,6 +366,7 @@ function showTab(n) {
   cur = n;
   if (n === 'board') showStats();
   if (n === 'teacher') layoutTree();
+  if (n === 'dict') requestAnimationFrame(relayoutDict);
   document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== n);
   document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b.dataset.tab === n));
   $('bookNav').hidden = n === 'library' || !BOOK;
@@ -405,10 +415,17 @@ function layoutTree() {
   const t = $('tree');
   const n = t.children.length;
   const w = t.clientWidth;
-  if (n < 4 || !w) { t.style.gridTemplateColumns = ''; return; }
+  if (n < 2 || !w) { t.style.gridTemplateColumns = ''; return; }
   const gap = 12, min = 170;
-  const fit = Math.max(1, Math.floor((w + gap) / (min + gap)));
-  t.style.gridTemplateColumns = `repeat(${Math.min(Math.ceil(n / 2), fit)}, minmax(0,1fr))`;
+  const fit = Math.max(1, Math.min(n, Math.floor((w + gap) / (min + gap))));
+  // самое большое число колонок, при котором разница между рядами не больше одного
+  let cols = 1;
+  for (let c = fit; c >= 1; c--) {
+    const rows = Math.ceil(n / c);
+    const last = n - (rows - 1) * c;
+    if (last >= c - 1) { cols = c; break; }
+  }
+  t.style.gridTemplateColumns = `repeat(${cols}, minmax(0,1fr))`;
 }
 
 function poolStats(secs) {
