@@ -29,12 +29,12 @@ svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke
 .shell{margin-left:var(--sw);min-width:0;display:flex;flex-direction:column;min-height:100vh}
 .app.collapsed .side{transform:translateX(-100%)}
 .app.collapsed .shell{margin-left:0}
-#menuBtn{position:fixed;top:14px;left:14px;z-index:35;display:grid}
+#menuBtn{position:absolute;top:14px;left:14px;z-index:35;display:grid}
 .app:not(.collapsed) #menuBtn{display:none}
 .icon{width:40px;height:40px;padding:0;display:grid;place-items:center;border-radius:10px;border:1px solid var(--ln);background:var(--sf);cursor:pointer}
 .icon svg{width:20px;height:20px}
 .main{width:100%;max-width:1120px;margin:0 auto;padding:40px 32px 56px}
-.app.collapsed .main{padding-top:76px}
+.app.collapsed .main{padding-top:68px}
 .panel{animation:fade .25s ease}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
@@ -198,7 +198,7 @@ tbody tr.me{background:var(--hl);font-weight:600}
   .app.open #menuBtn{display:none}
   .app.open .scrim{display:block;position:fixed;inset:0;background:rgba(5,12,28,.45);z-index:30}
   .main{padding:18px 16px 44px}
-  .app:not(.open) .main{padding-top:76px}
+  .app:not(.open) .main{padding-top:68px}
   .ph{padding-left:52px}
   .ph h2{font-size:24px}
   .feats{grid-template-columns:1fr;gap:12px}
@@ -514,9 +514,3 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 }
 
 /* Модули в генераторе: ряды ровные (при 4 модулях и больше), сколько влезает по ширине */
-
-/* Полоса сверху, когда видна кнопка меню: прокручиваемый контент уходит под неё, а не под кнопку */
-.app.collapsed::before{content:'';position:fixed;left:0;right:0;top:0;height:68px;background:var(--bg);z-index:34}
-@media (max-width:860px), (pointer:coarse) and (max-width:1280px){
-  .app:not(.open)::before{content:'';position:fixed;left:0;right:0;top:0;height:68px;background:var(--bg);z-index:34}
-}
