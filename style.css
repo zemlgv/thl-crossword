@@ -514,3 +514,7 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 }
 
 /* Модули в генераторе: ряды ровные (при 4 модулях и больше), сколько влезает по ширине */
+
+/* Плашка части речи внутри подсказки кроссворда */
+.clues li .posrow{display:inline-flex;vertical-align:1px;margin:0 0 0 6px;align-self:auto}
+.clues li .pos{font-size:10.5px;padding:1px 7px}
