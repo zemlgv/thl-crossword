@@ -531,10 +531,11 @@ $('genBtn').onclick = () => {
 };
 
 // Текст подсказки: общая функция для игры и для печати
-function clueOf(p, mode) {
-  let t = p.src.clue || p.src.translation;
-  if (mode === 'pos' && p.src.pos) t += ` [${p.src.pos}]`;
-  if (mode === 'first') t += ` — ${p.w[0]}…`;
+// Подсказка в виде HTML: перевод, часть речи плашкой (как в словаре), первая буква
+function clueHtml(p, mode) {
+  let t = esc(p.src.clue || p.src.translation);
+  if (mode === 'pos' && p.src.pos) t += ' ' + posHtml(p.src.pos);
+  if (mode === 'first') t += ` — ${esc(p.w[0])}…`;
   return `${t} (${p.w.length})`;
 }
 
@@ -567,7 +568,7 @@ $('printBtn').onclick = () => {
     rows.push(`<tr>${tr}</tr>`);
   }
   const list = d => lay.placed.filter(p => p.d === d).sort((a, b) => a.num - b.num)
-    .map(p => `<li><b>${p.num}.</b> ${esc(clueOf(p, lastPayload.c))}</li>`).join('');
+    .map(p => `<li><b>${p.num}.</b> ${clueHtml(p, lastPayload.c)}</li>`).join('');
   $('printArea').innerHTML =
     `<div class="phead"><h1>${esc(BOOK.title)}</h1>` +
     `<div class="pname"><span>Name: ${'_'.repeat(44)}</span><span>Date: ${'_'.repeat(18)}</span></div></div>` +
@@ -773,7 +774,7 @@ function renderGrid() {
 }
 
 function clueText(p) {
-  return clueOf(p, pz.payload.c || 'tr');
+  return clueHtml(p, pz.payload.c || 'pos');
 }
 
 function renderClues() {
@@ -782,7 +783,7 @@ function renderClues() {
     pz.placed.filter(p => p.d === dir).sort((a, b) => a.num - b.num).forEach(p => {
       const li = document.createElement('li');
       li.value = p.num;
-      li.textContent = clueText(p);
+      li.innerHTML = clueText(p);
       li.onclick = () => move(p.keys[0], p.d);
       p.li = li;
       ol.appendChild(li);
