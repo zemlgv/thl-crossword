@@ -1,10 +1,6 @@
 const I18N = {
 ru: {
-  appTitle:'Кроссворды и словари по английскому', 
-  
-  f1t:'Словарь с озвучкой', f1d:'Слова по модулям и разделам: перевод, транскрипция и произношение британского или американского варианта.',
-  f2t:'Кроссворд из нужных разделов', f2d:'Учитель выбирает модули и разделы, сайт собирает сетку, ссылку и QR-код.',
-  f3t:'Результаты класса', f3d:'Каждый ученик видит своё место в таблице лидеров кроссворда.',
+  appTitle:'Кроссворды и словари по английскому',
   
   
   
@@ -44,16 +40,12 @@ ru: {
   lbEmpty:'Пока никто не решил этот кроссворд.',
   lbErr:'Не удалось загрузить лидеров. Проверьте интернет.',
   lbSendErr:'Не удалось отправить результат в лидеры.',
-  pageTitle:'Кроссворды и словари по английскому · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', siteTitle:'Кроссворды и словари по английскому', soon:'Скоро', statModules:'Модулей', statSections:'Разделов', statWords:'Слов', expandCard:'Показать полностью', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
+  pageTitle:'Кроссворды и словари по английскому · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', siteTitle:'Кроссворды и словари по английскому', soon:'Скоро', statModules:'Модулей', statSections:'Разделов', statWords:'Слов', expandCard:'Показать полностью', toTop:'Наверх', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
   partialFit:'Подходящих слов: {p}, а вы указали {n}. Выберите больше разделов или уменьшите число слов.', placeFail:'Не удалось вставить {n} слов в сетку: мало пересечений. Выберите больше разделов или уменьшите число слов. Вошло: {p}.', qrFail:'QR-код не загрузился, нужен интернет.', lbNote:'Результаты общие для класса и хранятся 15 минут после последнего прохождения.',
   
 },
 en: {
-  appTitle:'Crosswords and vocabulary for English', 
-  
-  f1t:'Dictionary with audio', f1d:'Words by module and section: translation, transcription and British or American pronunciation.',
-  f2t:'A crossword from chosen sections', f2d:'The teacher picks modules and sections, the site builds the grid, the link and the QR code.',
-  f3t:'Class results', f3d:'Each student sees their place in the crossword leaderboard.',
+  appTitle:'Crosswords and vocabulary for English',
   
   
   
@@ -93,7 +85,7 @@ en: {
   lbEmpty:'Nobody has solved this crossword yet.',
   lbErr:'Could not load the leaderboard. Check your connection.',
   lbSendErr:'Could not send the result to the leaderboard.',
-  pageTitle:'Crosswords and vocabulary for English · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', siteTitle:'Crosswords and vocabulary for English', soon:'Coming soon', statModules:'Modules', statSections:'Sections', statWords:'Words', expandCard:'Show full text', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
+  pageTitle:'Crosswords and vocabulary for English · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', siteTitle:'Crosswords and vocabulary for English', soon:'Coming soon', statModules:'Modules', statSections:'Sections', statWords:'Words', expandCard:'Show full text', toTop:'Back to top', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
   partialFit:'Suitable words: {p}, but you asked for {n}. Choose more sections or reduce the number of words.', placeFail:'Could not fit {n} words into the grid: too few crossings. Choose more sections or reduce the number of words. Fitted: {p}.', qrFail:'QR code did not load, internet needed.', lbNote:'Results are shared within the class and kept for 15 minutes after the last solve.',
   
 }
@@ -143,7 +135,7 @@ syncViewport();
 const NARROW_Q = '(max-width: 860px), (pointer: coarse) and (max-width: 1280px)';
 const isMobile = () => matchMedia(NARROW_Q).matches;
 const modLabel = m => /^\d+$/.test(m) ? `${T('module')} ${m}` : m;
-const medal = i => String(i + 1);
+const medal = i => ['🥇', '🥈', '🥉'][i] || String(i + 1);
 
 const BOOKS = [];
 let BOOK = null, WORDS = [];
@@ -333,7 +325,6 @@ function applyLang() {
   setSeg($('langSeg'), lang === 'ru' ? 0 : 1);
   const logo = lang === 'ru' ? 'img/logo-ru.png' : 'img/logo-en.png';
   $('logoImg').src = logo;
-  $('landingLogo').src = logo;
   $('favicon').href = logo;
   renderLibrary();
   renderStats();
@@ -359,6 +350,16 @@ function renderHome() {
   else { box.hidden = true; }
 }
 
+// Прокрутка: кнопка «наверх» в словаре и сдвиг панели поиска, когда под ней закреплена кнопка меню
+function syncScroll() {
+  const dictOn = !$('dict').hidden;
+  $('toTop').classList.toggle('show', dictOn && scrollY > 400);
+  const tools = document.querySelector('.tools');
+  if (tools) tools.classList.toggle('stuck', dictOn && tools.getBoundingClientRect().top <= 0);
+}
+addEventListener('scroll', syncScroll, { passive: true });
+$('toTop').onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
+
 function showTab(n) {
   cur = n;
   if (n === 'board') showStats();
@@ -371,8 +372,8 @@ function showTab(n) {
   if (n === 'teacher') buildTree();
   if (n === 'play') fitGrid();
   if (n === 'play' || n === 'board') refreshLB();
-  $('app').classList.remove('open');
   scrollTo({ top: 0 });
+  syncScroll();
 }
 
 const selSecs = () => [...document.querySelectorAll('input[data-sec]:checked')].map(c => c.dataset.sec);
@@ -640,8 +641,9 @@ $('qrFull').onclick = () => openQR($('linkBox').value);
 $('qrClose').onclick = closeQR;
 $('qrOverlay').addEventListener('click', e => { if (e.target.id === 'qrOverlay') closeQR(); });
 
+let sideOpenedAt = 0;
 function toggleSide() {
-  if (isMobile()) $('app').classList.toggle('open');
+  if (isMobile()) { sideOpenedAt = Date.now(); $('app').classList.toggle('open'); }
   else {
     const c = $('app').classList.toggle('collapsed');
     localStorage.setItem('collapsed', c ? '1' : '0');
@@ -649,7 +651,7 @@ function toggleSide() {
 }
 $('menuBtn').onclick = toggleSide;
 $('sideClose').onclick = toggleSide;
-$('scrim').onclick = () => $('app').classList.remove('open');
+$('scrim').onclick = () => { if (Date.now() - sideOpenedAt > 400) $('app').classList.remove('open'); };
 addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeQR(); $('app').classList.remove('open'); }
 });
@@ -1306,10 +1308,11 @@ $('search').addEventListener('input', renderDict);
 $('allBooks').addEventListener('change', renderDict);
 
 document.querySelectorAll('.tab').forEach(b => b.onclick = () => {
+  if (isMobile()) $('app').classList.remove('open');
   if (b.dataset.tab === 'library') history.replaceState(null, '', location.pathname);
   showTab(b.dataset.tab);
 });
-document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => showTab(b.dataset.go));
+document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => { if (isMobile()) $('app').classList.remove('open'); showTab(b.dataset.go); });
 document.querySelectorAll('[data-th]').forEach(b => b.onclick = () => {
   theme = b.dataset.th;
   localStorage.setItem('theme', theme);
