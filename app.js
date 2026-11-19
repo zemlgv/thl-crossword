@@ -11,7 +11,6 @@ ru: {
   check:'Проверить (+10 с)', reveal:'Показать ответы · без зачёта',
   revealConfirm:'Показать ответы? Кроссворд закроется, результат не засчитается и не попадёт в таблицу лидеров.',
   tabHome:'Обзор', tabTeacher:'Генератор', tabPlay:'Кроссворд', tabDict:'Словарь', tabBoard:'Лидеры',
-  heroTitle:'Словарь и кроссворды к учебнику {b}',
   heroText:'Интерактивный сайт с кроссвордами и словарями по учебникам Spotlight. Учитель может за минуту собрать кроссворд из нужных модулей и разделов, а ученики решают его со своих смартфонов.',
   
   authorLine:'Автор проекта: Георгий Земляков (9 «Б»). Руководитель: Е. Г. Долбешкина.',
@@ -45,7 +44,7 @@ ru: {
   lbEmpty:'Пока никто не решил этот кроссворд.',
   lbErr:'Не удалось загрузить лидеров. Проверьте интернет.',
   lbSendErr:'Не удалось отправить результат в лидеры.',
-  pageTitle:'Кроссворды и словари по английскому · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', siteTitle:'Кроссворды и словари по английскому', soon:'Скоро', soonHint:'Учебник в разработке', statModules:'Модулей', statSections:'Разделов', statWords:'Слов', expandCard:'Показать полностью', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
+  pageTitle:'Кроссворды и словари по английскому · Технологический лицей', menuLabel:'Меню', errBooks:'Не удалось загрузить список учебников.', errBook:'Не удалось загрузить учебник.', printBtn:'Печать', csvBtn:'Скачать CSV', allBooks:'во всех учебниках', statsLine:'Создано: {c} · начато: {s} · решено: {v}', siteTitle:'Кроссворды и словари по английскому', soon:'Скоро', statModules:'Модулей', statSections:'Разделов', statWords:'Слов', expandCard:'Показать полностью', tabLibrary:'Учебники', libHint:'Выберите учебник, чтобы открыть его словарь и кроссворды.', grade:'{g} класс',
   partialFit:'Подходящих слов: {p}, а вы указали {n}. Выберите больше разделов или уменьшите число слов.', placeFail:'Не удалось вставить {n} слов в сетку: мало пересечений. Выберите больше разделов или уменьшите число слов. Вошло: {p}.', qrFail:'QR-код не загрузился, нужен интернет.', lbNote:'Результаты общие для класса и хранятся 15 минут после последнего прохождения.',
   
 },
@@ -61,7 +60,6 @@ en: {
   check:'Check (+10 s)', reveal:'Show answers · not counted',
   revealConfirm:'Show answers? The crossword will close, the result will not be counted and will not go to the leaderboard.',
   tabHome:'Overview', tabTeacher:'Generator', tabPlay:'Crossword', tabDict:'Dictionary', tabBoard:'Leaderboard',
-  heroTitle:'Vocabulary and crosswords for {b}',
   heroText:'Interactive site with crosswords and vocabularies for the Spotlight textbooks. A teacher can build a crossword from the chosen modules and sections in a minute, and students solve it on their smartphones.',
   
   authorLine:'Project Author: Georgiy Zemlyakov (grade 9 “B”). Project Teacher: E. G. Dolbeshkina.',
@@ -95,7 +93,7 @@ en: {
   lbEmpty:'Nobody has solved this crossword yet.',
   lbErr:'Could not load the leaderboard. Check your connection.',
   lbSendErr:'Could not send the result to the leaderboard.',
-  pageTitle:'Crosswords and vocabulary for English · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', siteTitle:'Crosswords and vocabulary for English', soon:'Coming soon', soonHint:'Textbook in preparation', statModules:'Modules', statSections:'Sections', statWords:'Words', expandCard:'Show full text', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
+  pageTitle:'Crosswords and vocabulary for English · Technological Lyceum', menuLabel:'Menu', errBooks:'Could not load the textbook list.', errBook:'Could not load the textbook.', printBtn:'Print', csvBtn:'Download CSV', allBooks:'all textbooks', statsLine:'Created: {c} · started: {s} · solved: {v}', siteTitle:'Crosswords and vocabulary for English', soon:'Coming soon', statModules:'Modules', statSections:'Sections', statWords:'Words', expandCard:'Show full text', tabLibrary:'Textbooks', libHint:'Choose a textbook to open its dictionary and crosswords.', grade:'Grade {g}',
   partialFit:'Suitable words: {p}, but you asked for {n}. Choose more sections or reduce the number of words.', placeFail:'Could not fit {n} words into the grid: too few crossings. Choose more sections or reduce the number of words. Fitted: {p}.', qrFail:'QR code did not load, internet needed.', lbNote:'Results are shared within the class and kept for 15 minutes after the last solve.',
   
 }
@@ -111,7 +109,6 @@ const parseKey = k => k.split(',').map(Number);
 const isLatin = w => /^[A-Za-z]{3,}$/.test(w);
 const clue = t => String(t).trim();
 const moduleOf = s => { const m = String(s).match(/^(\d+)/); return m ? m[1] : String(s).replace(/\s*\d+$/, '').trim(); };
-const sortNat = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
 const secKey = w => w.module + '||' + w.section;
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
 // Пересчёт ячеек словаря: при изменении ширины области (окно, открытие/закрытие меню)
