@@ -3,7 +3,7 @@ ru: {
   appTitle:'Кроссворды и словари по английскому', 
   
   f1t:'Словарь с озвучкой', f1d:'Слова по модулям и разделам: перевод, транскрипция и произношение британского или американского варианта.',
-  f2t:'Кроссворд за минуту', f2d:'Учитель выбирает модули и разделы, сайт собирает сетку, ссылку и QR-код.',
+  f2t:'Кроссворд из нужных разделов', f2d:'Учитель выбирает модули и разделы, сайт собирает сетку, ссылку и QR-код.',
   f3t:'Результаты класса', f3d:'Каждый ученик видит своё место в таблице лидеров кроссворда.',
   
   
@@ -53,7 +53,7 @@ en: {
   appTitle:'Crosswords and vocabulary for English', 
   
   f1t:'Dictionary with audio', f1d:'Words by module and section: translation, transcription and British or American pronunciation.',
-  f2t:'A crossword in a minute', f2d:'The teacher picks modules and sections, the site builds the grid, the link and the QR code.',
+  f2t:'A crossword from chosen sections', f2d:'The teacher picks modules and sections, the site builds the grid, the link and the QR code.',
   f3t:'Class results', f3d:'Each student sees their place in the crossword leaderboard.',
   
   
@@ -146,7 +146,7 @@ syncViewport();
 const NARROW_Q = '(max-width: 860px), (pointer: coarse) and (max-width: 1280px)';
 const isMobile = () => matchMedia(NARROW_Q).matches;
 const modLabel = m => /^\d+$/.test(m) ? `${T('module')} ${m}` : m;
-const medal = i => ['🥇', '🥈', '🥉'][i] || String(i + 1);
+const medal = i => String(i + 1);
 
 const BOOKS = [];
 let BOOK = null, WORDS = [];
