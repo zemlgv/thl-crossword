@@ -51,13 +51,6 @@ input[type=number]{width:90px}
 .lead{margin:0 0 28px;color:var(--mut);font-size:17px;max-width:500px}
 .hero .row{display:flex;gap:10px;flex-wrap:wrap}
 .meta{margin:20px 0 0;color:var(--mut);font-size:13px}
-.feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px}
-.feat{padding:0}
-.feat h3{margin:0 0 8px;font-size:16px;font-weight:600}
-.feat p{margin:0;color:var(--mut);font-size:14px}
-.about{padding:28px 4px 0}
-.about p{margin:0 0 8px;color:var(--mut);font-size:14px}
-.about p:first-child{color:var(--ink);font-size:15px}
 .pagefoot{margin-top:40px;padding-top:18px;border-top:1px solid var(--ln);color:var(--mut);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .ph{margin-bottom:22px}
 .ph h2{margin:0;font-size:28px;letter-spacing:-.02em}
@@ -178,8 +171,7 @@ tbody tr.me{background:var(--hl);font-weight:600}
   .app:not(.open) .main{padding-top:68px}
   .ph{padding-left:52px}
   .ph h2{font-size:24px}
-  .feats{grid-template-columns:1fr;gap:12px}
-  .tools{padding-left:52px}
+    .tools{padding-left:52px}
   #search{width:100%;max-width:360px;height:38px;padding:6px 12px}
   .side{height:100vh;height:100dvh;padding:16px;gap:14px;overflow:hidden}
   .side .brand{order:1}
@@ -351,12 +343,8 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 @media (orientation:landscape) and (max-height:800px) and (pointer:coarse){.main{padding-left:max(24px,7vw);padding-right:max(24px,7vw)}
   .cards{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}}
 /* Главная: вступление и список учебников */
-.landing{display:flex;align-items:center;gap:22px;margin-bottom:28px}
-.landing-logo{width:88px;height:88px;flex:none}
-.landing h1{margin:0 0 6px;font-size:30px}
 /* Страница учебника: обложка, название, плитки разделов */
-@media (max-width:560px){.landing{gap:14px}
-  .landing-logo{width:64px;height:64px}}
+@media (max-width:560px){  .landing-logo{width:64px;height:64px}}
 /* Планшет в портрете: словарь в три колонки */
 @media (pointer:coarse) and (orientation:portrait) and (min-width:600px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
 /* Заглушки учебников, которые ещё не готовы */
@@ -424,3 +412,25 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 /* Плашка части речи внутри подсказки кроссворда */
 .clues li .posrow{display:inline-flex;vertical-align:1px;margin:0 0 0 6px;align-self:auto}
 .clues li .pos{font-size:10.5px;padding:1px 7px}
+
+/* Заголовок страницы: название сайта */
+.pagetitle{margin:0 0 28px;font-size:30px;font-weight:600;letter-spacing:-.01em}
+
+/* Плашка внизу главной: описание и автор */
+.about{margin-top:40px;padding:24px 28px}
+.about-text{margin:0;font-size:16px;line-height:1.6;color:var(--ink)}
+.about-author{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--ln);font-size:14px;color:var(--mut)}
+
+/* Меню: кнопка всегда на экране, поверх контента */
+#menuBtn{position:fixed;top:12px;left:12px}
+
+/* Панель поиска и модулей при прокрутке: элементы сдвигаются от кнопки меню, фон панели остаётся */
+.app.collapsed .tools.stuck{padding-left:56px}
+
+/* Кнопка «наверх» в словаре */
+.totop{position:fixed;bottom:24px;left:50%;z-index:20;width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%;background:var(--sf);border:1px solid var(--ln);color:var(--ink);opacity:0;transform:translate(-50%,16px);pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+.totop svg{width:20px;height:20px}
+.totop.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+@media (min-width:861px) and (pointer:fine){
+  .app:not(.collapsed) .totop{left:calc(50% + var(--sw) / 2)}
+}
