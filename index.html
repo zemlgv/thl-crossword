@@ -59,22 +59,12 @@
   <main class="main">
 
     <section id="library" class="panel" hidden>
-      <div class="landing">
-        <img class="landing-logo" id="landingLogo" src="img/logo-ru.png" alt="">
-        <div>
-          <h1 data-i18n="siteTitle"></h1>
-          <p class="lead" data-i18n="heroText"></p>
-        </div>
-      </div>
+      <h1 class="pagetitle" data-i18n="siteTitle"></h1>
       <header class="ph"><h2 data-i18n="tabLibrary"></h2><p class="mut" data-i18n="libHint"></p></header>
       <div id="books" class="books"></div>
-      <div class="feats">
-        <div class="feat"><h3 data-i18n="f1t"></h3><p data-i18n="f1d"></p></div>
-        <div class="feat"><h3 data-i18n="f2t"></h3><p data-i18n="f2d"></p></div>
-        <div class="feat"><h3 data-i18n="f3t"></h3><p data-i18n="f3d"></p></div>
-      </div>
-      <div class="about">
-        <p data-i18n="authorLine"></p>
+      <div class="about card">
+        <p class="about-text" data-i18n="heroText"></p>
+        <p class="about-author" data-i18n="authorLine"></p>
       </div>
       <footer class="pagefoot"><span data-i18n="footer"></span><span>Spotlight</span></footer>
     </section>
@@ -197,6 +187,7 @@
   <button id="qrClose" data-i18n="closeQr"></button>
 </div>
 
+<button class="totop" id="toTop" data-i18n-aria="toTop"><svg viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/></svg></button>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="config.js?v=7"></script>
 <script src="app.js?v=7"></script>
