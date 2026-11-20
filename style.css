@@ -170,7 +170,7 @@ tbody tr.me{background:var(--hl);font-weight:600}
   .main{padding:18px 16px 44px}
   .app:not(.open) .main{padding-top:68px}
   .ph{padding-left:52px}
-  .ph h2{font-size:24px}
+  .ph h2,.pagetitle{font-size:24px}
     .tools{padding-left:52px}
   #search{width:100%;max-width:360px;height:38px;padding:6px 12px}
   .side{height:100vh;height:100dvh;padding:16px;gap:14px;overflow:hidden}
@@ -281,7 +281,7 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
    Портрет и ПК не затрагиваются. */
 @media (orientation:landscape) and (max-height:500px) and (max-width:1000px){.main{padding:14px 16px 20px}
   .ph{margin-bottom:10px}
-  .ph h2{font-size:20px}
+  .ph h2,.pagetitle{font-size:20px}
   .game{grid-template-columns:minmax(0,1fr) minmax(170px,240px);gap:14px}
   .clues{max-height:calc(100vh - 110px);overflow:auto;padding:2px 12px 10px}
   .clues h3{margin:10px 0 4px}
@@ -414,12 +414,10 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 .clues li .pos{font-size:10.5px;padding:1px 7px}
 
 /* Заголовок страницы: название сайта */
-.pagetitle{margin:0 0 28px;font-size:30px;font-weight:600;letter-spacing:-.01em}
+.pagetitle{margin:0 0 28px;font-size:28px;font-weight:700;letter-spacing:-.02em}
+.app.boot .side{transition:none}
 
 /* Плашка внизу главной: описание и автор */
-.about{margin-top:40px;padding:24px 28px}
-.about-text{margin:0;font-size:16px;line-height:1.6;color:var(--ink)}
-.about-author{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--ln);font-size:14px;color:var(--mut)}
 
 /* Меню: кнопка всегда на экране, поверх контента */
 #menuBtn{position:fixed;top:12px;left:12px}
@@ -428,9 +426,15 @@ button,.chip,.tab,.tocbtn,.spk,.seg{touch-action:manipulation}
 .app.collapsed .tools.stuck{padding-left:56px}
 
 /* Кнопка «наверх» в словаре */
-.totop{position:fixed;bottom:24px;left:50%;z-index:20;width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%;background:var(--sf);border:1px solid var(--ln);color:var(--ink);opacity:0;transform:translate(-50%,16px);pointer-events:none;transition:opacity .25s ease,transform .25s ease}
 .totop svg{width:20px;height:20px}
-.totop.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+@media (min-width:861px) and (pointer:fine){
+  .app:not(.collapsed) }
+.about{margin-top:48px;padding:28px 32px;background:var(--sf);border:1px solid var(--ln);border-radius:14px}
+.about-text{margin:0;max-width:62ch;font-size:17px;line-height:1.65;color:var(--ink)}
+.about-author{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--ln);font-size:14px;color:var(--mut)}
+.totop{position:fixed;bottom:24px;left:50%;margin-left:-22px;z-index:20;width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%;background:var(--sf);border:1px solid var(--ln);color:var(--ink);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s ease,transform .25s ease,background .15s,border-color .15s}
+.totop svg{width:20px;height:20px}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
 @media (min-width:861px) and (pointer:fine){
   .app:not(.collapsed) .totop{left:calc(50% + var(--sw) / 2)}
 }
