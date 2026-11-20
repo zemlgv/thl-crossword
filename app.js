@@ -1334,12 +1334,13 @@ async function init() {
     speechSynthesis.getVoices();
     speechSynthesis.addEventListener('voiceschanged', () => speechSynthesis.getVoices());
   }
-  if (localStorage.getItem('collapsed') === '1') $('app').classList.add('collapsed');
   try { BOOKS.push(...await (await fetch('data/books.json')).json()); }
   catch (e) { console.error(e); alert(T('errBooks')); return; }
   applyLang();
   try { await route(); }
   catch (e) { console.error(e); alert(T('errBook')); showTab('library'); }
+  // Анимации меню включаются только после первой отрисовки, чтобы не было переезда при открытии
+  requestAnimationFrame(() => requestAnimationFrame(() => $('app').classList.remove('boot')));
 }
 
 init();
